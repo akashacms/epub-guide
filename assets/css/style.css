@@ -1,0 +1,49 @@
+
+nav ol {
+  list-style-type: decimal;
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+  margin-left: 20px !important;
+  padding-left: 25px !important;
+}
+
+nav ol ol {
+  list-style-type: lower-alpha;
+}
+
+nav ol ol ol {
+  list-style-type: lower-roman;
+}
+
+nav ul { 
+  list-style-type: square;
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+  margin-left: 5px !important;
+  padding-left: 20px !important;
+}
+
+nav ul ul { 
+  list-style-type: none;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+nav ul ul li p:before { 
+  content: "\2014 \0020";
+}
+
+nav ul ul ul li p:before { 
+  content: "";
+}
+
+nav ul ul ul { 
+  list-style-type: square;
+  margin-left: 20px !important;
+  padding-left: 30px !important;
+}
+
+img.cover-image {
+    max-width: 100%;
+    max-height: 100%;
+}
