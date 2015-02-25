@@ -26,4 +26,6 @@ module.exports = function(grunt) {
         'bundleEPUB'
     ] );
     
+    // grunt.registerTask('epubcheck', [ 'EPUBcheck' ]);
+    
 };
