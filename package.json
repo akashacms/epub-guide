@@ -8,6 +8,9 @@
   "description": "AkashaEPUB Guide Book source",
   "homepage": "http://akashacms.com/plugins/epub.html",
   "dependencies": {
-    "akashacms-epub": "*"
+    "akashacms": "*",
+    "akashacms-epub": "*",
+    "grunt": "*",
+    "ejs": "*"
   }
 }

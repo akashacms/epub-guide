@@ -211,7 +211,7 @@ module.exports = {
 	
     config: function(akasha) {
 		akasha.registerPlugins(module.exports, [
-            { name: 'akashacms-epub', plugin: require('../../Node.js/akashacms-epub') },
+            { name: 'akashacms-epub', plugin: require('akashacms-epub') },
 			// { name: 'akashacms-theme-bootstrap', plugin: require('akashacms-theme-bootstrap') },
 			// { name: 'akashacms-breadcrumbs', plugin: require('akashacms-breadcrumbs') },
 			// { name: 'akashacms-booknav', plugin: require('akashacms-booknav') },
