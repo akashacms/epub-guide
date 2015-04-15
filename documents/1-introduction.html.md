@@ -16,21 +16,5 @@ The key features offered by AkashaEPUB are
 
 I should mention up-front that AkashaEPUB is geek-friendly.  While it attempts to make the process very simple, it's a command line tool and editing the files requires a programmers text editor.  At this time, anyway.  It's plausible to build an in-browser editor and previewer for AkashaEPUB, but that hasn't been done.
 
-The whole system is written in Node.js, a cross-platform programming environment written in JavaScript.  Node.js is becoming popular in the programming community, partly because it takes JavaScript out of the web browser landing it on server computers.  For AkashaEPUB users, the portability means you can use pretty much any computer system to produce books.  While producing this I work alternately on a MacBook Pro (OS X) and a Chromebook (ChromeOS) that's been reconfigured to run Linux.
-
-## Installation
-
-Install Node.js
-
-Install AkashaCMS globally
-
-## Create AkashaCMS work directory
-
-package.json - npm install
-
-config.js
-
-assets
-
-documents
+The whole system is written in Node.js, a cross-platform programming environment written in JavaScript.  Node.js is becoming popular in the programming community, partly because it takes JavaScript out of the web browser landing it on server computers.  For AkashaEPUB users, the portability means you can use pretty much any computer system to produce books.  While producing this book, and the software, I work alternately on a MacBook Pro (OS X) and a Chromebook (ChromeOS) that's been reconfigured to run Linux.
 
