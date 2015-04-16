@@ -7,7 +7,7 @@ In EPUB2, content was supposed to be written in XHTML, the XML variant of HTML. 
 
 AkashaEPUB's Markdown renderer automatically generates the correct sort of HTML.
 
-When including your own HTML tags in a document remember that with XHTML5 you must include the closing tag.  We have to reform our old lazy ways of leaving off the closing tag, in other words.  The ```<tagname/>``` variation doesn't work terribly well in my experience.
+When including your own HTML tags in a document remember that with XHTML5 you must include the closing tag.  We have to reform our old lazy ways of leaving off the closing tag, in other words.  The ```<tagname/>``` variation doesn't work terribly well in my experience.  Instead you must write tags as ```<tagname></tagname>```.
 
 ## Useful HTML5 tags
 
@@ -105,7 +105,7 @@ manifest.forEach(function(item) {
 </html>
 ```
 
-This is adapted from the [EPUB3 examples available on Google Code hosting](https://code.google.com/p/epub-samples/).
+This is adapted from the EPUB3 examples available on Google Code hosting ([code.google.com/p/epub-samples/](https://code.google.com/p/epub-samples/)).
 
 ### Link tags
 
@@ -113,4 +113,5 @@ The `<link>` tag is as we are accustomed to in regular websites.  The value in t
 
 In EPUB there is no "webroot" concept, and therefore an `href="/css/style.css"` is wrong because the leading `/` is incorrect.  Instead the path is always relative to the current document.
 
+Since EPUB's are not allowed to reference external content, `link` tags, `img` tags, and the like, must reference a file contained within the EPUB.
 

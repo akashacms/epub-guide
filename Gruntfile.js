@@ -1,5 +1,5 @@
 
-var akasha = require('akashacms');
+var akasha = require('../akashacms');
 var config = require('./config.js');
 akasha.config(config);
 
@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         config: config
     });
     
-    grunt.loadNpmTasks('akashacms');
+    grunt.loadTasks('../akashacms/tasks');
     grunt.loadNpmTasks('akashacms-epub');
     
     // TBD useWebStylesheets

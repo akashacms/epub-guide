@@ -8,10 +8,7 @@ module.exports = {
     root_out: 'out',
     root_docs: [ 'documents'],
     
-    root_epub2: 'docs-epub',
-    
     root_url: 'http://epub-guide.akashacms.com',
-    
     
     doMinimize: false,
     
@@ -39,11 +36,15 @@ module.exports = {
                 { name: "David Herron", nameReversed: "Herron, David" },
             ],
             publisher: "Amazon.com",
-            subjects: [ "Reference" ],
-            date: "2015-02-21",
-            modified: "2015-02-26T00:00:00Z",
+            subjects: [ 
+                "Self Publishing", "Markdown", "EPUB", "EPUB3", "Open Source Publishing",
+                "Electronic Books", "Electronic Book Publishing", "E-Books", "E-Book Publishing",
+                "EPUB Publishing"
+            ],
+            date: "2015-04-15",
+            modified: "2015-04-15T00:00:00Z",
             cover: "ebook-cover-image",
-            rights: "None"
+            rights: "Copyright 2015, David Herron"
         },
         
         manifest: [
@@ -81,43 +82,131 @@ module.exports = {
                 navclass: "book"
             },
             {
-                id: "chapter1a",
+                id: "chapter2",
                 title: "Installing Node.js, AkashaCMS and AkashaEPUB",
-                href: "1a-installation.html",
+                href: "2-installation.html",
                 type: "application/xhtml+xml",
                 spineorder: 4,
                 navclass: "book"
             },
             {
-                id: "chapter1b",
+                id: "chapter2a",
                 title: "AkashaCMS Directory structure and how it's used in AkashaEPUB",
-                href: "1b-akashacms-directory.html",
+                href: "2a-akashacms-directory.html",
                 type: "application/xhtml+xml",
                 spineorder: 5,
                 navclass: "book"
             },
             {
-                id: "chapter2",
-                title: "Creating content for an AkashaEPUB",
-                href: "2-creating-content.html",
+                id: "chapter2b",
+                title: "AkashaEPUB quick start",
+                href: "2b-quickstart.html",
                 type: "application/xhtml+xml",
                 spineorder: 6,
                 navclass: "book"
             },
             {
-                id: "chapter2a",
-                title: "Summary of HTML5 markup in AkashaEPUB Documents",
-                href: "2a-html5-structure.html",
+                id: "chapter3",
+                title: "Creating content for an AkashaEPUB",
+                href: "3-creating-content.html",
                 type: "application/xhtml+xml",
                 spineorder: 7,
                 navclass: "book"
             },
             {
-                id: "chapter3",
-                title: "Configuration",
-                href: "3-configuration.html",
+                id: "chapter3a",
+                title: "AkashaCMS document format",
+                href: "3a-document-format.html",
                 type: "application/xhtml+xml",
                 spineorder: 8,
+                navclass: "book"
+            },
+            {
+                id: "chapter3b",
+                title: "AkashaCMS metadata",
+                href: "3b-metadata.html",
+                type: "application/xhtml+xml",
+                spineorder: 9,
+                navclass: "book"
+            },
+            {
+                id: "chapter3c",
+                title: "Content markup",
+                href: "3c-content-markup.html",
+                type: "application/xhtml+xml",
+                spineorder: 10,
+                navclass: "book"
+            },
+            {
+                id: "chapter3d",
+                title: "AkashaCMS rendering process",
+                href: "3d-rendering.html",
+                type: "application/xhtml+xml",
+                spineorder: 11,
+                navclass: "book"
+            },
+            {
+                id: "chapter3e",
+                title: "Summary of HTML5 markup in AkashaEPUB Documents",
+                href: "3e-html5-structure.html",
+                type: "application/xhtml+xml",
+                spineorder: 12,
+                navclass: "book"
+            },
+            {
+                id: "chapter4",
+                title: "Configuration",
+                href: "4-configuration.html",
+                type: "application/xhtml+xml",
+                spineorder: 13,
+                navclass: "book"
+            },
+            {
+                id: "chapter4a",
+                title: "Book Metadata",
+                href: "4a-book-metadata.html",
+                type: "application/xhtml+xml",
+                spineorder: 14,
+                navclass: "book"
+            },
+            {
+                id: "chapter4b",
+                title: "Generating the Table of Contents",
+                href: "4b-table-contents.html",
+                type: "application/xhtml+xml",
+                spineorder: 15,
+                navclass: "book"
+            },
+            {
+                id: "chapter4c",
+                title: "Final Config",
+                href: "4c-final-misc-config.html",
+                type: "application/xhtml+xml",
+                spineorder: 16,
+                navclass: "book"
+            },
+            {
+                id: "chapter5",
+                title: "Building an EPUB",
+                href: "5-building-EPUB.html",
+                type: "application/xhtml+xml",
+                spineorder: 17,
+                navclass: "book"
+            },
+            {
+                id: "chapter5a",
+                title: "Examining Grunt",
+                href: "5a-examining-grunt.html",
+                type: "application/xhtml+xml",
+                spineorder: 18,
+                navclass: "book"
+            },
+            {
+                id: "chapter6",
+                title: "Wrapping up",
+                href: "6-wrapping-up.html",
+                type: "application/xhtml+xml",
+                spineorder: 19,
                 navclass: "book"
             },
             { id: "stylesheet", href: "css/style.css", type: "text/css" },
@@ -140,20 +229,40 @@ module.exports = {
             { id: "toc" },
             {
                 id: "chapter1",
-                subtoc: [
-                    { id: "chapter1a" },
-                    { id: "chapter1b" }
-                ]
             },
             {
                 id: "chapter2",
                 subtoc: [
-                    { id: "chapter2a" }/* ,
-                    { id: "chapter2b" } */
+                    { id: "chapter2a" },
+                    { id: "chapter2b" }
                 ]
             },
             {
-                id: "chapter3"
+                id: "chapter3",
+                subtoc: [
+                    { id: "chapter3a" },
+                    { id: "chapter3b" },
+                    { id: "chapter3c" },
+                    { id: "chapter3d" },
+                    { id: "chapter3e" }
+                ]
+            },
+            {
+                id: "chapter4",
+                subtoc: [
+                    { id: "chapter4a" },
+                    { id: "chapter4b" },
+                    { id: "chapter4c" }
+                ]
+            },
+            {
+                id: "chapter5",
+                subtoc: [
+                    { id: "chapter5a" }
+                ]
+            },
+            {
+                id: "chapter6"
             }
         ],
         
@@ -206,7 +315,19 @@ module.exports = {
             assets: true,
             sitemap: true,
             extlink: true
-        }
+        },
+		markdownIt: {
+			html:         true,        // Enable html tags in source
+			xhtmlOut:     false,        // Use '/' to close single tags (<br />)
+			breaks:       false,        // Convert '\n' in paragraphs into <br>
+			// langPrefix:   'language-',  // CSS language prefix for fenced blocks
+			linkify:      false,        // Autoconvert url-like texts to links
+			typographer:  true,         // Enable smartypants and other sweet transforms
+		  
+			// Highlighter function. Should return escaped html,
+			// or '' if input not changed
+			highlight: function (/*str, , lang*/) { return ''; }
+		}
     },
 	
     config: function(akasha) {

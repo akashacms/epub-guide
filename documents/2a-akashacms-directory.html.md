@@ -14,14 +14,14 @@ It will help to refer to the source code (See [github.com/akashacms/epub-guide](
 Among other things, the AkashaCMS `config.js` declares a set of input directories containing _assets_ (`root_assets`), _partials_ (`root_partials`), _layouts_ (`root_partials`) and _documents_ (`root_docs`) as well as the directory into which to build the result (`root_out`).  These are the typical values
 
 ```
-module.exports = {
-    root_assets: [ 'assets' ],
-    root_layouts: [ 'layouts' ],
-    root_partials: [ 'partials' ],
-    root_out: 'out',
-    root_docs: [ 'documents'],
-    ...
-};
+    module.exports = {
+        root_assets: [ 'assets' ],
+        root_layouts: [ 'layouts' ],
+        root_partials: [ 'partials' ],
+        root_out: 'out',
+        root_docs: [ 'documents'],
+        ...
+    };
 ```
 
 You can name any of these directories as you want, but it's best to leave these defaults alone.
@@ -43,4 +43,39 @@ EPUB's are a mix of HTML files, CSS, Images and metadata files in XML format.  Y
 
 ## Installing npm modules to customize your book
 
-Because AkashaCMS is built with the Node.js platform, any additional modules to be installed must be declared in a `package.json` file, and then installed using npm.  Those files land in a directory named `node_modules`.
+Because AkashaCMS is built with the Node.js platform, any additional modules to be installed must be declared in a `package.json` file, and then installed using npm.  The plugin modules land in a directory named `node_modules`.
+
+First declare the module in `config.js`
+
+```
+    akasha.registerPlugins(module.exports, [
+        { name: 'akashacms-epub', plugin: require('akashacms-epub') },
+        { name: 'akashacms-breadcrumbs', plugin: require('akashacms-breadcrumbs') }
+    ]);
+```
+
+Next declare it in the `package.json`
+
+```
+    "dependencies": {
+      "akashacms": "*",
+      "akashacms-epub": "*",
+      "akashacms-breadcrumbs": "*",
+      "grunt": "*",
+      "ejs": "*"
+    }
+```
+
+If the plugin module provides some tasks, add the following to `Gruntfile.js`
+
+```
+    grunt.loadNpmTasks('akashacms-breadcrumbs');
+```
+
+Then install the modules
+
+```
+    $ npm install
+```
+
+If all's good this installs the new modules.
