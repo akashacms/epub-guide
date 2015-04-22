@@ -49,8 +49,10 @@ First declare the module in `config.js`
 
 ```
     akasha.registerPlugins(module.exports, [
-        { name: 'akashacms-epub', plugin: require('akashacms-epub') },
-        { name: 'akashacms-breadcrumbs', plugin: require('akashacms-breadcrumbs') }
+        { name: 'akashacms-epub',
+          plugin: require('akashacms-epub') },
+        { name: 'akashacms-breadcrumbs',
+          plugin: require('akashacms-breadcrumbs') }
     ]);
 ```
 

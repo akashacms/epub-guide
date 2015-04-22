@@ -89,13 +89,15 @@ AkashaEPUB by provides a default page layout, `epub_page.html.ejs` which contain
 ```
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:epub="http://www.idpf.org/2007/ops">
 <head>
 <title><%= title %></title>
 <%
 manifest.forEach(function(item) {
     if (item.type === "text/css") { %>
-    <link rel="stylesheet" type="<%= type %>" href="<%= item.href %>" /><%
+    <link rel="stylesheet" type="<%= type %>"
+          href="<%= item.href %>" /><%
 })
 %>
 </head>
@@ -105,7 +107,6 @@ manifest.forEach(function(item) {
 </html>
 ```
 
-This is adapted from the EPUB3 examples available on Google Code hosting ([code.google.com/p/epub-samples/](https://code.google.com/p/epub-samples/)).
 
 ### Link tags
 

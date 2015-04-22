@@ -3,9 +3,9 @@ layout: page.html.ejs
 title: Exploring the Gruntfiles
 ---
 
-Grunt uses a configuration file named `Gruntfile.js` to declare the build process for a given project.  There is a large ecosystem of Grunt plugins available for a wide range of purposes.  Grunt is widely used in building website assets, meaning many of those Grunt plugins are directly suitable for building AkashaCMS websites or EPUB's with AkashaEPUB.
+To understand how to use Grunt to build an EPUB with AkashaEPUB, we'll step our way through the epub-skeleton Gruntfile.
 
-Because AkashaEPUB builds are done with Grunt rather than the `akashacms` command-line tool, we have to initialize AkashaCMS ourselves.  This bit of code does so exactly as the `akashacms` tool initializes AkashaCMS.
+The first step is to initialize AkashaCMS and AkashaEPUB.  Because this isn't being run through the `akashacms` command-line tool, the Gruntfile has to do what the `akashacms` command does to initialize AkashaCMS.  The following code snippet is it.  A side effect of the `akasha.config` line is to call the `config` function in `config.js` which in turn causes the `akashacms-epub` plugin to hook itself into AkashaCMS.  
 
 ```
     var akasha = require('akashacms');
@@ -13,7 +13,7 @@ Because AkashaEPUB builds are done with Grunt rather than the `akashacms` comman
     akasha.config(config);
 ```
 
-The next step is to make those objects available to Grunt tasks.
+This code snippet makes the `akasha` plugin object, and the site `config` object, available to Grunt tasks.
 
 ```
     module.exports = function(grunt) {
@@ -26,7 +26,7 @@ The next step is to make those objects available to Grunt tasks.
     };
 ```
 
-A Grunt task then retrieves these values as so:
+In the Grunt task code, these values are retrieved as so.  
 
 ```
     grunt.config.requires('akasha');
@@ -35,16 +35,14 @@ A Grunt task then retrieves these values as so:
     var config = grunt.config('config');
 ```
 
-The task can then proceed with calling AkashaCMS API functions, or referring to data in the site configuration.
-
-Finally, we register tasks with Grunt:
+Getting back to the Gruntfile, we register AkashaCMS and AkashaEPUB tasks with Grunt:
 
 ```
     grunt.loadNpmTasks('akashacms');
     grunt.loadNpmTasks('akashacms-epub');
 ```
 
-AkashaCMS provides a set of web-centric CSS stylesheets that we don't want anywhere near the EPUB file.  To replace the AkashaCMS stylesheets with ones useful for EPUB, use this in-line task.  It resets the configuration to use the stylesheets declared in `config.js`.
+The next step patches the stylesheet configuration to work for generating EPUB's.  During the AkashaCMS config step, it added stylesheets to the `headerScripts` object that are for websites.  We cannot use those stylesheets in an EPUB.  To replace the AkashaCMS stylesheets with ones useful for EPUB, use this in-line task.  It resets the configuration to use the stylesheets declared in `config.js` in the `akashacmsEPUB` object.
 
 ```
     grunt.registerTask('useEPUBStylesheets', function() {
@@ -52,7 +50,7 @@ AkashaCMS provides a set of web-centric CSS stylesheets that we don't want anywh
     });
 ```
 
-Now we have enough pieces declared to show the build process itself.
+We now have enough pieces declared to show the build process itself.
 
 ```
     grunt.registerTask("doepub", [
@@ -74,13 +72,17 @@ The tasks are:
 * `generateEPUBFiles` Provided by `akashacms-epub`, this generates all the EPUB packaging files.
 * `bundleEPUB` Provided by `akashacms-epub`, this builds the .EPUB file.
 
+The `renderDocuments` task is where the rendering process ([](3-creating-content.html)) is performed.
+
+The `generateEPUBFiles` task is where the book structure is generated ([](4-configuration.html)).
+
 The tasks can be run individually if desired.
 
 ```
     $ grunt emptyRootOut copyAssets
 ```
 
-This would just set up the `root_out` with asset files, and do nothing else.  The build could then be done:
+This would just set up the `root_out` directory with asset files, and do nothing else.  The build could then be done:
 
 ```
     $ grunt useEPUBStylesheets gatherDocuments renderDocuments generateEPUBFiles
@@ -94,9 +96,11 @@ And finally build the EPUB as a separate task
 
 ## Modifying the Gruntfile
 
-It may be useful to minify the HTML and CSS files before bundling the EPUB file.  The `grunt-contrib-htmlmin` and `grunt-contrib-cssmin` plugins are excellent for that purpose, and can easily be integrated into `doepub`.
+Because the workflow is implemented in the Gruntfile, you can make it anything you want.  AkashaEPUB is an open system that lets you freely design your EPUB construction workflow.  As said earlier, you can use the Gruntfile's we provide and get on with the task of writing your book.  Or your book may require specific steps such as downloading data from somewhere to massage it into your book.  It's completely up to you how you make use of AkashaEPUB.
 
-Maybe your workflow requires uploading the EPUB to a staging server.  The `grunt-sftp-deploy` plugin is a very useful tool to do so.
+It may be useful to minify the HTML and CSS files before bundling the EPUB file.  The `grunt-contrib-htmlmin` and `grunt-contrib-cssmin` plugins are excellent for that purpose.
+
+Maybe your workflow requires uploading the completed EPUB to a staging server.  The `grunt-sftp-deploy` plugin is a very useful tool to do so.
 
 The build process for the akashacms.com website ([github.com/akashacms/akashacms-website/blob/master/Gruntfile.js](https://github.com/akashacms/akashacms-website/blob/master/Gruntfile.js)) shows how to integrate all three of those tools.
 
