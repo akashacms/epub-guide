@@ -3,9 +3,11 @@ layout: page.html.ejs
 title: Installing the AkashaEPUB toolchain
 ---
 
-To get AkashaEPUB running there are four major pieces to install.  The steps are fairly simple, fortunately, and each hinges on installing Node.js.
+As we said in the previous chapter, AkashaEPUB is geek-friendly software.  It's use (currently) means using a programmers text editor to write the Markdown, and running command-line programs to generate your EPUB.  The model is familiar to anybody who writes code.
 
-These are:
+Since AkashaEPUB is a Node.js/Grunt based tool, the installation process is to first install Node.js, then to use npm to install Grunt, AkashaCMS and AkashaEPUB.
+
+These components are are:
 * Node.js ([nodejs.org](http://nodejs.org/)) provides the platform on which AkashaCMS is written
 * Grunt ([gruntjs.com](http://gruntjs.com/)) is a build tool that runs on Node.js
 * AkashaCMS ([akashacms.com](http://akashacms.com)) is a content management system that produces static HTML websites

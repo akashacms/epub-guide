@@ -1,11 +1,11 @@
 ---
 layout: page.html.ejs
-title: Creating content for an AkashaEPUB book
+title: Creating book content to be rendered by AkashaEPUB 
 ---
 
-Any EPUB is one or more XHTML files, packaged in a ZIP format archive along with metadata files, images, or stylesheets.  With EPUB3 it's even possible to include interactive JavaScript, audio or video content.  AkashaEPUB supports most of this today, and the rest can be implemented if desired.
+The goal with AkashaEPUB is to generate XHTML files, CSS files and other assets, packaging them in an EPUB formatted ZIP archive.
 
-To generate these files, AkashaEPUB leverages AkashaCMS's rendering flexibility.  The model is to take an easy-to-write markup format like Markdown, run it through some processing, packaging the HTML for the destination.  Where in AkashaCMS the destination is a web server, for AkashaEPUB the destination is an EPUB ebook reader.
+To generate these files, AkashaEPUB leverages AkashaCMS's rendering flexibility.  The model is to take an easy-to-write markup format like Markdown, run it through some processing, packaging the HTML for the destination.  With AkashaCMS the destination is a web server for display on web browsers, and for AkashaEPUB the destination is an EPUB ebook reader.
 
 You author the pages of your book in the `root_docs` directory.  Files under that directory are processed by the AkashaCMS rendering process.  Any 'asset' files (images, CSS, JavaScript) should be copied without processing, and therefore are to be placed in the `root_assets` directory.
 
@@ -17,9 +17,21 @@ The content files have a file name structure which sort of documents the process
 * `example.html` -- Straight HTML, copied with no processing.
 * `example.css.less` -- A LESS file, that produces CSS.
 
-The directory structure of `root_out` exactly mimics the structure in `root_assets` and `root_docs`.  A file named `path/to/style.css.less` will be copied to `path/to/style.css` in `root_out`.  You can use any directory hierarchy that you wish.  The only limitation is the directory named `META-INF`.  AkashaEPUB generates that directory for you, because it has special significance to EPUB.  Don't create the META-INF directory yourself.
+The directory structure of `root_out` exactly mimics the structure in `root_assets` and `root_docs`.  Here's a few example files
 
-Another consideration is the Table of Contents you show to the reader.  Each Table of Contents entry corresponds to an HTML content file.  We'll go over this in more detail later, but in planning your content it's important to know that each chapter and sub-chapter, that is each addressable entry in the Table of Contents, must be in its own file.
+<table>
+<tr><th>root_out contents </th><th> root_docs </th><th> root_assets</th></tr>
+
+<tr><td>css/style.css </td><td>   </td><td> root_assets/css/style.css </td></tr>
+<tr><td>css/style.css     </td><td> root_docs/css/style.css.less </td><td>  </td></tr>
+<tr><td>images/logo.png   </td><td>       </td><td> root_assets/images/logo.png </td></tr>
+<tr><td>chapter1/intro.html </td><td> root_docs/chapter1/intro.html.md </td><td>  </td></tr>
+<tr><td>chapter2/install.html </td><td> root_docs/chapter2/install.html.md </td><td>  </td></tr>
+</table>
+
+You can use any directory hierarchy that you wish.  The only limitation is the directory named `META-INF`.  AkashaEPUB generates that directory for you, because it has special significance to EPUB.  Don't create the META-INF directory yourself.
+
+Another consideration is the Table of Contents you show to the reader.  Each Table of Contents entry corresponds to an HTML content file.  We'll go over this in more detail later.  In planning your content it's important to know that each addressable entry in the Table of Contents, whether it's a chapter or sub-chapter, must be in its own file.
 
 * [](3a-document-format.html)
 * [](3b-metadata.html)

@@ -4,26 +4,21 @@ title: Installing AkashaCMS, AkashaEPUB
 ---
 
 
-Now that Node.js and Grunt are installed we can follow the instructions to install AkashaCMS.  As we said, AkashaCMS is a "content management system" which basically means builds an HTML website from a bunch of documents.  As we'll see, an EPUB file is also a cluster of HTML files, and AkashaEPUB simply adapts AkashaCMS to building HTML and XML files required for an EPUB. -
+Now that Node.js and Grunt are installed we can follow the instructions to install AkashaCMS.  As we said, AkashaCMS is a "content management system" which basically means it builds an HTML website from a bunch of documents. 
 
-See [akashacms.com/install.html](http://akashacms.com/install.html) for more details on how to install AkashaCMS.
+See [akashacms.com/install.html](http://akashacms.com/install.html) for more details on how to install AkashaCMS.  The basic process is:
 
 ```
     $ npm install -g akashacms
-    $ akashacms init akashacms-example
-    $ cd akashacms-example
-    $ npm install
-    $ akashacms build
-    $ akashacms preview
 ```
 
-That first step might need to be done this way, if you get an error message:
+That step might need to be done this way, if you get an error message:
 
 ```
     $ sudo npm install -g akashacms
 ```
 
-It's useful to glance through the `akashacms-example` directory just created and take a look at the configuration file and other files.
+The AkashaCMS website gives some additional steps resulting in a sample website, so you can see its ability to build websites.  However, for the purpose of building electronic books we have a couple sample books available for you to build.
 
 ## Installing AkashaEPUB
 

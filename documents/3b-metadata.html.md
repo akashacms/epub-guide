@@ -3,14 +3,30 @@ layout: page.html.ejs
 title: AkashaCMS document metadata 
 ---
 
-The document format has a section for metadata, and a section for the content.  In this section we'll discuss the metadata in greater depth, and in the next section we'll discuss content formats, and the section after that we'll bring it all together to discuss the whole rendering process.
+There's two kinds of metadata in AkashaEPUB.
 
-The metadata values don't directly show up in the rendered page.  Instead it's data that sits next to the content, and can be used in the rendering process.
+1. The book metadata specified by EPUB to describe the document.
+1. The per-file metadata enscribed inside each file that helps AkashaCMS render the files.
 
-For example, when the content is processed by the EJS template engine, every metadata value is available as a variable.  That means when the metadata contains a `title` value, you can inject that value into the content using this EJS command:
+The [previous section](3a-document-format.html) just described the latter while going over the document format.  Let's take a look at how the per-file metadata is used.
+
+The metadata doesn't directly show up in the rendered page.  Instead it is carried next to the content, and can be used in the rendering process.
+
+Some rendering modules can inject the metadata into the rendered document.  For example, with the EJS template engine every metadata value is available as a variable inside the template.  For a file containing this metadata:
+
+```
+    ---
+    title: The quick brown fox
+    ... other metadata
+    ---
+    
+    .... content
+```
+
+This EJS snippet brings the `title` value into the rendered document:
 
 ```
     <h1><%= title %></h1>
 ```
 
-Some of the metadata values are interpreted by AkashaCMS or other plugins instead.  For example, the `layout` tag is used during the rendering process to determine which template to use in rendering the page.
+Other metadata values are interpreted by AkashaCMS or other plugins instead.  For example, the `layout` tag is used during the rendering process to determine which template to use in rendering the page.  The final rendered document depends on the sequence of templates used in the rendering.
