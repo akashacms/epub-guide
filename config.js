@@ -42,7 +42,7 @@ module.exports = {
             creators: [
                 { id: "author", role: "aut", name: "David Herron", fileAs: "Herron, David", nameReversed: "Herron, David" },
             ],
-            publisher: "Amazon.com",
+            publisher: "David Herron",
             subjects: [ 
                 "Self Publishing", "Markdown", "EPUB", "EPUB3", "Open Source Publishing",
                 "Electronic Books", "Electronic Book Publishing", "E-Books", "E-Book Publishing",
@@ -287,8 +287,15 @@ module.exports = {
             },
             {
                 id: "chapter7",
+                title: "About",
+                href: "7-about.html",
+                type: "application/xhtml+xml",
+                navclass: "book"
+            },
+            {
+                id: "chapter8",
                 title: "References",
-                href: "7-references.html",
+                href: "8-references.html",
                 type: "application/xhtml+xml",
                 navclass: "book"
             }
@@ -301,6 +308,7 @@ module.exports = {
         
         assets: [
             { id: "ccbyndimage", href: "images/cc-by-nd-88x31.png", type: "image/png" },
+            { id: "nodewebdev",  href: "images/node-web-dev-cover.jpg", type: "image/jpeg" },
             { id: "epub.embedded.font.1", href: "fonts/UbuntuMono-B.ttf", type: "application/vnd.ms-opentype" },
             { id: "epub.embedded.font.2", href: "fonts/UbuntuMono-BI.ttf", type: "application/vnd.ms-opentype" },
             { id: "epub.embedded.font.3", href: "fonts/UbuntuMono-R.ttf", type: "application/vnd.ms-opentype" },
