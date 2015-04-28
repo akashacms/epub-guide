@@ -26,7 +26,7 @@ module.exports = {
         },
         
         metadata: {
-            title: "AkashaCMS EPUB creators guide",
+            title: "The Open Source Markdown Path to Writing e-Books",
             languages: [ "en" ],
             identifiers: [
                 {
@@ -71,6 +71,9 @@ module.exports = {
             path: "toc.html.ejs",
             type: "application/xhtml+xml",
             toclayout: "epub_page.html.ejs",
+            
+            toctype: "1",
+            tocstart: "0",
             
             ncx: {
                 id: "ncx",
@@ -224,29 +227,36 @@ module.exports = {
                     },
                     {
                         id: "chapter4f",
-                        title: "Assets and images",
-                        href: "4f-assets.html",
+                        title: "Links",
+                        href: "4f-links.html",
                         type: "application/xhtml+xml",
                         navclass: "book"
                     },
                     {
                         id: "chapter4g",
-                        title: "CSS Stylesheets",
-                        href: "4g-stylesheets.html",
+                        title: "Assets and images",
+                        href: "4g-assets.html",
                         type: "application/xhtml+xml",
                         navclass: "book"
                     },
                     {
                         id: "chapter4h",
-                        title: "Fonts",
-                        href: "4h-fonts.html",
+                        title: "CSS Stylesheets",
+                        href: "4h-stylesheets.html",
                         type: "application/xhtml+xml",
                         navclass: "book"
                     },
                     {
                         id: "chapter4i",
+                        title: "Fonts",
+                        href: "4i-fonts.html",
+                        type: "application/xhtml+xml",
+                        navclass: "book"
+                    },
+                    {
+                        id: "chapter4j",
                         title: "Config.js",
-                        href: "4i-configjs.html",
+                        href: "4j-configjs.html",
                         type: "application/xhtml+xml",
                         navclass: "book"
                     }
@@ -302,19 +312,45 @@ module.exports = {
         ],
         
         stylesheets: [
-            // { id: "stylesheet", href: "css/style.css", type: "text/css" },
-            { id: "stylesheet", href: "style.css", type: "text/css" },
+            { id: "stylesheet", href: "css/style.css", type: "text/css" },
+            // { id: "stylesheet", href: "style.css", type: "text/css" },
         ],
         
         assets: [
             { id: "ccbyndimage", href: "images/cc-by-nd-88x31.png", type: "image/png" },
+            { id: "epubinaction", href: "images/akasha-epub-in-action.png", type: "image/png" },
             { id: "nodewebdev",  href: "images/node-web-dev-cover.jpg", type: "image/jpeg" },
+            { id: "metaltype",  href: "images/640px-Metal_movable_type.jpg", type: "image/jpeg" },
             { id: "epub.embedded.font.1", href: "fonts/UbuntuMono-B.ttf", type: "application/vnd.ms-opentype" },
             { id: "epub.embedded.font.2", href: "fonts/UbuntuMono-BI.ttf", type: "application/vnd.ms-opentype" },
             { id: "epub.embedded.font.3", href: "fonts/UbuntuMono-R.ttf", type: "application/vnd.ms-opentype" },
             { id: "epub.embedded.font.4", href: "fonts/UbuntuMono-RI.ttf", type: "application/vnd.ms-opentype" },
             { id: "epub.embedded.font.5", href: "fonts/FreeSerif.otf", type: "application/vnd.ms-opentype" },
-            { id: "epub.embedded.font.6", href: "fonts/FreeSansBold.otf", type: "application/vnd.ms-opentype" }
+            { id: "epub.embedded.font.6", href: "fonts/FreeSansBold.otf", type: "application/vnd.ms-opentype" },
+			
+			/* { id: "epub.embedded.font.7", href: "fonts/Raleway/Raleway-Bold.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.8", href: "fonts/Raleway/Raleway-ExtraBold.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.9", href: "fonts/Raleway/Raleway-ExtraLight.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.10", href: "fonts/Raleway/Raleway-Heavy.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.11", href: "fonts/Raleway/Raleway-Light.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.12", href: "fonts/Raleway/Raleway-Medium.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.13", href: "fonts/Raleway/Raleway-Regular.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.14", href: "fonts/Raleway/Raleway-SemiBold.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.15", href: "fonts/Raleway/Raleway-Thin.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.16", href: "fonts/Roboto/Roboto-Black.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.17", href: "fonts/Roboto/Roboto-BlackItalic.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.18", href: "fonts/Roboto/Roboto-Bold.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.19", href: "fonts/Roboto/Roboto-BoldItalic.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.20", href: "fonts/Roboto/Roboto-Italic.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.21", href: "fonts/Roboto/Roboto-Light.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.22", href: "fonts/Roboto/Roboto-LightItalic.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.23", href: "fonts/Roboto/Roboto-Medium.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.24", href: "fonts/Roboto/Roboto-MediumItalic.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.25", href: "fonts/Roboto/Roboto-Regular.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.26", href: "fonts/Roboto/Roboto-Thin.ttf", type: "application/x-font-ttf" },
+			{ id: "epub.embedded.font.27", href: "fonts/Roboto/Roboto-ThinItalic.ttf", type: "application/x-font-ttf" } */
+
+			
         ]
     },
     
