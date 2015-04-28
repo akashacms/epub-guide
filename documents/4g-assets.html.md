@@ -22,7 +22,8 @@ The asset files are held in these two portions of the `akashacmsEPUB` object.
         // Lists CSS stylesheets to use
     ],
     assets: [
-        // Lists any additional files like fonts or images
+        // Lists any additional files
+        // like fonts or images
     ]
 ```
 
@@ -34,7 +35,9 @@ In your content you can write `<img src="images/foobar.jpg"/>` and drop `foobar.
 
 ```
     assets: [
-        { id="fooberjpg", href: "images/foobar.jpg", type: "image/jpeg" }
+        { id="fooberjpg",
+          href: "images/foobar.jpg",
+          type: "image/jpeg" }
     ]
 ```
 

@@ -1,7 +1,10 @@
 ---
-layout: page.html.ejs
+layout: epub_page.html.ejs
 title: Copyright Notice
 ---
+
+<section>
+<h1>Copyright Notice</h1>
 
 Copyright © 2015 by David Herron
 
@@ -22,3 +25,4 @@ Santa Clara, California 95050
 
 DavidHerron.com
 AkashaCMS.com
+</section>

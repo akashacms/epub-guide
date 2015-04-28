@@ -1,6 +1,12 @@
 ---
-layout: page.html.ejs
+layout: chapter-index.html.ejs
 title: Installing the AkashaEPUB toolchain
+chapterNumber: 2
+sections:
+  - url: 2a-install-nodejs.html
+  - url: 2b-install-akashacms.html
+  - url: 2c-akashacms-directory.html
+  - url: 2d-quickstart.html
 ---
 
 As we said in the previous chapter, AkashaEPUB is geek-friendly software.  It's use (currently) means using a programmers text editor to write the Markdown, and running command-line programs to generate your EPUB.  The model is familiar to anybody who writes code.
@@ -18,8 +24,3 @@ Beyond that software you will need a programmer-friendly plain text editor.  I s
 For a text editor I've used Komodo and BBEdit at various times.  However, one should take a look at the Chrome packaged applications because that app ecosystem is improving rapidly.  The "Ra" text editor, a Chrome packaged application, is very good.
 
 In the following sections we'll quickly take you through installing these pieces, and then we'll quickly run through building a sample EPUB with AkashaEPUB.
-
-* [](2a-install-nodejs.html)
-* [](2b-install-akashacms.html)
-* [](2c-akashacms-directory.html)
-* [](2d-quickstart.html)

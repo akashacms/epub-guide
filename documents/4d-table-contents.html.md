@@ -16,35 +16,35 @@ AkashaEPUB generates all this from a tree-structured array of objects describing
 Consider:
 
 ```
-    chapters: [
-        {
-            id: "chapter1",
-            title: "Introduction to AkashaEPUB",
-            href: "1-introduction.html",
+chapters: [
+    {
+        id: "chapter1",
+        title: "Introduction to AkashaEPUB",
+        href: "1-introduction.html",
+        type: "application/xhtml+xml",
+        navclass: "book"
+        
+    },
+    {
+        id: "chapter2",
+        title: "Installing Node.js, AkashaCMS and AkashaEPUB",
+        href: "2-installation.html",
+        type: "application/xhtml+xml",
+        navclass: "book",
+        
+        subchapters: [
+            {
+            id: "chapter2a",
+            title: "Installing Node.js, Grunt",
+            href: "2a-install-nodejs.html",
             type: "application/xhtml+xml",
             navclass: "book"
-            
-        },
-        {
-            id: "chapter2",
-            title: "Installing Node.js, AkashaCMS and AkashaEPUB",
-            href: "2-installation.html",
-            type: "application/xhtml+xml",
-            navclass: "book",
-            
-            subchapters: [
-                {
-                    id: "chapter2a",
-                    title: "Installing Node.js, Grunt",
-                    href: "2a-install-nodejs.html",
-                    type: "application/xhtml+xml",
-                    navclass: "book"
-                },
-            ...
-            ]
-        },
+            },
         ...
-    ]
+        ]
+    },
+...
+]
 ```
 
 Each item in the `chapters` array has a list of fields with fairly obvious meanings.  Any chapter with subchapters has an array named `subchapters`, whose items have the same fields, and which in turn can have `subchapters` of their own.  This can be nested as deeply as you like.

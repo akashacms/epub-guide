@@ -42,18 +42,20 @@ The EPUB3 committee settled on two identifiers that together satisfy both the ne
 Consider:
 
 ```
-    akashacmsEPUB: {
+akashacmsEPUB: {
+...
+    metadata: {
     ...
-        metadata: {
-        ...
-            identifiers: [
-                { unique: true,
-                  idstring: "urn:isbn:123456789X" }
-            ]
-        ...
-        }
+        identifiers: [
+            {
+            unique: true,
+            idstring: "urn:isbn:123456789X"
+            }
+        ]
+    ...
     }
-    ...
+}
+...
 ```
 
 The `identifiers` array contains product identifiers.  An EPUB can have multiple identifiers, hence we support more than one.  However, only one of them can be the unique identifier for the EPUB.  The `unique` attribute is required on one and only one of these identifiers.  It can have any value you wish, it just needs to be present.  The `idstring` attribute is the actual identifier string. 
@@ -80,9 +82,11 @@ If you must generate an NCX file, and if your NCX file has to carry a different 
     ...
         metadata: {
         ...
-            { unique: true,
-              identifier: " .... one identifier",
-              ncxidentifier: " ... the other identifier" },
+            {
+            unique: true,
+            identifier: " .... one identifier",
+            ncxidentifier: " ... another identifier"
+            },
         ...
         }
     }
@@ -130,7 +134,8 @@ List one per "creator".  The `name` and `nameReversed` field takes care of diffe
 
 ```
     contributors: [
-        { name: "John Smith", nameReversed: "Smith, John" },
+        { name: "John Smith",
+          nameReversed: "Smith, John" },
     ],
 ```
 

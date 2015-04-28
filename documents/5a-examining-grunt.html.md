@@ -46,7 +46,8 @@ The next step patches the stylesheet configuration to work for generating EPUB's
 
 ```
     grunt.registerTask('useEPUBStylesheets', function() {
-        config.headerScripts.stylesheets = config.akashacmsEPUB.stylesheets;
+        config.headerScripts.stylesheets
+            = config.akashacmsEPUB.stylesheets;
     });
 ```
 
@@ -54,13 +55,18 @@ We now have enough pieces declared to show the build process itself.
 
 ```
     grunt.registerTask("doepub", [
-        'useEPUBStylesheets', 'emptyRootOut', 'copyAssets',
-        'gatherDocuments', 'renderDocuments', 'generateEPUBFiles',
+        'useEPUBStylesheets', 'emptyRootOut',
+        'copyAssets', 'gatherDocuments',
+        'renderDocuments', 'generateEPUBFiles',
         'bundleEPUB'
     ] );
 ```
 
 When we typed `grunt doepub` back in <a href="2-installation.html"></a>, this is the process which ran.
+
+It might look like this on your screen
+
+<img src="images/akasha-epub-in-action.png"/>
 
 The tasks are:
 

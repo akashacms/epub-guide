@@ -1,9 +1,13 @@
 ---
-layout: page.html.ejs
+layout: chapter-index.html.ejs
 title: Building an EPUB with AkashaEPUB
+chapterNumber: 5
+sections:
+  - url: 5a-examining-grunt.html
+  - url: 5b-validation.html
 ---
 
-Now that we know how to [install AkashaEPUB](2-installation.html), [how to create content](3-creating-content.html), and [structure our book](4-configuration.html), it's almost time to use AkashaEPUB to build some books.  What's next is to go over the book building process.
+Now that we know how to [install AkashaEPUB](2-installation.html), [how to create content](3-creating-content.html), and [structure our book](4-configuration.html), it's time to use AkashaEPUB to build some books.  What's next is to go over the book building process.
 
 AkashaCMS was designed to build websites, and comes with the `akashacms` command-line tool.  It has several functions related to building websites.  It's functionality doesn't work well to build an EPUB because the process differs so much.  Instead of reworking the `akashacms` tool to support the AkashaEPUB workflow, we use Grunt.  Grunt lets one build any workflow you like, and it can even be used with AkashaCMS websites. 
 
@@ -14,6 +18,3 @@ With Grunt, one writes the build process in a file named `Gruntfile.js`.  The Gr
 Both the epub-skeleton and epub-guide books contain Gruntfile's which successfully build EPUB's (see [github.com/akashacms/epub-skeleton/blob/master/Gruntfile.js](https://github.com/akashacms/epub-skeleton/blob/master/Gruntfile.js) and [github.com/akashacms/epub-guide/blob/master/Gruntfile.js](https://github.com/akashacms/epub-guide/blob/master/Gruntfile.js)).  It's likely you can simply copy one of those Gruntfiles, make a few minor modifications, and get started right away with writing books.
 
 If you followed the [installation process](2-installation.html) correctly, you already have the Grunt toolchain installed.
-
-* [](5a-examining-grunt.html)
-* [](5b-validation.html)

@@ -1,6 +1,7 @@
 ---
-layout: page.html.ejs
+layout: chapter-index.html.ejs
 title: References
+chapterNumber: 8
 ---
 
 ## Copyright pages

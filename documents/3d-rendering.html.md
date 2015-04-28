@@ -87,9 +87,9 @@ Consider - `bananna-split.html.md`
     image: images/sundaes/bananna-split.png
     ---
     
-    In the summer of 1967 I had my first REAL bananna split sundae, and
-    I thought I'd gone to heaven it was so good.  These are easy to make
-    and sure to be a crowd pleaser.
+    In the summer of 1967 I had my first REAL bananna split
+    sundae, and I thought I'd gone to heaven it was so good.
+    These are easy to make and sure to be a crowd pleaser.
     ...
 ```
 
@@ -115,8 +115,64 @@ Plausible template - `ice-cream-sundae.html.ejs`
 
 This template takes care of formatting the image, the table and the description.  It's then passed on to the `page.html.ejs` we looked at earlier, which adds the H1 title at the top.
 
+## Real-world -- Per-chapter indexes in this very guide
+
+You may have noticed that each Chapter in this guide starts with an overview discussion, and then a list of links to sections within the chapter.  Rather than maintain that link list as HTML, it is stored as document metadata.
+
+```
+    ---
+    layout: chapter-index.html.ejs
+    title: Creating book content to be rendered by AkashaEPUB 
+    chapterNumber: 3
+    sections: 
+      - url: 3a-document-format.html
+      - url: 3b-metadata.html
+      - url: 3c-content-markup.html
+      - url: 3d-rendering.html
+      - url: 3e-html5-structure.html
+    ---
+```
+
+Remember that the document metadata is really a YAML structure.  That bit with ` - url: ` on several lines is the method for writing a list in YAML.
+
+Everything is handled within the `chapter-index.html.ejs` layout template.
+
+The `chapterNumber` value is used this way:
+
+```
+<header><h1><%
+  if (typeof chapterNumber !== 'undefined') {
+    %>Chapter <%= chapterNumber %>: <%
+  }
+%><%= title %></h1></header>
+```
+
+Hence, if `chapterNumber` is present then the title is prefixed with "Chapter #:" giving the reader a clue that they're in a new chapter.
+
+The chapter index is rendered this way:
+
+```
+<%
+if (typeof sections !== 'undefined') {
+%>
+<aside class="section-list">
+<ul>
+<%
+sections.forEach(function(section) {
+    %><li><a href="<%= section.url %>"></a></li><%
+});
+%>
+</ul>
+</aside>
+<% } %>
+```
+
+If `sections` is present it's going to be a list, which one traverses with the `.forEach` method as shown.  Hence this is straight-forward to understand:  An `<li>...</li>` is rendered for each member of the `sections` list, giving a link to the document with empty anchor text.  As we'll see later (see [](4f-links.html)), AkashaEPUB automatically looks up the `title` of the document, using that as the anchor text of the link.
+
+The result is an easy-to-maintain index of the chapters and sections.
+
 ## Asset files, CSS, Images, fonts, etc
 
 While we just succeeded in rendering an XHTML file this isn't tne end of making sure your content looks good in an EPUB reader.  As in the web-centric world, HTML pages are improved when you have images use CSS to customize the display, and use better fonts.
 
-All this is discussed in the next chapter, [](4f-assets.html).
+All this is discussed in the next chapter, [](4g-assets.html).

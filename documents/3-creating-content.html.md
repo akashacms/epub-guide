@@ -1,6 +1,13 @@
 ---
-layout: page.html.ejs
+layout: chapter-index.html.ejs
 title: Creating book content to be rendered by AkashaEPUB 
+chapterNumber: 3
+sections: 
+  - url: 3a-document-format.html
+  - url: 3b-metadata.html
+  - url: 3c-content-markup.html
+  - url: 3d-rendering.html
+  - url: 3e-html5-structure.html
 ---
 
 The goal with AkashaEPUB is to generate XHTML files, CSS files and other assets, packaging them in an EPUB formatted ZIP archive.
@@ -33,10 +40,5 @@ You can use any directory hierarchy that you wish.  The only limitation is the d
 
 Another consideration is the Table of Contents you show to the reader.  Each Table of Contents entry corresponds to an HTML content file.  We'll go over this in more detail later.  In planning your content it's important to know that each addressable entry in the Table of Contents, whether it's a chapter or sub-chapter, must be in its own file.
 
-* [](3a-document-format.html)
-* [](3b-metadata.html)
-* [](3c-content-markup.html)
-* [](3d-rendering.html)
-* [](3e-html5-structure.html)
 
 

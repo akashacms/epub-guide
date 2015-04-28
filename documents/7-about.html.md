@@ -1,6 +1,7 @@
 ---
-layout: page.html.ejs
+layout: chapter-index.html.ejs
 title: About the author, David Herron
+chapterNumber: 7
 ---
 
 David Herron is a software engineer, blogger and writer living in Silicon Valley.  He has over 20 years software engineering experience for hi-tech companies in Silicon Valley, including a 10+ year stint in the Java SE team at Sun Microsystems.
