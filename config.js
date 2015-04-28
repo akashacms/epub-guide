@@ -26,7 +26,7 @@ module.exports = {
         },
         
         metadata: {
-            title: "The Open Source Markdown Path to Writing e-Books",
+            title: "Creating eBooks with Markdown and Open Source Tools",
             languages: [ "en" ],
             identifiers: [
                 {
@@ -46,7 +46,7 @@ module.exports = {
             subjects: [ 
                 "Self Publishing", "Markdown", "EPUB", "EPUB3", "Open Source Publishing",
                 "Electronic Books", "Electronic Book Publishing", "E-Books", "E-Book Publishing",
-                "EPUB Publishing"
+                "EPUB Publishing", "Create eBooks"
             ],
             // TEST: date: "2015-04-15",
             // TEST: modified: "2015-04-15T00:00:00Z",
@@ -325,8 +325,18 @@ module.exports = {
             { id: "epub.embedded.font.2", href: "fonts/UbuntuMono-BI.ttf", type: "application/vnd.ms-opentype" },
             { id: "epub.embedded.font.3", href: "fonts/UbuntuMono-R.ttf", type: "application/vnd.ms-opentype" },
             { id: "epub.embedded.font.4", href: "fonts/UbuntuMono-RI.ttf", type: "application/vnd.ms-opentype" },
-            { id: "epub.embedded.font.5", href: "fonts/FreeSerif.otf", type: "application/vnd.ms-opentype" },
-            { id: "epub.embedded.font.6", href: "fonts/FreeSansBold.otf", type: "application/vnd.ms-opentype" },
+            /* { id: "epub.embedded.font.5", href: "fonts/FreeSerif.otf", type: "application/vnd.ms-opentype" },
+            { id: "epub.embedded.font.6", href: "fonts/FreeSansBold.otf", type: "application/vnd.ms-opentype" }, */
+            { id: "epub.embedded.font.7", href: "fonts/OpenSans/OpenSans-Bold.ttf", type: "application/x-font-ttf" },
+            { id: "epub.embedded.font.8", href: "fonts/OpenSans/OpenSans-BoldItalic.ttf", type: "application/x-font-ttf" },
+            /* { id: "epub.embedded.font.9", href: "fonts/OpenSans/OpenSans-ExtraBold.ttf", type: "application/x-font-ttf" },
+            { id: "epub.embedded.font.10", href: "fonts/OpenSans/OpenSans-ExtraBoldItalic.ttf", type: "application/x-font-ttf" }, */
+            { id: "epub.embedded.font.11", href: "fonts/OpenSans/OpenSans-Italic.ttf", type: "application/x-font-ttf" },
+            /* { id: "epub.embedded.font.12", href: "fonts/OpenSans/OpenSans-Light.ttf", type: "application/x-font-ttf" },
+            { id: "epub.embedded.font.13", href: "fonts/OpenSans/OpenSans-LightItalic.ttf", type: "application/x-font-ttf" }, */
+            { id: "epub.embedded.font.14", href: "fonts/OpenSans/OpenSans-Regular.ttf", type: "application/x-font-ttf" },
+            /* { id: "epub.embedded.font.15", href: "fonts/OpenSans/OpenSans-Semibold.ttf", type: "application/x-font-ttf" },
+            { id: "epub.embedded.font.16", href: "fonts/OpenSans/OpenSans-SemiboldItalic.ttf", type: "application/x-font-ttf" }, */
 			
 			/* { id: "epub.embedded.font.7", href: "fonts/Raleway/Raleway-Bold.ttf", type: "application/x-font-ttf" },
 			{ id: "epub.embedded.font.8", href: "fonts/Raleway/Raleway-ExtraBold.ttf", type: "application/x-font-ttf" },

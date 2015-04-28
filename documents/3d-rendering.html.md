@@ -71,23 +71,23 @@ The `epub_page.html.ejs` template can be studied in the github repository if you
 
 As an example of more comprehensive metadata usage, consider a series of pages containing information tables.  The table data could be given as metadata, and the layout template could format that data into an HTML table, and encapsulate it into a complete HTML file.
 
-Suppose you were writing a book of ice cream sundae recipes.  The metadata could list the ingredients, while the content could describe how to asssemble the Sundae and perhaps author remniscences (and pictures) from childhood visits to Atlantic City.  
+Suppose you were writing a book of ice cream sundae recipes.  The metadata could list the ingredients, while the content could describe how to assemble the Sundae and perhaps author remniscences (and pictures) from childhood visits to Atlantic City.  
 
-Consider - `bananna-split.html.md`
+Consider - `banana-split.html.md`
 
 ```
     ---
     layout: ice-cream-sundae.html.ejs
-    title: Bananna Split Sundae
+    title: Banana Split Sundae
     dish-style: Tray
-    base: 1 Bananna, cut in half lengthwise
+    base: 1 Banana, cut in half lengthwise
     flavors: Vanilla
     topping: Chocolate Syrup
     sprinkles: Peanuts
-    image: images/sundaes/bananna-split.png
+    image: images/sundaes/banana-split.png
     ---
     
-    In the summer of 1967 I had my first REAL bananna split
+    In the summer of 1967 I had my first REAL banana split
     sundae, and I thought I'd gone to heaven it was so good.
     These are easy to make and sure to be a crowd pleaser.
     ...
