@@ -1,0 +1,32 @@
+---
+layout: epub_page.html.ejs
+---
+
+
+<section>
+<header><h1><%
+  if (typeof chapterNumber !== 'undefined') {
+    %>Chapter <%= chapterNumber %>: <%
+  }
+%><%= title %></h1></header>
+<article>
+
+<%- content %>
+
+<%
+if (typeof sections !== 'undefined') {
+%>
+<aside class="section-list">
+<ul>
+<%
+sections.forEach(function(section) {
+    %><li><a href="<%= section.url %>"></a></li><%
+});
+%>
+</ul>
+</aside>
+<% } %>
+
+</article>
+<footer style="margin-top: 5em;"><hr/>Copyright © 2015 by David Herron, Creative Commons, CC BY-ND, see <a href="0a-copyright.html">copyright page</a> for details </footer>
+</section>
