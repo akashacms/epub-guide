@@ -133,7 +133,7 @@ You may have noticed that each Chapter in this guide starts with an overview dis
     ---
 ```
 
-Remember that the document metadata is really a YAML structure.  That bit with ` - url: ` on several lines is the method for writing a list in YAML.
+Remember that the document metadata is really a YAML structure.  That bit with ` - url: ` on several lines is the method for writing a list in YAML.  This defines a list named `sections` containing value objects with a field named `url`.
 
 Everything is handled within the `chapter-index.html.ejs` layout template.
 

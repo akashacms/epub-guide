@@ -4,7 +4,7 @@ title: Installing AkashaCMS, AkashaEPUB
 ---
 
 
-Now that Node.js and Grunt are installed we can follow the instructions to install AkashaCMS.  As we said, AkashaCMS is a "content management system" which basically means it builds an HTML website from a bunch of documents. 
+Now that Node.js and Grunt are installed we can follow the instructions to install AkashaCMS.  
 
 See [akashacms.com/install.html](http://akashacms.com/install.html) for more details on how to install AkashaCMS.  The basic process is:
 

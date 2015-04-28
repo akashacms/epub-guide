@@ -56,7 +56,7 @@ FAIR WARNING:  At this moment AkashaEPUB will break in this scenario.  You, the 
 
 Because EPUB's are HTML files, you can easily make an `a` tag linking to other documents in the EPUB.
 
-We've already gone over the special constraing -- there's no webroot, so make sure to create the correct relative URL in the linking document to the linked-to document.
+We've already gone over the special constraint -- there's no webroot, so make sure to create the correct relative URL in the linking document to the linked-to document.
 
 AkashaEPUB does have a nice assistance feature to automatically make nice links between documents.  If you leave out the anchor text from the link, AkashaEPUB will look up the `title` metadata from the linked document and insert it as the anchor text.  For example, inside this guide a tag written as `<a href="2-installation.html"></a>` (or in Markdown `[](2-installation.html)`) will be rendered as `<a href="2-installation.html">Installing the AkashaEPUB toolchain</a>` (or [](2-installation.html)).
 
