@@ -404,7 +404,7 @@ module.exports = {
     },
 	
     config: function(akasha) {
-		akasha.registerPlugins(module.exports, [
+		akasha.registerPlugins([
             { name: 'akashacms-epub', plugin: require('akashacms-epub') },
 			// { name: 'akashacms-theme-bootstrap', plugin: require('akashacms-theme-bootstrap') },
 			// { name: 'akashacms-breadcrumbs', plugin: require('akashacms-breadcrumbs') },
