@@ -48,7 +48,7 @@ Because AkashaCMS is built with the Node.js platform, any additional modules to 
 First declare the module in `config.js`
 
 ```
-    akasha.registerPlugins(module.exports, [
+    akasha.registerPlugins([
         { name: 'akashacms-epub',
           plugin: require('akashacms-epub') },
         { name: 'akashacms-breadcrumbs',

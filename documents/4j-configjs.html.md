@@ -29,7 +29,7 @@ The last required piece in the `config.js` is to register the `akashacms-epub` p
 
 ```
     config: function(akasha) {
-    	akasha.registerPlugins(module.exports, [
+    	akasha.registerPlugins([
             { name: 'akashacms-epub', 
               plugin: require('akashacms-epub') },
         ...
