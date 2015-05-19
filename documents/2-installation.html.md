@@ -1,6 +1,13 @@
 ---
 layout: chapter-index.html.ejs
 title: Installing the AkashaEPUB toolchain
+akashacmsEPUB:
+    id: chapter2
+    sections:
+        - 2a-install-nodejs.html
+        - 2b-install-akashacms.html
+        - 2c-akashacms-directory.html
+        - 2d-quickstart.html
 chapterNumber: 2
 sections:
   - url: 2a-install-nodejs.html

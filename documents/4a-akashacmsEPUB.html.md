@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: The akashacmsEPUB configuration object
+akashacmsEPUB:
+    id: chapter4a
 ---
 
 As we just learned, we describe an EPUB in the configuration file, `config.js`.  Every bit of that configuration is located in the `akashacmsEPUB` object:

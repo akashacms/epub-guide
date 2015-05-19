@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: Some details in config.js
+akashacmsEPUB:
+    id: chapter4j
 ---
 
 There are a couple final bits to configure in `config.js` that sit outside the `akashacmsEPUB` object, but are required to successfully build the book.

@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: AkashaCMS document format
+akashacmsEPUB:
+    id: chapter3a
 ---
 
 

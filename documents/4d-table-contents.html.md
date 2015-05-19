@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: Chapters, sub-chapters, and the Table of Contents
+akashacmsEPUB:
+    id: chapter4d
 ---
 
 We structure book content into chapters and sub-chapters.  It's more than just a hold-over from print books, it's a good way to divide books into topical sections.  

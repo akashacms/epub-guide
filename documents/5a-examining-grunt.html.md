@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: Exploring the Gruntfiles
+akashacmsEPUB:
+    id: chapter5a
 ---
 
 To understand how to use Grunt to build an EPUB with AkashaEPUB, we'll step our way through the epub-skeleton Gruntfile.

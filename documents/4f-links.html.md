@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: Linking to sections and asset files
+akashacmsEPUB:
+    id: chapter4f
 ---
 
 The constraints of the EPUB container mean for some special considerations when linking to content within and outside the EPUB.

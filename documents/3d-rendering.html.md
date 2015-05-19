@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: The AkashaCMS rendering process
+akashacmsEPUB:
+    id: chapter3d
 ---
 
 This is what we've been working towards for a few sections - rendering HTML files from any content file.  The EPUB3 specification uses the XHTML variant of HTML5 and CSS for the rendered content.  That's our goal at the moment, to take a Markdown file and turn it into XHTML5 suitable for display on an EPUB reader.  At the end of this section we'll we'll know how to do this.  Promise.

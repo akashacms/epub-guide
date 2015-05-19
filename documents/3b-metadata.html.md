@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: AkashaCMS document metadata 
+akashacmsEPUB:
+    id: chapter3b
 ---
 
 There's two kinds of metadata in AkashaEPUB.

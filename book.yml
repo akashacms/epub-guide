@@ -1,0 +1,36 @@
+
+opf: guide.opf
+epub: guide.epub
+
+title: Creating eBooks with Markdown and Open Source Tools
+languages: [ en ]
+identifiers: 
+    - unique: true
+      idstring: "urn:uuid:3580db0e-c802-4820-9862-8d8b42e9b9b3"
+creators:
+    - id: author
+      name: David Herron
+      nameReversed: Herron, David
+publisher: AkashaCMS.COM
+subjects: [ "Self Publishing", "Markdown", "EPUB", "EPUB3", "Open Source Publishing", "Electronic Books", "Electronic Book Publishing", "E-Books", "E-Book Publishing", "EPUB Publishing", "Create eBooks" ]
+rights: "Copyright 2015, David Herron"
+
+cover:
+    writeHtml: { id: "cover", href: "cover.html" }
+    idImage: "cover-image"
+    src:  "images/cover.png"
+    alt:  "AkashaEPUB Book Creators Guide"
+    type: "image/png"
+
+toc: { href: "toc.html" }
+ncx: { id: "ncx", href: "toc.ncx"  }
+
+
+stylesheets:
+    - { id: "stylesheet", href: "/css/style.css" }
+#    
+# javaScriptTop:
+#     - { id: 'foojs', href: 'foo/foo.js' }
+#
+# javaScriptBottom:
+#     - { id: 'oofoojs', href: 'oofoo/oofoo.js' }

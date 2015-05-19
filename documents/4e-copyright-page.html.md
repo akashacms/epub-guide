@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: The Copyright page
+akashacmsEPUB:
+    id: chapter4e
 ---
 
 Having a legally correct copyright page makes the ownership clear to your readers.  While there is an automatic copyright when a work is published, it is probably helpful to go ahead and add a copyright page.

@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: AkashaCMS Directory structure and how it's used in AkashaEPUB
+akashacmsEPUB:
+    id: chapter2c
 ---
 
 Now that you've seen AkashaEPUB can build an EPUB, let's take a quick tour of how this is done.

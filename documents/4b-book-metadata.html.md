@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: Book Metadata
+akashacmsEPUB:
+    id: chapter4b
 ---
 
 A major part of EPUB is the metadata carrying information about the book, like the title, authors, publisher, identifying codes and more.  The OPF and NCX files both carry that metadata.

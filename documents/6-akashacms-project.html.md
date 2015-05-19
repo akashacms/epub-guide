@@ -1,6 +1,8 @@
 ---
 layout: chapter-index.html.ejs
 title: The AkashaCMS Open Source Project
+akashacmsEPUB:
+    id: chapter6
 chapterNumber: 6
 ---
 

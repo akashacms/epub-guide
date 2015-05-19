@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: Validating EPUB files built by AkashaEPUB 
+akashacmsEPUB:
+    id: chapter5b
 ---
 
 Now that you've built an EPUB with AkashaEPUB, what will you do with it?  The big opportunity of course are the e-book marketplaces like Amazon's Kindle, Google's Play Store, or Apple's iBooks market.  All of them accept EPUB files either directly or, as is the case with Amazon, through a converter program.  

@@ -1,6 +1,8 @@
 ---
 layout: chapter-index.html.ejs
 title: About the author, David Herron
+akashacmsEPUB:
+    id: chapter7
 chapterNumber: 7
 ---
 

@@ -1,6 +1,11 @@
 ---
 layout: chapter-index.html.ejs
 title: Building an EPUB with AkashaEPUB
+akashacmsEPUB:
+    id: chapter5
+    sections:
+        - 5a-examining-grunt.html
+        - 5b-validation.html
 chapterNumber: 5
 sections:
   - url: 5a-examining-grunt.html

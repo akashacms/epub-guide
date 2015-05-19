@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: Installing AkashaCMS, AkashaEPUB
+akashacmsEPUB:
+    id: chapter2b
 ---
 
 

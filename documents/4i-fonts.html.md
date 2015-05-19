@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: Using Fonts
+akashacmsEPUB:
+    id: chapter4i
 ---
 
 Each EPUB reading application chooses some default fonts, and perhaps that will be good enough for your purpose.  But your readers experience of your EPUB can be improved by selecting custom fonts.  Because the system is based on HTML5, the whole ecosystem of font choices are available with the caveat that font definition files have to be shipped inside the EPUB. 

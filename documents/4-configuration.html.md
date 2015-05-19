@@ -1,6 +1,19 @@
 ---
 layout: chapter-index.html.ejs
-title: Structuring your book 
+title: Structuring your book
+akashacmsEPUB:
+    id: chapter4
+    sections:
+        - 4a-akashacmsEPUB.html
+        - 4b-book-metadata.html
+        - 4c-cover-image.html
+        - 4d-table-contents.html
+        - 4e-copyright-page.html
+        - 4f-links.html
+        - 4g-assets.html
+        - 4h-stylesheets.html
+        - 4i-fonts.html
+        - 4j-configjs.html
 chapterNumber: 4
 sections:
   - url: 4a-akashacmsEPUB.html

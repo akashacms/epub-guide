@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: CSS Stylesheets
+akashacmsEPUB:
+    id: chapter4h
 ---
 
 In the previous section we discussed the asset files that can improve our content.  CSS files of course are very important because they're what we use to improve content layout, colors, and more.  Generally speaking EPUB3 supports CSS3, but support might be spotty across the EPUB readers.

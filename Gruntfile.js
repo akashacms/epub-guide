@@ -1,28 +1,38 @@
 
-var akasha = require('akashacms');
-var config = require('./config.js');
-akasha.config(config);
+var path = require('path');
+var akashacms = require('akashacms');
+var akashaEPUB = require('../akashacms-epub');
+
+akashaEPUB.startup(akashacms, {
+    // Add any config.js fields here to use
+    // Other fields will be filled in with defaults
+    
+    akashacmsEPUB: {
+        metadataFile: path.join(__dirname, "book.yml")
+    }
+    
+});
 
 module.exports = function(grunt) {
     
-    // tasks: copyAssets, buildepub, buildweb
-    
     grunt.initConfig({
-        akasha: akasha,
-        config: config
+        akashacms: akashacms,
+        akashaEPUB: akashaEPUB,
     });
     
     grunt.loadNpmTasks('akashacms');
-    grunt.loadNpmTasks('akashacms-epub');
-    
-    // TBD useWebStylesheets
-    grunt.registerTask('useEPUBStylesheets', function() {
-        config.headerScripts.stylesheets = config.akashacmsEPUB.stylesheets;
-    });
+    grunt.loadTasks('../akashacms-epub/tasks');
     
     grunt.registerTask("doepub", [
-        'useEPUBStylesheets', 'emptyRootOut', 'copyAssets',
-        'gatherDocuments', 'renderDocuments', 'generateEPUBFiles',
+        // 'akashacmsEPUBstart',
+        'emptyRootOut', 'copyAssets', 'ePubConfigCheck',
+        'gatherDocuments',
+        'makeMetaInfDir', 'makeMimetypeFile', 'makeContainerXml',
+        'makeCoverFiles',  'scanForBookMetadata',
+        'assetManifestEntries',
+        'makeTOC',
+        'makeOPF',
+        'renderDocuments',
         'bundleEPUB'
     ] );
     

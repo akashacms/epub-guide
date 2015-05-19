@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: Summary of HTML5 markup in AkashaEPUB Documents
+akashacmsEPUB:
+    id: chapter3e
 ---
 
 In EPUB2, content was supposed to be written in XHTML, the XML variant of HTML.  With the switch to EPUB3 there was an opportunity to switch to straight HTML, but they stuck with XHTML to preserve compatibility with older EPUB Reader devices.  However, they did adopt HTML5 because that's the neat new hotness on the block.  The HTML5 specification includes a variant, XHTML5, and that is what EPUB3 uses.

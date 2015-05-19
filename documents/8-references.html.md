@@ -1,6 +1,8 @@
 ---
 layout: chapter-index.html.ejs
 title: References
+akashacmsEPUB:
+    id: chapter8
 chapterNumber: 8
 ---
 

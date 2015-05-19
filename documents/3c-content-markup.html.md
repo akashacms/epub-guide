@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: Content markup formats
+akashacmsEPUB:
+    id: chapter3c
 ---
 
 As we said earlier, AkashaCMS (and therefore AkashaEPUB) supports several content markup formats.  For the purpose of book writing, Markdown is recommended for the written content and EJS is recommended for layout templates.  However, if your book incorporates external data it might be useful to use EJS in some of the content pages.

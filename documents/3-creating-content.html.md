@@ -1,6 +1,14 @@
 ---
 layout: chapter-index.html.ejs
 title: Creating book content to be rendered by AkashaEPUB 
+akashacmsEPUB:
+    id: chapter3
+    sections:
+        - 3a-document-format.html
+        - 3b-metadata.html
+        - 3c-content-markup.html
+        - 3d-rendering.html
+        - 3e-html5-structure.html
 chapterNumber: 3
 sections: 
   - url: 3a-document-format.html

@@ -1,6 +1,8 @@
 ---
 layout: page.html.ejs
 title: The AkashaEPUB quick start guide
+akashacmsEPUB:
+    id: chapter2d
 ---
 
 In <a href="2-installation.html"></a> we built a complete working EPUB with the epub-skeleton "book".

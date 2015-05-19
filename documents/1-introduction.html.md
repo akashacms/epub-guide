@@ -2,6 +2,8 @@
 layout: chapter-index.html.ejs
 title: Introduction to AkashaEPUB
 chapterNumber: 1
+akashacmsEPUB:
+    id: chapter1
 ---
 
 The last few years have seen an explosion in electronic books to where it's becoming mainstream.  Several large marketplaces exist for selling electronic books, and the rapidly growing number of eBook reading apps and devices is giving us all more choice than ever.  It's given authors an opportunity to skip traditional book distribution channels, go more-or-less direct to the consumer, while making it easier to get started writing books.
