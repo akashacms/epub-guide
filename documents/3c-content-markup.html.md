@@ -11,11 +11,9 @@ The AkashaCMS website ([akashacms.com/documents/index.html](http://akashacms.com
 
 ## Markdown files
 
-Files are to be named `example.html.md`.
+Files are to be named `example.html.md` with the `.html.md` part of the file name indicating it is a Markdown file.
 
-Markdown is a content markup language for plain text files.  The formatting syntax is designed to be easily written, with enough capability for routine text documents, and can be used in any plain text editor. 
-
-All the content in this guide is written using Markdown.
+Markdown is a content markup language for plain text files.  The formatting syntax is designed to be easily written, with enough capability for routine text documents, and can be used in any plain text editor.   All the content in this guide is written using Markdown.
 
 The Markdown Tutorial ([markdowntutorial.com/](http://markdowntutorial.com/)) is a good place to start your understanding of Markdown.
 

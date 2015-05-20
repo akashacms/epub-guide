@@ -17,9 +17,9 @@ If only it were quite that simple.  There are enough moving parts involved, that
 
 What about those of us who prefer open source tools, or chafe at the thought of using a big heavy Word Processor?  What about having good control over the metadata inside the EPUB?  What about submitting books to a marketplace which doesn't accept Word documents?  What about creating content while traveling with a tablet computer?  What about books that incorporate data from elsewhere?  What about creating an identical website and book at the same time from the same content?
 
-The Word Processor method of writing electronic books is not a "one size fits all" solution.
+Using a Word Processor to write electronic books is not a "one size fits all" solution.
 
-AkashaEPUB is an open source system for publishing books in the EPUB3 format.  Authors write their content using Markdown or HTML (more formats to be added in the future) using a simple text editor.  A simple data object describes the book structure, asset files, and metadata.  A simple Grunt-based build process drives a Node.js based toolchain to produce an EPUB3 file.
+AkashaEPUB is an open source system for publishing books in the EPUB3 format.  Authors write their content using Markdown or HTML (more formats to be added in the future) using a simple text editor.  A simple YAML data object describes the book metadata, and other information is automatically gathered from the document and asset files.  A simple Grunt-based build process drives a Node.js based toolchain to produce an EPUB3 file.
 
 In other words, AkashaEPUB has a lightweight process, that's open and flexible, while giving the author the power to produce proper EPUB3 files with precise control over the book metadata.
 

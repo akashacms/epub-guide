@@ -27,21 +27,21 @@ You'll end up with a directory containing `epubcheck-3.0.1.jar` (adjusting for t
 First, explore what it can do by getting the help text: 
 
 ```
-    $ java -jar epubcheck-3.0.1.jar -help
+$ java -jar epubcheck-3.0.1.jar -help
 ```
 
 The options we're interested in are these:
 
 ```
-    $ java -jar epubcheck-3.0.1.jar \
-            path/to/ebook.epub
+$ java -jar epubcheck-3.0.1.jar \
+        path/to/ebook.epub
 ```
 
 You can also check the unpacked EPUB this way:
 
 ```
-    $ java -jar epubcheck-3.0.1.jar \
-            -mode exp path/to/root_out
+$ java -jar epubcheck-3.0.1.jar \
+        -mode exp path/to/root_out
 ```
 
 There is what appears to be a spurious error message:
@@ -67,9 +67,9 @@ Amazon.com provides this tool to package books for the Kindle bookstore.  If you
 The validation process is to use KindleGen to convert the EPUB into the Kindle MOBI format.  Add the `-verbose` flag so it'll tell you everything, like so:
 
 ```
-    $ /path/to/KindleGen/kindlegen \
-            /path/to/ebook.epub \
-            -verbose
+$ /path/to/KindleGen/kindlegen \
+        /path/to/ebook.epub \
+        -verbose
 ```
 
 

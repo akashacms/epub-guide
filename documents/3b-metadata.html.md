@@ -17,18 +17,18 @@ The metadata doesn't directly show up in the rendered page.  Instead it is carri
 Some rendering modules can inject the metadata into the rendered document.  For example, with the EJS template engine every metadata value is available as a variable inside the template.  For a file containing this metadata:
 
 ```
-    ---
-    title: The quick brown fox
-    ... other metadata
-    ---
-    
-    .... content
+---
+title: The quick brown fox
+... other metadata
+---
+
+.... content
 ```
 
 This EJS snippet brings the `title` value into the rendered document:
 
 ```
-    <h1><%= title %></h1>
+<h1><%= title %></h1>
 ```
 
 Other metadata values are interpreted by AkashaCMS or other plugins instead.  For example, the `layout` tag is used during the rendering process to determine which template to use in rendering the page.  The final rendered document depends on the sequence of templates used in the rendering.

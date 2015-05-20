@@ -19,11 +19,10 @@ The files in epub-skeleton are self-explanatory enough to simply use them as an 
 The quick start is:
 
 1. Download epub-skeleton, renaming it to match your book title
-2. Modify the metadata in `config.js` to match your book title
+2. Modify the metadata in `book.yml` to match your book title
 3. Start writing Markdown files, using the files in epub-skeleton as a guide
 4. Drop any required image files into the `root_assets` directory
-5. Declare all files in the `manifest` object in `config.js`
-6. Use `grunt doepub` to build the EPUB
-7. PROFIT
+5. Use `grunt doepub` to build the EPUB
+6. PROFIT
 
 

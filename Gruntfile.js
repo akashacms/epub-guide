@@ -24,7 +24,6 @@ module.exports = function(grunt) {
     grunt.loadTasks('../akashacms-epub/tasks');
     
     grunt.registerTask("doepub", [
-        // 'akashacmsEPUBstart',
         'emptyRootOut', 'copyAssets', 'ePubConfigCheck',
         'gatherDocuments',
         'makeMetaInfDir', 'makeMimetypeFile', 'makeContainerXml',

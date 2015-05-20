@@ -11,22 +11,24 @@ Now that Node.js and Grunt are installed we can follow the instructions to insta
 See [akashacms.com/install.html](http://akashacms.com/install.html) for more details on how to install AkashaCMS.  The basic process is:
 
 ```
-    $ npm install -g akashacms
+    $ npm install -g akashacms-cli
 ```
 
 That step might need to be done this way, if you get an error message:
 
 ```
-    $ sudo npm install -g akashacms
+    $ sudo npm install -g akashacms-cli
 ```
 
 The AkashaCMS website gives some additional steps resulting in a sample website, so you can see its ability to build websites.  However, for the purpose of building electronic books we have a couple sample books available for you to build.
 
 ## Installing AkashaEPUB
 
-You don't install AkashaEPUB separately.  Instead, it's installed as a plugin to an AkashaCMS workspace, in the AkashaCMS `config.js`.
+You don't install AkashaEPUB separately.  Instead, it's installed as a plugin to an AkashaCMS workspace.  In a normal AkashaCMS workspace, the plugins are declared in a `config.js` file.  AkashaEPUB supports an extremely simplified configuration method, that can exist entirely within a streamlined `Gruntfile.js`.  
 
 To make it easier to get started with AkashaEPUB, a skeleton book has been created in the [github.com/akashacms/epub-skeleton](https://github.com/akashacms/epub-skeleton) repository.  It has all the basic elements of a "book" including a book cover image (of a skeleton).
+
+This is the recommended process for starting a new book:
 
 ```
     $ git clone https://github.com/akashacms/epub-skeleton.git
@@ -35,7 +37,7 @@ To make it easier to get started with AkashaEPUB, a skeleton book has been creat
     $ npm install
 ```
 
-Notice that when you ran `npm install` both `akashacms-epub` and `grunt` were downloaded and installed in the `node_modules` directory.  You can verify the Grunt installation as so
+Notice that when you ran `npm install`, that `akashacms`, `akashacms-epub`, `grunt` and other npm modules were downloaded and installed in the `node_modules` directory.  You can verify the Grunt installation as so
 
 ```
     $ grunt --version

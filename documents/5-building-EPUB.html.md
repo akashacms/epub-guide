@@ -7,9 +7,6 @@ akashacmsEPUB:
         - 5a-examining-grunt.html
         - 5b-validation.html
 chapterNumber: 5
-sections:
-  - url: 5a-examining-grunt.html
-  - url: 5b-validation.html
 ---
 
 Now that we know how to [install AkashaEPUB](2-installation.html), [how to create content](3-creating-content.html), and [structure our book](4-configuration.html), it's time to use AkashaEPUB to build some books.  What's next is to go over the book building process.

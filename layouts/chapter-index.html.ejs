@@ -14,13 +14,13 @@ layout: epub_page.html.ejs
 <%- content %>
 
 <%
-if (typeof sections !== 'undefined') {
+if (typeof akashacmsEPUB.sections !== 'undefined') {
 %>
 <aside class="section-list">
 <ul>
 <%
-sections.forEach(function(section) {
-    %><li><a href="<%= section.url %>"></a></li><%
+akashacmsEPUB.sections.forEach(function(section) {
+    %><li><a href="<%= section %>"></a></li><%
 });
 %>
 </ul>

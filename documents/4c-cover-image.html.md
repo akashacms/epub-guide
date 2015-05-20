@@ -14,16 +14,15 @@ There are two cover image objects used by EPUB.  The first is the image itself, 
 All the relavent information is declared this way:
 
 ```
-    cover: {
-        id: "cover",
-        idImage: "cover-image",
-        src:  "images/epub-guide-cover.png",
-        alt:  "AkashaEPUB Book Creators Guide",
-        type: "image/png"
-    },
+cover:
+    writeHtml: { id: "cover", href: "cover.html" }
+    idImage: "cover-image"
+    src:  "images/Human-Skeleton.jpg"
+    alt:  "AkashaEPUB Skeleton Book"
+    type: "image/jpeg"
 ```
 
-The `id` member is used in the OPF file manifest, while the `idImage` member is used in the generated HTML cover file.
+The `writeHtml` element describes the generated HTML cover file.
 
 The `src` member is the pathname to the image, while the `alt` member is the `alt=` text used in the HTML file, and the `type` member is its MIME type.
 
@@ -43,6 +42,6 @@ In other words, a 2000 pixel wide cover image should be 3000 pixels high.
 
 ## Image format?
 
-Our example above showed use of a PNG file.  They're good because of lossless compression.
+Our example above showed use of a PNG file.  They're good because of loss-less compression.
 
 EPUB readers are also supposed to support SVG files, but that hasn't been tested with AkashaEPUB.  SVG is in theory better than any raster image format like PNG, because SVG is a Vector Graphics format and automatically scales to any resolution without loss of precision.
