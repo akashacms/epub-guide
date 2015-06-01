@@ -39,3 +39,5 @@ There are two tags of primary interest.
 AkashaCMS supports pluggable rendering systems.  Doing so means registering with AkashaCMS a simple object with three functions.  This gives the ability to integrate all kinds of document formats both for content markup and the output file.
 
 For example all the XML files produced by AkashaEPUB are generated with the help of custom rendering modules.
+
+See [akashacms.com/documents/rendering-chains.html](http://akashacms.com/documents/rendering-chains.html) for documentation.

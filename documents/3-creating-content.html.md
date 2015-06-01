@@ -27,10 +27,14 @@ You author the pages of your book in the `root_docs` directory.  Files under tha
 An exception to this is if you with to write your CSS using a preprocessor like LESS.  Because it would be processed by AkashaCMS, put it in the `root_docs` directory.
 
 The content files have a file name structure which sort of documents the processing.  For example:
-* `example.html.md` -- A Markdown file, that produces HTML.
-* `example.html.ejs` -- for HTML with EJS markup, that produces HTML.
-* `example.html` -- Straight HTML, copied with no processing.
-* `example.css.less` -- A LESS file, that produces CSS.
+
+<table>
+<tr><th>Extension</th><th>Description</th></tr>
+<tr><td>`example.html.md` </td><td> A Markdown file, that produces HTML.</td></tr>
+<tr><td>`example.html.ejs` </td><td> for HTML with EJS markup, that produces HTML.</td></tr>
+<tr><td>`example.html` </td><td> Straight HTML, copied with no processing.</td></tr>
+<tr><td>`example.css.less` </td><td> A LESS file, that produces CSS.</td></tr>
+</table>
 
 The directory structure of `root_out` exactly mimics the structure in `root_assets` and `root_docs`.  Here's a few example files
 

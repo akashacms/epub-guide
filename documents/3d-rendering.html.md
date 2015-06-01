@@ -35,7 +35,14 @@ layout: epub_page.html.ejs
 
 This template also has a layout tag pointing to another template.  This one, `epub_page.html.ejs`, is part of the akashacms-epub project ([github.com/akashacms/akashacms-epub/blob/master/layouts/epub_page.html.ejs](https://github.com/akashacms/akashacms-epub/blob/master/layouts/epub_page.html.ejs)).
 
-What we've just described is the sequence of rendering pages using these specific templates.  The original Markdown file is rendered as HTML, then rendered inside `page.html.ejs` using the EJS engine, and that rendering is again rendered using EJS through the `epub_page.html.ejs` template.  The result is XHTML5 suitable for an EPUB reader, because the final template was designed for that purpose.
+<figure>
+<img src="akashacms-rendering.png"/>
+<figcaption>
+The AkashaCMS rendering process
+</figcaption>
+</figure>
+
+What we've just described is the sequence of rendering pages using these specific templates.  What we have is a loop which ends with a document or layout template that lacks a `layout` tag.  On the first iteration of the loop, the original Markdown file is rendered as HTML and in later iterations the layout template is rendered.  The Mahabhuta engine is run to process special tags.  Then another loop iteration is executed if there is a `layout` tag.  In this case the content is first processed with Markdown, then `page.html.ejs` is rendered using the EJS engine, and finally `epub_page.html.ejs` is rendered using EJS.  The result is XHTML5 suitable for an EPUB reader, because the final template was designed for that purpose.
 
 Since the `epub_page.html.ejs` template does not have a `layout` tag the rendering process stops at that point.  That is, the AkashaCMS rendering process continues so long as the layout template has a `layout` tag.
 
@@ -89,9 +96,11 @@ sprinkles: Peanuts
 image: images/sundaes/banana-split.png
 ---
 
-In the summer of 1967 I had my first REAL banana split
-sundae, and I thought I'd gone to heaven it was so good.
-These are easy to make and sure to be a crowd pleaser.
+In the summer of 1967 I had my first
+REAL banana split sundae, and I thought
+I'd gone to heaven it was so good.
+These are easy to make and
+sure to be a crowd pleaser.
 ...
 ```
 
@@ -174,6 +183,57 @@ akashacmsEPUB.sections.forEach(function(section) {
 If `sections` is present it's going to be a list, which one traverses with the `.forEach` method as shown.  Hence this is straight-forward to understand:  An `<li>...</li>` is rendered for each member of the `sections` list, giving a link to the document with empty anchor text.  As we'll see later (see [](4f-links.html)), AkashaEPUB automatically looks up the `title` of the document, using that as the anchor text of the link.
 
 The result is an easy-to-maintain index of the chapters and sections.
+
+## Mahabhuta
+
+Earlier we mentioned the Mahabhuta engine.  Full documentation is online at [akashacms.com/documents/mahabhuta.html](http://akashacms.com/documents/mahabhuta.html)
+
+Mahabhuta's purpose is to process HTML, such as handling special tags one invents for specific purposes.  HTML manipulations with Mahabhuta are accomplished by snippets of jQuery code that's executing server-side inside AkashaCMS.  For most intents you won't need to implement Mahabhuta tags, but the capability exists and it can be useful.
+
+The ice cream sundae example discussed earlier could be implemented a different way.  Like:
+
+```
+<ice-cream-sundae dish-style="Tray"
+    base="1 Banana, cut in half lengthwise"
+    flavors="Vanilla"
+    topping="Chocolate Syrup"
+    sprinkles="Peanuts"
+    image="images/sundaes/banana-split.png" />
+```
+
+Now that you've got the custom tag, what do you do?
+
+In the Gruntfile.js
+
+```
+akashaEPUB.startup(akashacms, {
+
+    mahabhuta: [
+    function(akasha, config, $, metadata, dirty, done) {
+            var elements = [];
+            $('ice-cream-sundae').each(function(i, elem) {
+                elements.push(elem);
+            });
+            async.eachSeries(elements,
+            function(element, next) {
+                // Process the element into HTML
+                $(element).replaceWith(newHtml);
+                next();
+            },
+            done);
+    }
+    ],
+    
+    akashacmsEPUB: {
+        metadataFile: path.join(__dirname, "book.yml")
+    }
+    
+});
+```
+
+The Mahabhuta engine takes an array of functions like this, processing each in turn.  This looks for all `ice-cream-sundae` tags, processes it to HTML, then replaces the `ice-cream-sundae` tag with the generated HTML.
+
+Among the AkashaCMS and AkashaEPUB modules is plenty of Mahabhuta examples.
 
 ## Asset files, CSS, Images, fonts, etc
 

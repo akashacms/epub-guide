@@ -24,7 +24,7 @@ languages: [ en, fr ]
 
 ## Identifiers
 
-While the ISBN is the primary systems for identifying books, it's not the only game in town.  For many important uses one doesn't even need an ISBN depending on how the book is being distributed.
+While the ISBN is the primary system for identifying books, it's not the only game in town.  For many important uses one doesn't even need an ISBN depending on how the book is being distributed.
 
 Generally speaking an __identifier__ is a unique (hopefully) text string assigned to a specific book.  While that's seemingly simple, it's a little tricky in practice.  Book identifiers play different roles in different scenarios.
 

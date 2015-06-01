@@ -65,7 +65,9 @@ The stylesheet link we show above is not something you will write yourself.  Ins
 
 ## Anchor text assistance
 
-AkashaEPUB does have a nice assistance feature to automatically make nice links between documents.  If you leave out the anchor text from the link, AkashaEPUB will look up the `title` metadata from the linked document and insert it as the anchor text.  For example, inside this guide a tag written as `<a href="2-installation.html"></a>` (or in Markdown `[](2-installation.html)`) will be rendered as `<a href="2-installation.html">Installing the AkashaEPUB toolchain</a>` (or [](2-installation.html)).
+AkashaEPUB does have a nice assistance feature to automatically make nice links between documents.  If you leave out the anchor text from the link, AkashaEPUB will look up the `title` metadata from the linked document and insert it as the anchor text.
+
+For example, inside this guide a tag written as `<a href="2-installation.html"></a>` (or in Markdown `[](2-installation.html)`) will be rendered as `<a href="2-installation.html">Installing the AkashaEPUB toolchain</a>` (or [](2-installation.html)).
 
 ## Referencing external resources
 
