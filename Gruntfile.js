@@ -1,7 +1,7 @@
 
 var path = require('path');
 var akashacms = require('akashacms');
-var akashaEPUB = require('../akashacms-epub');
+var akashaEPUB = require('akashacms-epub');
 
 akashaEPUB.startup(akashacms, {
     // Add any config.js fields here to use
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     });
     
     grunt.loadNpmTasks('akashacms');
-    grunt.loadTasks('../akashacms-epub/tasks');
+    grunt.loadNpmTasks('akashacms-epub');
     
     grunt.registerTask("doepub", [
         'emptyRootOut', 'copyAssets', 'ePubConfigCheck',
