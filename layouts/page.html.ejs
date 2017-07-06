@@ -1,8 +1,17 @@
----
-layout: epub_page.html.ejs
----
-<section>
-<header><h1><%= title %></h1></header>
-<article><%- content %></article>
-<footer style="margin-top: 5em;"><hr/>Copyright © 2015 by David Herron, Creative Commons, CC BY-ND, see <a href="0a-copyright.html">copyright page</a> for details </footer>
-</section>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+<title><%= title %></title>
+<ak-stylesheets></ak-stylesheets>
+<ak-headerJavaScript></ak-headerJavaScript>
+</head>
+<body>
+    <section>
+    <header><h1><%= title %></h1></header>
+    <article><%- content %></article>
+    <footer style="margin-top: 5em;"><hr/>Copyright © 2015 by David Herron, Creative Commons, CC BY-ND, see <a href="0a-copyright.html">copyright page</a> for details </footer>
+    </section>
+<ak-footerJavaScript></ak-footerJavaScript>
+</body>
+</html>
