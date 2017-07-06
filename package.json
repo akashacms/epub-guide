@@ -6,11 +6,21 @@
   },
   "name": "epub-guide",
   "description": "AkashaEPUB Guide Book source",
-  "homepage": "http://akashacms.com/plugins/epub.html",
+  "homepage": "http://akashacms.com/epubtools/toc.html",
+  "scripts": {
+    "clean": "rm -rf out",
+    "prebuild": "mkdir -p out && akasharender copy-assets config.js",
+    "build": "akasharender render config.js",
+    "postbuild": "epubtools mimetype out && epubtools containerxml out book.yml && epubtools makemeta out book.yml",
+    "bundle": "epubtools package out book.yml",
+    "rebuild": "npm run clean && npm run build && npm run bundle"
+  },
   "dependencies": {
-    "akashacms": "*",
-    "akashacms-epub": "*",
-    "grunt": "*",
-    "ejs": "*"
+    "akasharender": "*",
+    "akashacms-footnotes": "*",
+    "akasharender-epub": "akashacms/akasharender-epub",
+    "mahabhuta": "*",
+    "epubtools": "*",
+    "globfs": "*"
   }
 }
