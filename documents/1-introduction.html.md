@@ -1,16 +1,13 @@
 ---
 layout: chapter-index.html.ejs
 title: Introduction to AkashaEPUB
-chapterNumber: 1
-akashacmsEPUB:
-    id: chapter1
 ---
 
 The last few years have seen an explosion in electronic books.  Several large marketplaces exist for selling electronic books, and the rapidly growing number of eBook reading apps and devices is giving us all more choice than ever.  It's given authors an opportunity to skip traditional book distribution channels, go more-or-less direct to the consumer, while making it easier to get started writing books.
 
-A key factor in this is the EPUB book publishing format.  In its third version, EPUB3, it is a ZIP archive containing XHTML files along with images, CSS and metadata.  By reusing open standards from the Web, we can reuse tools from the website publishing world to create EPUB publications.  One "just" creates suitable XHTML, CSS and image files, keeping in mind certain limitations imposed by the EPUB model, and voila you have an electronic book.
+A key factor in this is the EPUB book publishing format.  In its third version, EPUB3, it is a ZIP archive containing XHTML files along with images, CSS and metadata.  The major advance in EPUB3 was to adopt most of HTML5 and CSS3, from the leading edge of web technology.  By reusing open standards from the Web, we can reuse tools from the website publishing world to create EPUB publications.  One "just" creates suitable XHTML, CSS and image files, keeping in mind certain limitations imposed by the EPUB model, and voila you have an electronic book.
 
-If only it were quite that simple.  There are several moving parts involved, with files that have to be perfectly constructed.  Therefore good software tools are very helpful investment.  The typical recommended tools are
+If only it were quite that simple.  There are several moving parts involved, with files that have to be perfectly constructed.  Therefore good software tools are very helpful investment, to avoid the overhead of all the details.  The typical recommended tools are
 
 * Use a Word Processor like Microsoft Word, Libre Office, or Pages to create one or more documents.  Then one either uploads the Word file directly to the Kindle, or else one export the document to HTML and does further processing.
 * Use a special purpose E-Book editing application like Vellum
@@ -19,11 +16,11 @@ What about those of us who prefer open source tools, or chafe at the thought of 
 
 Using a Word Processor to write electronic books is not a "one size fits all" solution.
 
-AkashaEPUB is an open source system for publishing books in the EPUB3 format.  Authors write their content using Markdown or HTML (more formats to be added in the future) using a simple text editor.  A simple YAML data object describes the book metadata, and other information is automatically gathered from the document and asset files.  Content is processed using a jQuery-based HTML processing engine, allowing you to invent custom tags for any use.  A simple Grunt-based build process drives a Node.js based toolchain to produce an EPUB3 file, which passes muster with epubcheck.
+AkashaEPUB is an open source system for publishing books in the EPUB3 format.  Authors write their content using Markdown or HTML (more formats to be added in the future) using a simple text editor.  A simple YAML data object describes the book metadata, and other information is automatically gathered from the document and asset files.  Content is processed using a jQuery-based HTML processing engine, allowing you to invent custom tags for any use.  A simple build process drives a Node.js based toolchain to produce an EPUB3 file.  The resulting file passes muster with `epubcheck`, the gold standard in verifying EPUB3 conformance.
 
 In other words, AkashaEPUB has a lightweight process, that's open and flexible, while giving the author the power to produce proper EPUB3 files with precise control over the book metadata.
 
-AkashaEPUB is an AkashaCMS plugin, and AkashaCMS in turn is a general "content management system" for building static HTML websites.  In some circles that makes AkashaCMS a static site generator.  Essentially AkashaEPUB tricks AkashaCMS into producing the XHTML files and XML metadata required for EPUB3 format ebooks.  
+AkashaEPUB (https://akashacms.com/epubtools/toc.html) is an AkashaCMS plugin, and AkashaCMS (https://akashacms.com) in turn is a general "content management system" for building static HTML websites.  In some circles that makes AkashaCMS a static site generator.  Essentially AkashaEPUB tricks AkashaCMS into producing the XHTML files and XML metadata required for EPUB3 format ebooks.  
 
 EPUB is a widely used electronic book publishing format designed by the International Digital Publishing Forum.  There is a large and growing ecosystem of reading devices and software to consume EPUB files.  Further, it allows you to publish books through electronic book markets like the Google Play Store, and Apple's iBook store.  Amazon's Kindle marketplace can accept EPUB files by using the KindleGen program to convert EPUBS to its own MOBI format.
 
@@ -33,11 +30,11 @@ This guide - see [github.com/akashacms/epub-guide](https://github.com/akashacms/
 
 The key features offered by AkashaEPUB are
 
-* You can write content in Markdown.  Because Markdown files are simple text, your words aren't trapped inside XML files or proprietary word processing documents.  Instead, your words are free to be reused in many ways.
-* The system takes care of generating the metadata XML files automatically.  You don't have to learn the ropes of XML nor EPUB's inner workings.
-* AkashaCMS is very flexible meaning you can override almost everything if you need to customize how AkashaEPUB generates your book.
-* With a little work, it would be possible to publish the content as both a book and website simultaneously
-* AkashaEPUB and AkashaCMS are open source, meaning you can inspect how it works, you can fix it as needed, and you can contribute fixes back to the project.
+* _You can write content in Markdown._  Because Markdown files are simple text, your words aren't trapped inside XML files or proprietary word processing documents.  Instead, your words are free to be reused in many ways.
+* _The system takes care of generating the metadata XML files automatically._  You don't have to learn the ropes of XML nor EPUB's inner workings.
+* _AkashaCMS is very flexible_ meaning you can override almost everything if you need to customize how AkashaEPUB generates your book.
+* _Publishing to both website and EPUB._  With a little work, it would be possible to publish the content as both a book and website simultaneously
+* _AkashaEPUB and AkashaCMS are open source,_ meaning you can inspect how it works, you can fix it as needed, and you can contribute fixes back to the project.
 
 It's possible to construct an EPUB completely by hand.  The XHTML and XML for these files aren't terribly difficult to create, especially with web page editing software like Dreamweaver.  But learning to do this correctly means studying the nuances of several standards documents and hoping you remember to get every last detail correct.
 
@@ -49,9 +46,9 @@ I should mention up-front that AkashaEPUB is geek-friendly.  While every effort 
 
 <img src="akashacms-logo.gif" style="float: right"/>The whole system is written in Node.js, a cross-platform programming environment written in JavaScript.  Node.js is becoming popular in the programming community, partly because it takes JavaScript out of the web browser to live on server computers.  Node.js isn't just for server web-applications, because it is a general purpose programming platform.  It is portable across pretty much any computer system, making it possible to use AkashaEPUB to produce books on whatever computer you have.
 
-For example I routinely switch between a MacBook Pro (running Mac OS X) and a Chromebook that's been hacked (with Crouton) to run Linux.  I have Node.js and AkashaCMS/AkashaEPUB installed on both systems, can edit the same files on either, use the same editing application on either, and use the same command line tools on either to build the book.  If I'd been using a proper Word Processor to create this content, the Chromebook would have presented a serious challenge.
+For example I routinely switch between a MacBook Pro (running Mac OS X) and a Chromebook that's been hacked (with Crouton) to run Linux.  I have Node.js and AkashaCMS/AkashaEPUB installed on both systems, can edit the same files on either, use the same editing application on either, and use the same command line tools on either to build the book.  If I'd been using a proper Word Processor (like Libre Office) to write content the Chromebook would have presented a serious challenge.
 
-<img src="akashaepub-logo.png" style="float: right"/>AkashaEPUB rests on the shoulders of AkashaCMS - [akashacms.com](http://akashacms.com) - a Content Management System which produces static HTML websites.  One day, while preparing content for an electric vehicle buyers guide - [greentransportation.info/guide/index.html](http://greentransportation.info/guide/index.html) - I had an inspired (or maybe crazy) thought to adapt AkashaCMS to produce EPUB files.  Vaguely remembering that an EPUB file is just some HTML files with additional metadata, I realized that AkashaCMS can generate all those files.  Within a few days I'd read enough of the specifications and sample EPUB's to get the first version of AkashaEPUB running, and to produce a sample EPUB.  Since then the software and EPUB spec's have been gone over carefully, and the result is a simple-to-use system that's producing good EPUB's.  Along the way it meant several useful architectural changes in AkashaCMS.  This book is proof that AkashaEPUB does what it says on the label, and that it's fairly easy to use.
+<img src="akashaepub-logo.png" style="float: right"/>AkashaEPUB rests on the shoulders of AkashaCMS - [akashacms.com](http://akashacms.com) - a Content Management System which produces static HTML websites.  One day, while preparing content for an electric vehicle buyers guide - [greentransportation.info/ev-charging/toc.html](https://greentransportation.info/ev-charging/toc.html) - I had an inspired (or maybe crazy) thought to adapt AkashaCMS to produce EPUB files.  Vaguely remembering that an EPUB file is just some HTML files with additional metadata, I realized that AkashaCMS can generate all those files.  Within a few days I'd read enough of the specifications and sample EPUB's to get the first version of AkashaEPUB running, and to produce a sample EPUB.  Since then the software and EPUB spec's have been gone over carefully, and the result is a simple-to-use system that's producing good EPUB's.  Along the way it meant several useful architectural changes in AkashaCMS.  This book is proof that AkashaEPUB does what it says on the label, and that it's fairly easy to use.
 
 # Crafting books in the age of electronic books
 
@@ -81,7 +78,7 @@ There are many tools on the market for producing EPUB files.  Why should you cho
 You are of course free to do as you wish.  Those other tools have their place as does a system like AkashaEPUB.  AkashaEPUB should appeal to certain values like:
 
 * The freedom to freely reuse your words in many ways
-* The freedom to build your own tools, or to know precisely how they work 
+* The freedom to build your own tools, or to know precisely how they work
 * The freedom to quickly iterate through developing your book -- the entire book creation process is in the hands of the author, and is light-weight enough to run on their laptop
 * Use special tags and other special HTML processing thanks to Mahabhuta.  This is an engine for AkashaCMS which brings the power of jQuery DOM manipulation to AkashaCMS or AkashaEPUB documents.
 * The freedom to use the computer operating system of your choice
