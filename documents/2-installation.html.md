@@ -79,11 +79,12 @@ $ cd newBookName
 $ npm install
 .... much output
 $ npm run rebuild
+.... much output
+$ ls -l skeleton.epub
+-rw-r--r--  1 david  staff  129265 Jul  8 22:47 skeleton.epub
 ```
 
-TODO show ls -l skeleton.epub
-
-The result is an EPUB container that can be read using any EPUB3 compliant EPUB reader.  We have tested the toolchain to be capable of producing EPUB3 files that pass muster with the `epubcheck` tool.
+The result is an EPUB file that can be read using any EPUB3 compliant EPUB reader.  We have tested the toolchain to be capable of producing EPUB3 files that pass muster with the `epubcheck` tool.
 
 When you ran `npm install`, the AkashaRender and AkashaEPUB tools were installed.  Inside `package.json` are command strings necessary to run the tools to render the content, bundling it in the EPUB format.
 
