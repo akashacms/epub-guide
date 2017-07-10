@@ -1,13 +1,11 @@
 ---
 layout: page.html.ejs
 title: Content markup formats
-akashacmsEPUB:
-    id: chapter3c
 ---
 
-As we said earlier, AkashaCMS (and therefore AkashaEPUB) supports several content markup formats.  For the purpose of book writing, Markdown is recommended for the written content and EJS is recommended for layout templates.  However, if your book incorporates external data it might be useful to use EJS in some of the content pages.
+As we said earlier, AkashaRender (and therefore AkashaEPUB) capable of supporting several content markup formats.  It currently supports Markdown and EJS, with Markdown being primarily intended for people writing content, and EJS primarily intended for the web or book designer.  
 
-The AkashaCMS website ([akashacms.com/documents/index.html](http://akashacms.com/documents/index.html)) has more info on document formatting with AkashaCMS.
+The AkashaCMS website (http://akashacms.com/akasharender/layouts-partials.html) has more info on document formatting with AkashaCMS.
 
 ## Markdown files
 
@@ -17,7 +15,7 @@ Markdown is a content markup language for plain text files.  The formatting synt
 
 The Markdown Tutorial ([markdowntutorial.com/](http://markdowntutorial.com/)) is a good place to start your understanding of Markdown.
 
-John Gruber invented Markdown, and wrote up its syntax on his site ([daringfireball.net/projects/markdown/](http://daringfireball.net/projects/markdown/)).  CommonMark ([commonmark.org](http://commonmark.org/)) is an attempt to standardize the Markdown syntax among Markdown processors.  AkashaCMS uses the markdown-it processor ([npmjs.com/package/markdown-it](https://www.npmjs.com/package/markdown-it)) processor, whose author is committed to the CommonMark cause.
+John Gruber invented Markdown, and wrote up its syntax on his site ([daringfireball.net/projects/markdown/](http://daringfireball.net/projects/markdown/)).  Unfortunately there has been incompatibility between different Markdown.  CommonMark ([commonmark.org](http://commonmark.org/)) is an attempt to standardize the Markdown syntax among Markdown processors.  AkashaRender uses the markdown-it processor ([npmjs.com/package/markdown-it](https://www.npmjs.com/package/markdown-it)) processor, whose author is committed to the CommonMark cause.
 
 The markdown-it processor used by AkashaCMS supports some of the Github Flavored Markdown extensions ([help.github.com/articles/github-flavored-markdown/](https://help.github.com/articles/github-flavored-markdown/)).
 
@@ -33,11 +31,12 @@ There are two tags of primary interest.
 * `<%= variable %>` substitutes the value of the variable, encoding any special characters as HTML encodings.
 * `<%- variable %>` substitutes the value of the variable, with no encoding.
 
-
 ## Other document formats
 
-AkashaCMS supports pluggable rendering systems.  Doing so means registering with AkashaCMS a simple object with three functions.  This gives the ability to integrate all kinds of document formats both for content markup and the output file.
+AkashaRender has a pluggable rendering system allowing one to fairly easily plug-in their own rendering algorithm.  Some writers prefer AsciiDOC over Markdown, for example, or perhaps might write content in an WYSIWYG HTML editor and develop a Renderer to extract content from the files it produces.
 
-For example all the XML files produced by AkashaEPUB are generated with the help of custom rendering modules.
+Another area of interest is different template engines like DustJS or Mustache.  They, too, would be integrated with AkashaRender the same way.
 
-See [akashacms.com/documents/rendering-chains.html](http://akashacms.com/documents/rendering-chains.html) for documentation.
+See the documentation on creating Renderer objects:  http://akashacms.com/akasharender/rendering-engines.html
+
+Bottom line is that while AkashaRender today supports Markdown documents, and EJS templates, it's relatively simple to extend it to support other document formats and template systems.

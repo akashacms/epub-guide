@@ -1,8 +1,6 @@
 ---
 layout: page.html.ejs
 title: Summary of HTML5 markup in AkashaEPUB Documents
-akashacmsEPUB:
-    id: chapter3e
 ---
 
 In EPUB2, content was supposed to be written in XHTML, the XML variant of HTML.  With the switch to EPUB3 there was an opportunity to switch to straight HTML, but they stuck with XHTML to preserve compatibility with older EPUB Reader devices.  However, they did adopt HTML5 because that's the neat new hotness on the block.  The HTML5 specification includes a variant, XHTML5, and that is what EPUB3 uses.
@@ -84,37 +82,13 @@ Play multimedia
 
 There's a lot more HTML5 tags available, these just scratch the surface and were chosen because of their likelihood for use in an EPUB and that they're outside the typical tags.
 
-## HTML5 Page Structure
 
-AkashaEPUB by provides a default page layout, `epub_page.html.ejs` which contains this structure:
+### LINK, IMG tags and the requirement for relative URL's
 
-```
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:epub="http://www.idpf.org/2007/ops">
-<head>
-<title><%= title %></title>
-<%
-manifest.forEach(function(item) {
-    if (item.type === "text/css") { %>
-    <link rel="stylesheet" type="<%= type %>"
-          href="<%= item.href %>" /><%
-})
-%>
-</head>
-<body>
-<%- content %>
-</body>
-</html>
-```
+The `<link>` and `<img>` tags, and other tags referring to other content, are as we are accustomed to in regular websites.  They're used to refer to another file of some kind, whether it is a CSS stylesheet, an image, a font, or a JavaScript file.  The URL reference, usually in the `href` or `src` attribute, has some special considerations, however.
 
+In EPUB there is no "webroot" concept.  Therefore an `href="/css/style.css"` is wrong because the leading `/` does not resolve to anything, and instead causes an error.  Instead paths must always be relative to the current document.  Instead you might have `href="../../css/style.css"`.
 
-### Link tags
+Another limitation is that EPUB readers typically do not have an Internet connection.  Where a website might reference a stylesheet from a CDN, or pull down images from an image service, it's really bad form to do so in an EPUB.  In cases like an image or CSS file, the URL must be a local file reference and the corresponding resource file must be contained in the EPUB.  
 
-The `<link>` tag is as we are accustomed to in regular websites.  The value in the `href` parameter has some special considerations, however.
-
-In EPUB there is no "webroot" concept, and therefore an `href="/css/style.css"` is wrong because the leading `/` is incorrect.  Instead the path is always relative to the current document.
-
-Since EPUB's are not allowed to reference external content, `link` tags, `img` tags, and the like, must reference a file contained within the EPUB.
-
+It is possible to use an `<a>` tag to link to external web pages.  Just be clear that in some cases the person reading the document will not be able to click on the link.

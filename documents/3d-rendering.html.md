@@ -1,18 +1,18 @@
 ---
 layout: page.html.ejs
 title: The AkashaCMS rendering process
-akashacmsEPUB:
-    id: chapter3d
 ---
 
 This is what we've been working towards for a few sections - rendering HTML files from any content file.  The EPUB3 specification uses the XHTML variant of HTML5 and CSS for the rendered content.  That's our goal at the moment, to take a Markdown file and turn it into XHTML5 suitable for display on an EPUB reader.  At the end of this section we'll we'll know how to do this.  Promise.
 
+The AkashaCMS website does have complete documentation about layouts and page rendering at - http://akashacms.com/akasharender/layouts-partials.html
 
-The AkashaCMS website does have complete documentation about layouts and page rendering at - [akashacms.com/layout/index.html](http://akashacms.com/layout/index.html)
+Generally speaking, AkashaRender encapsulates the content within a layout template file as determined by the `layout` tag in the document.  That is, a two-stage process is followed:
 
-Generally speaking, AkashaCMS encapsulates the content within a series of layout template files as determined by layout tags in the templates.  As content is rendered into template after template, the complete HTML page structure is built.  Any document file or template file with a `layout` tag will be rendered into the named template.  Let's make this clearer with an example.
+1. The content file is rendered, producing an HTML output.  That HTML is passed through Mahabhuta.
+1. Assuming the content declares a `layout` template, the HTML from stage 1 is passed through the corresponding template, and the resulting HTML is then passed through Mahabhuta again.
 
-This guide is formatted using the `page.html.ejs` layout template, meaning each page in the guide has this metadata:
+This guide is formatted using the `page.html.ejs` layout template (see: https://github.com/akashacms/epub-guide/blob/master/layouts/page.html.ejs).  Therefore, each page in the guide has this metadata:
 
 ```
 ---
@@ -21,40 +21,31 @@ title:  Whatever the Title is
 ---
 ```
 
-The `layout` tag tells AkashaCMS which layout template to use.
-
-Then the `page.html.ejs` template ([github.com/akashacms/epub-guide/blob/master/layouts/page.html.ejs](https://github.com/akashacms/epub-guide/blob/master/layouts/page.html.ejs)) reads as follows:
+That template is currently:
 
 ```
----
-layout: epub_page.html.ejs
----
-<header><h1><%= title %></h1></header>
-<%- content %>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+<title><%= title %></title>
+<ak-stylesheets></ak-stylesheets>
+<ak-headerJavaScript></ak-headerJavaScript>
+</head>
+<body>
+    <section>
+    <header><h1><%= title %></h1></header>
+    <article><%- content %></article>
+    <footer style="margin-top: 5em;"><hr/>Copyright © 2015 by David Herron, Creative Commons, CC BY-ND, see <a href="0a-copyright.html">copyright page</a> for details </footer>
+    </section>
+<ak-footerJavaScript></ak-footerJavaScript>
+</body>
+</html>
 ```
 
-This template also has a layout tag pointing to another template.  This one, `epub_page.html.ejs`, is part of the akashacms-epub project ([github.com/akashacms/akashacms-epub/blob/master/layouts/epub_page.html.ejs](https://github.com/akashacms/akashacms-epub/blob/master/layouts/epub_page.html.ejs)).
+This allows for a page title, page content inside an `<article>` tag, a `<footer>`, and space for CSS and JavaScript files.  While EPUB readers have traditionally been very limited devices, EPUB3 allows for limited use of the full HTML5, CSS3 and JavaScript paradigm used in modern web browsers.
 
-<figure>
-<img src="akashacms-rendering.png"/>
-<figcaption>
-The AkashaCMS rendering process
-</figcaption>
-</figure>
-
-What we've just described is the sequence of rendering pages using these specific templates.  What we have is a loop which ends with a document or layout template that lacks a `layout` tag.  On the first iteration of the loop, the original Markdown file is rendered as HTML and in later iterations the layout template is rendered.  The Mahabhuta engine is run to process special tags.  Then another loop iteration is executed if there is a `layout` tag.  In this case the content is first processed with Markdown, then `page.html.ejs` is rendered using the EJS engine, and finally `epub_page.html.ejs` is rendered using EJS.  The result is XHTML5 suitable for an EPUB reader, because the final template was designed for that purpose.
-
-Since the `epub_page.html.ejs` template does not have a `layout` tag the rendering process stops at that point.  That is, the AkashaCMS rendering process continues so long as the layout template has a `layout` tag.
-
-The resulting rendered files depends on the sequence of layout templates being used.  This sequence happens to end in a template conforming to XHTML5.  For regular websites an AkashaCMS user uses web-centric layout templates, and AkashaCMS provides the `ak_page.html.ejs` template ([github.com/akashacms/akashacms/blob/master/builtin/layout/ak_page.html.ejs](https://github.com/akashacms/akashacms/blob/master/builtin/layout/ak_page.html.ejs)) that's heavily influenced by the Boilerplate framework.
-
-In `page.html.ejs` we see how metadata values, the `title` tag primarily, makes it into the rendered page. 
-
-```
-<header><h1><%= title %></h1></header>
-```
-
-It being based on HTML5, EPUB3 uses many of the new tags like `header`.  
+# Brief overview of EJS templates
 
 The `content` variable is autogenerated by AkashaCMS and contains the current state of the rendering.  This segment of the code inserts the rendering without any encoding:
 
@@ -62,7 +53,11 @@ The `content` variable is autogenerated by AkashaCMS and contains the current st
 <%- content %>
 ```
 
-Using `<%= variable %>` encodes the value to safe HTML, while the `<%- content %>` just inserts the value with no encoding.  This is bog-standard EJS behavior, and your templates use one or the other form depending on the circumstances.
+By using the `<%- %>` sequence, the HTML in the `content` variable is inserted as HTML.  The HTML is simply copied to the output file as-is with no interpretation.
+
+The `<header><h1><%= title %></h1></header>` sequence instead encodes `title` to safe HTML values.  
+
+This is bog-standard EJS behavior, and your templates use one or the other form depending on the circumstances.
 
 EJS also lets you write code inside the template.  What if the `title` variable was left out of a content file?  The processing would crash at that point, and maybe your book doesn't require a section header at the beginning of each section.  Consider:
 
@@ -74,7 +69,6 @@ EJS also lets you write code inside the template.  What if the `title` variable 
 
 This says if the `title` tag is present, then render the `header` and `h1` tags shown here, but don't do so if there's no `title`.
 
-The `epub_page.html.ejs` template can be studied in the github repository if you like ([github.com/akashacms/akashacms-epub/blob/master/layouts/epub_page.html.ejs](https://github.com/akashacms/akashacms-epub/blob/master/layouts/epub_page.html.ejs)).  It is a complete HTML file formatted correctly for use in an EPUB.
 
 ## Using data in a fancier template
 
@@ -88,7 +82,7 @@ Consider - `banana-split.html.md`
 ---
 layout: ice-cream-sundae.html.ejs
 title: Banana Split Sundae
-dish-style: Tray
+dishStyle: Tray
 base: 1 Banana, cut in half lengthwise
 flavors: Vanilla
 topping: Chocolate Syrup
@@ -111,84 +105,55 @@ Plausible template - `ice-cream-sundae.html.ejs`
 layout: page.html.ejs
 ---
 
-<img src="<%- image %>"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+<title><%= title %></title>
+<ak-stylesheets></ak-stylesheets>
+<ak-headerJavaScript></ak-headerJavaScript>
+</head>
+<body>
+    <section>
+    <header><h1><%= title %></h1></header>
+    <article>
 
-<table>
-<tr><th>Dish style</th><td><%= dish-style %></td></tr>
-<tr><th>Base</th><td><%= base %></td></tr>
-<tr><th>Ice Cream Flavor</th><td><%= flavors %></td></tr>
-<tr><th>Topping</th><td><%= topping %></td></tr>
-<tr><th>Sprinkles</th><td><%= sprinkles %></td></tr>
-</table>
+    <img src="<%- image %>"/>
 
-<div><%- content %></div>
+    <table>
+    <tr><th>Dish style</th><td><%= dishStyle %></td></tr>
+    <tr><th>Base</th><td><%= base %></td></tr>
+    <tr><th>Ice Cream Flavor</th><td><%= flavors %></td></tr>
+    <tr><th>Topping</th><td><%= topping %></td></tr>
+    <tr><th>Sprinkles</th><td><%= sprinkles %></td></tr>
+    </table>
+
+    <div><%- content %></div>
+
+    </article>
+    <footer style="margin-top: 5em;"><hr/>Copyright © 2015 by David Herron, Creative Commons, CC BY-ND, see <a href="0a-copyright.html">copyright page</a> for details </footer>
+    </section>
+<ak-footerJavaScript></ak-footerJavaScript>
+</body>
+</html>
 ```
 
-This template takes care of formatting the image, the table and the description.  It's then passed on to the `page.html.ejs` we looked at earlier, which adds the H1 title at the top.
-
-## Real-world -- Per-chapter indexes in this very guide
-
-You may have noticed that each Chapter in this guide starts with an overview discussion, and then a list of links to sections within the chapter.  Rather than maintain that link list as HTML, it is stored as document metadata.
-
-```
----
-layout: chapter-index.html.ejs
-title: Creating book content to be rendered by AkashaEPUB 
-chapterNumber: 3
-akashacmsEPUB:
-    id: chapter3
-    sections: 
-      - 3a-document-format.html
-      - 3b-metadata.html
-      - 3c-content-markup.html
-      - 3d-rendering.html
-      - 3e-html5-structure.html
----
-```
-
-Remember that the document metadata is really a YAML structure.  That bit with ` - url: ` on several lines is the method for writing a list in YAML.  This defines a list named `sections` containing value objects with a field named `url`.
-
-Everything is handled within the `chapter-index.html.ejs` layout template.
-
-The `chapterNumber` value is used this way:
-
-```
-<header><h1><%
-  if (typeof chapterNumber !== 'undefined') {
-    %>Chapter <%= chapterNumber %>: <%
-  }
-%><%= title %></h1></header>
-```
-
-Hence, if `chapterNumber` is present then the title is prefixed with "Chapter #:" giving the reader a clue that they're in a new chapter.
-
-The chapter index is rendered this way:
-
-```
-<%
-if (typeof akashacmsEPUB.sections !== 'undefined') {
-%>
-<aside class="section-list">
-<ul>
-<%
-akashacmsEPUB.sections.forEach(function(section) {
-    %><li><a href="<%= section %>"></a></li><%
-});
-%>
-</ul>
-</aside>
-<% } %>
-```
-
-If `sections` is present it's going to be a list, which one traverses with the `.forEach` method as shown.  Hence this is straight-forward to understand:  An `<li>...</li>` is rendered for each member of the `sections` list, giving a link to the document with empty anchor text.  As we'll see later (see [](4f-links.html)), AkashaEPUB automatically looks up the `title` of the document, using that as the anchor text of the link.
-
-The result is an easy-to-maintain index of the chapters and sections.
+This template would be used in an e-book (or website) with several Ice Cream Sundae recipes.  For each you describe the ingredients in the page metadata, and the template formats that metadata into a nice table.  The overall page structure is the same as the `page.html.ejs` template shown earlier.
 
 ## Mahabhuta
 
-Earlier we mentioned the Mahabhuta engine.  Full documentation is online at [akashacms.com/documents/mahabhuta.html](http://akashacms.com/documents/mahabhuta.html)
+Earlier we mentioned the Mahabhuta engine.  Full documentation is online at http://akashacms.com/mahabhuta/toc.html
 
-Mahabhuta's purpose is to process HTML, such as handling special tags one invents for specific purposes.  HTML manipulations with Mahabhuta are accomplished by snippets of jQuery code that's executing server-side inside AkashaCMS.  For most intents you won't need to implement Mahabhuta tags, but the capability exists and it can be useful.
+Mahabhuta's purpose is to process HTML as a DOM using a jQuery-like API.  It lets you transfer some front-end-engineering knowledge into back-end document construction.  One of Mahabhuta's biggest purposes is custom tags one can invent for specific purposes.
+
+We've already seen an example in the page templates above:
+
+```
+<ak-stylesheets></ak-stylesheets>
+<ak-headerJavaScript></ak-headerJavaScript>
+```
+
+These two custom tags generate `<link>` and `<script>` tags corresponding to the CSS and JavaScript files to be used by the rendered HTML.  With Mahabhuta a web or e-book developer can code up any kind of DOM manipulation to customize their rendered HTML.
 
 The ice cream sundae example discussed earlier could be implemented a different way.  Like:
 
@@ -203,37 +168,55 @@ The ice cream sundae example discussed earlier could be implemented a different 
 
 Now that you've got the custom tag, what do you do?
 
-In the Gruntfile.js
+First step is creating a _Mahafunc_, or Mahabhuta Function.
 
 ```
-akashaEPUB.startup(akashacms, {
-
-    mahabhuta: [
-    function(akasha, config, $, metadata, dirty, done) {
-            var elements = [];
-            $('ice-cream-sundae').each(function(i, elem) {
-                elements.push(elem);
-            });
-            async.eachSeries(elements,
-            function(element, next) {
-                // Process the element into HTML
-                $(element).replaceWith(newHtml);
-                next();
-            },
-            done);
+class IceCreamSundaeElement extends mahabhuta.CustomElement {
+    get elementName() { return "ice-cream-sundae"; }
+    process($element, metadata, dirty, done) {
+        return akasha.partial(metadata.config, "ice-cream-sundae.html.ejs", {
+            dishStyle: $element.attr('dish-style'),
+            base: $element.attr('base'),
+            flavors: $element.attr('flavors'),
+            topping: $element.attr('topping'),
+            sprinkles: $element.attr('sprinkles')
+        });
     }
-    ],
-    
-    akashacmsEPUB: {
-        metadataFile: path.join(__dirname, "book.yml")
-    }
-    
-});
+}
+module.exports.mahabhuta.addMahafunc(new IceCreamSundaeElement());
 ```
 
-The Mahabhuta engine takes an array of functions like this, processing each in turn.  This looks for all `ice-cream-sundae` tags, processes it to HTML, then replaces the `ice-cream-sundae` tag with the generated HTML.
+By the time this code is executed, the HTML content has been parsed down to a jQuery-esque DOM, the elements matching the selector string returned by `elementName` have been found, and this function receives one of those elements as `$element`.  The element will be erased and completely replaced by whatever HTML is returned from the function.
 
-Among the AkashaCMS and AkashaEPUB modules is plenty of Mahabhuta examples.
+This relies on a different AkashaRender feature, the _Partial_.  Partials are little snippets of HTML, either straight HTML or an HTML template, that can be reused in multiple places.  We've specified a Partial named `ice-cream-sundae.html.ejs` which could be:
+
+```
+<table>
+<tr><th>Dish style</th><td><%= dishStyle %></td></tr>
+<tr><th>Base</th><td><%= base %></td></tr>
+<tr><th>Ice Cream Flavor</th><td><%= flavors %></td></tr>
+<tr><th>Topping</th><td><%= topping %></td></tr>
+<tr><th>Sprinkles</th><td><%= sprinkles %></td></tr>
+</table>
+```
+
+The template variables in this case come from the anonymous object passed to `akasha.partial`.  The template is processed as an EJS template because of the file name.  If you follow the connections, the attributes passed in the tag above make their way through the CustomElement class to this template, where they're substituted into the HTML table, that's then passed back replacing the `<ice-cream-sundae>` element.
+
+## A missed Partial opportunity
+
+The page templates above missed an opportunity to make the `<footer>` reusable in a Partial.  Instead of hard-coding the same `<footer>` tag in every template, the templates could all have:
+
+```
+<partial file-name="footer.html"/>
+```
+
+The `<partial>` tag does what you expect, evaluates the named partial and replacing itself with the resulting HTML.  The file named `footer.html` could contain this:
+
+```
+<footer style="margin-top: 5em;"><hr/>Copyright © 2015 by David Herron, Creative Commons, CC BY-ND, see <a href="0a-copyright.html">copyright page</a> for details </footer>
+```
+
+You then have one file, `footer.html`, to edit any time you wish to edit the footer.  For example to update the copyright date shown here.
 
 ## Asset files, CSS, Images, fonts, etc
 
