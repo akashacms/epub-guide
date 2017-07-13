@@ -1,8 +1,6 @@
 ---
 layout: page.html.ejs
 title: Chapter & section metadata, and the Table of Contents
-akashacmsEPUB:
-    id: chapter4d
 ---
 
 We structure book content into chapters and sections.  It's more than just a hold-over from print books, it's a good way to divide books into topical sections.  
@@ -44,7 +42,7 @@ akashacmsEPUB:
 
 The `akashacmsEPUB.id` item must be present in every chapter or section document, and must be unique across the whole book.  This item specifies the `id` in manifest entries in the OPF and NCX files.
 
-In the HTML Table of Contents, AkashaEPUB generates a tree of nested OL lists corresponding to the chapter/section structure found in the document metadata. 
+In the HTML Table of Contents, AkashaEPUB generates a tree of nested OL lists corresponding to the chapter/section structure found in the document metadata.
 The top-level OL of the HTML Table of Contents can have its numbering style controlled by `toctype` and `tocstart`.  These attributes become `<ol type=".." start="..">...</ol>`.
 
 Hence, the values for toctype are:

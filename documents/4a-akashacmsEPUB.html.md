@@ -1,8 +1,6 @@
 ---
 layout: page.html.ejs
 title: Loading book metadata (book.yml)
-akashacmsEPUB:
-    id: chapter4a
 ---
 
 As we just learned, we describe an EPUB in the `book.yml` configuration file.  We tell AkashaEPUB which file to read for book metadata this way::
@@ -27,7 +25,7 @@ epub: skeleton.epub
 
 title: Skeletal AkashaEPUB book
 languages: [ en ]
-identifiers: 
+identifiers:
     - unique: true
       idstring: "urn:uuid:b624d2ee-e88a-11e4-b0db-376a7655914b"
 creators:

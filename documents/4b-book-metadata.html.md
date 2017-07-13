@@ -1,8 +1,6 @@
 ---
 layout: page.html.ejs
 title: Book Metadata
-akashacmsEPUB:
-    id: chapter4b
 ---
 
 A major part of EPUB is the metadata carrying information about the book, like the title, authors, publisher, identifying codes and more.  The OPF and NCX files both carry that metadata.
@@ -37,12 +35,12 @@ The EPUB3 committee settled on two identifiers that together satisfy both the ne
 Consider:
 
 ```
-identifiers: 
+identifiers:
     - unique: true
       idstring: "urn:uuid:b624d2ee-e88a-11e4-b0db-376a7655914b"
 ```
 
-The `identifiers` list contains product identifiers.  An EPUB can have multiple identifiers, hence we support more than one.  However, only one of them can be the unique identifier for the EPUB.  The `unique` attribute is required on one and only one of these identifiers.  It can have any value you wish, it just needs to be present.  The `idstring` attribute is the actual identifier string. 
+The `identifiers` list contains product identifiers.  An EPUB can have multiple identifiers, hence we support more than one.  However, only one of them can be the unique identifier for the EPUB.  The `unique` attribute is required on one and only one of these identifiers.  It can have any value you wish, it just needs to be present.  The `idstring` attribute is the actual identifier string.
 
 The `idstring` attribute takes a URN (uniform resource name - [en.wikipedia.org/wiki/Uniform_resource_name](https://en.wikipedia.org/wiki/Uniform_resource_name)).  URN's are similar in purpose and format to a URL.  Instead of specifying an address of a page on the Web a URN more generally gives a unique name to a "resource", like a book.  The Wikipedia page has some good examples.  The URN prefix tells us what kind of resource name it is, in this case an ISBN.  For our purposes in building EPUB's there are approximately three URN formats of interest:
 
@@ -62,7 +60,7 @@ The ISBN number system is controlled by the International ISBN Agency ([www.isbn
 If you must generate an NCX file, and if your NCX file has to carry a different identifier than the OPF file, do this:
 
 ```
-identifiers: 
+identifiers:
     - unique: true
       idstring: " .... one identifier"
       ncxidentifier: " ... another identifier"
@@ -93,7 +91,7 @@ creators:
       nameReversed: Smith, John
 ```
 
-List one per "creator".  The `name` and `nameReversed` field takes care of different ways the name is presented in different systems.  Additional fields can be given to refine the data.   You can also list `contributors` whose role was less significant. 
+List one per "creator".  The `name` and `nameReversed` field takes care of different ways the name is presented in different systems.  Additional fields can be given to refine the data.   You can also list `contributors` whose role was less significant.
 
 ```
 contributors:

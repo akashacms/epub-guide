@@ -1,8 +1,6 @@
 ---
 layout: page.html.ejs
 title: The Cover Image for your book
-akashacmsEPUB:
-    id: chapter4c
 ---
 
 Even digital books need cover images.  We humans have hundreds of years experience of books with covers, and often judge books by their cover.  We do this even though we're warned to not judge a book by its cover.  The online e-book stores perpetuate this pattern by showing a cover image for each book.  Hence, a cover image is needed even for an electronic book that doesn't have a cover.

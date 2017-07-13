@@ -1,8 +1,6 @@
 ---
 layout: page.html.ejs
 title: Using Fonts
-akashacmsEPUB:
-    id: chapter4i
 ---
 
 Each EPUB reading application chooses some default fonts, and perhaps that will be good enough for your purpose.  But your readers experience of your EPUB can be improved by selecting custom fonts.  Because the system is based on HTML5, the whole ecosystem of font choices are available with the caveat that font definition files have to be shipped inside the EPUB.  (because the Internet is not available from an EPUB reader)
@@ -11,7 +9,7 @@ Website developers using custom fonts have to do so carefully to limit the impac
 
 Embedding a font in an EPUB is optional.  Doing so can improve the presentation of your book, but adds technical and administrative overhead.  Mitigating that overhead are two considerations:
 
-1. AkashaEPUB has made the technical part fairly easy, 
+1. AkashaEPUB has made the technical part fairly easy,
 2. Choosing an open source font (versus commercial) limits the administrative overhead to checking the font license.
 
 There's more technical overhead than just the task of embedding the font.  EPUB reader software has a spotty record of supporting custom font choices.  Sometimes it's significantly difficult to get an embedded font to work correctly.  EPUB3 does require support for OpenType and WOFF fonts, however.  As EPUB reading systems move to EPUB3, supporting custom fonts should become easier.
@@ -101,7 +99,7 @@ font-family: "Free Sans Bold", serif;
 
 You don't have to spend an arm and a leg on fonts, because there are many open source fonts available, such as the ones shown above.  Here are a few websites with fonts that can be downloaded for free
 
-* The Open Font Library [http://openfontlibrary.org/](http://openfontlibrary.org/) 
+* The Open Font Library [http://openfontlibrary.org/](http://openfontlibrary.org/)
 * The Google Fonts library [http://www.google.com/fonts](http://www.google.com/fonts)
 * Wikipedia Open Source Unicode Typefaces [https://en.wikipedia.org/wiki/Open-source_Unicode_typefaces](https://en.wikipedia.org/wiki/Open-source_Unicode_typefaces)
 * The League of Movable Type [https://www.theleagueofmoveabletype.com/](https://www.theleagueofmoveabletype.com/)
@@ -113,4 +111,3 @@ You don't have to spend an arm and a leg on fonts, because there are many open s
 * Font Squirrel [http://www.fontsquirrel.com/](http://www.fontsquirrel.com/)
 * Deja Vu Fonts [http://dejavu-fonts.org](http://dejavu-fonts.org/wiki/Main_Page)
 * Wikipedia Web Typography [https://en.wikipedia.org/wiki/Web_typography](https://en.wikipedia.org/wiki/Web_typography)
-

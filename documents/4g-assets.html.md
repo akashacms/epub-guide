@@ -1,8 +1,6 @@
 ---
 layout: page.html.ejs
 title: Asset files
-akashacmsEPUB:
-    id: chapter4g
 ---
 
 HTML supports displaying images and using CSS to customize page formatting and styling.  With EPUB3 some of the cutting edge modern HTML5 techniques are supported by EPUB readers, so we might as well take advantage of them.
