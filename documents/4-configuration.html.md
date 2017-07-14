@@ -3,6 +3,24 @@ layout: chapter-index.html.ejs
 title: Structuring your book
 ---
 
+So far we've walked you through the EPUB Skeleton, demonstrating how to [install AkashaEPUB](2-installation.html) and [create content in an AkashaEPUB project](3-creating-content.html).  It's now time to go over details of how such a project is structured.
+
+There are two different aspects to the "structure" of an AkashaEPUB project.  One is obviously the content structure of your book.  While you're the one most responsible for the content of your book, we'll give a few ideas.  The other aspect is the directory layout and different tools that are used.
+
+TODO: OUTLINE
+
+* Directory structure
+* Book metadata file
+* Table of Contents file
+* XHTML page templates
+* Cover page, cover image
+* Ownership, intellectual property rights, copyright page
+* Fonts, font implementation
+
+- stylesheets
+- fonts
+
+
 AkashaEPUB helps you to organize your book into chapters, and sub-chapters.  You can nest the chapter structure as deeply as you like, and AkashaEPUB will construct the table of contents for you and ensure the reading order of the pages is correct.  Your readers may hate you if the chapter nesting gets too deep, however.
 
 The EPUB standard uses metadata to identify the book, and one or more navigation documents to help the reader navigate the book.  AkashaEPUB generates all that for you.
@@ -10,64 +28,6 @@ The EPUB standard uses metadata to identify the book, and one or more navigation
 AkashaEPUB generates that metadata from data you provide, and from the files you put in the filesystem.  Your task is to put book metadata in the `book.yml`, to create the `<nav>` element containing the table of contents, and to put CSS, JavaScript, image and font files in the directories.
 
 The `config.js` documentation on the AkashaCMS website ([akashacms.com/configuration/index.html](http://akashacms.com/configuration/index.html)) documents that object, primarily in the context of website configuration.  AkashaEPUB almost eliminates any need to use that config object, unless you have peculiar needs.
-
-
-# AkashaRender Configuration file and `package.json`
-
-The configuration of an AkashaRender project is split between the Configuration file and the `package.json`.  The latter is used by `npm` and the Node.js platform to list package `dependencies`, the available `scripts` for performing actions related to the project, and various metadata items like project owner identification or the projects home page.  For an AkashaEPUB project, the `scripts` section can be used to describe the build process, while the `dependencies` will list the EPUB-related AkashaCMS plugins.
-
-The Configuration file, typically named `config.js`, is a Node.js module that produces an AkashaRender _Configuration_ object.  The Configuration object can be created any way you like.  The most straight-forward method is with the `config.js` file.  There's nothing special about that file name, and it can be named anything you like.
-
-Here's a couple `config.js` files for EPUB's:
-
-* This book:  https://github.com/akashacms/epub-guide/blob/master/config.js
-* The EPUB Skeleton: https://github.com/akashacms/epub-skeleton/blob/master/config.js
-
-More details about AkashaRender project configuration are at: https://akashacms.com/akasharender/configuration.html
-
-```
-'use strict';
-
-const akasha  = require('akasharender');
-
-const config = new akasha.Configuration();
-
-config
-    .addAssetsDir('assets')
-    .addLayoutsDir('layouts')
-    .addDocumentsDir('documents')
-    .addPartialsDir('partials');
-
-config
-    .use(require('akasharender-epub'))
-    .use(require('akashacms-footnotes'));
-config.addStylesheet({ href: "/css/style.css" });
-
-config.setMahabhutaConfig({
-    recognizeSelfClosing: true,
-    recognizeCDATA: true,
-    xmlMode: true
-});
-
-config.prepare();
-
-module.exports = config;
-```
-
-This is a fairly simple configuration file.  They can grow to be rather complex depending on your needs.  We pull in the `akasharender` module, then instantiate a Configuration object, call some methods, and assign the object to `module.exports`.
-
-The first set of methods, `addAssetsDir` and the others, inform AkashaRender what directories to use for certain purposes.
-
-The second set, `use`, informs AkashaRender the AkashaCMS plugins to use.  In the `use` call we pass in the result of `require("plugin-name")` so that AkashaRender receives the module object.  There must be a corresponding entry in `package.json` for each of these so that we can easily use `npm` to download the dependencies required to build the book.
-
-An AkashaCMS plugin will modify AkashaRender's execution to add new capabilities.  The most common addition a plugin makes is to add new custom tags using the Mahabhuta DOM-processing engine, or other DOM-processing tasks.  The two plugins listed here are especially useful for EPUB's:
-
-* `akasharender-epub` contains various cleanup's required because of EPUB3 limitations.
-* `akashacms-footnotes` provides a simple way to generate a list of footnotes at the bottom of the page.
-
-With `addStylesheet` we declare a CSS file to use in every page.  
-
-With `setMahabhutaConfig` we describe the HTML rendering output.  We have to specify `xmlMode: true` because the EPUB3 world requires XHTML files.
 
 # AkashaCMS Directory structure and how it's used in AkashaEPUB
 
@@ -84,57 +44,6 @@ Configuration Method | Default | Description
 Most of these can be a list of directories, meaning you can call those functions more than once.  AkashaRender searches these directories for the first file matching the file name.  
 
 Another thing often provided by an AkashaCMS plugin is one or more Partial's in a directory contained within the plugin.
-
-## When do you use multiple Configuration files?
-
-The AkashaRender Configuration file allows for quite a lot of flexibility.  Suppose you have some content, like a little guidebook about using some software like AkashaRender.  You might want that guidebook to be available on a website such as at https://akashacms.com/akasharender/toc.html.  And you may also want to publish that guidebook as a standalone EPUB.
-
-We'll go over how to do that in more detail elsewhere.  Let's do a brief overview.
-
-This goal means you have two AkashaRender projects:
-
-1. The website containing this guidebook plus everything else on the website.  This content is to be rendered as a website.  In the case of AkashaCMS.com there are three guidebooks, a plugin directory, and a project news blog.
-1. The guidebook formatted as an EPUB.
-
-It can be instructive to puzzle out how AkashaCMS.com is structured, but its complexity will only confuse the discussion.  Instead I'll describe how another site, https://greentransportation.info/ is configured, with a guidebook at https://greentransportation.info/ev-charging/toc.html
-
-The `config.js` for the website rendering simply has:
-
-```
-config
-    .addDocumentsDir('documents')
-    .addDocumentsDir({
-        src: 'ev-charging',
-        dest: 'ev-charging',
-        baseMetadata: {
-            bookHomeURL: "/ev-charging/toc.html",
-            copyrightPartial: 'copyright-range-confidence.html'
-        }
-    })
-```
-
-In other words, it has two documents directories.  One contains the bulk of the website content.  The second contains the content for the electric vehicle charging e-Book.
-
-The `addDocumentsDir` function can take an object like this.  This says the files in `ev-charging` are rendered into the `ev-charging` subdirectory of the RenderDestination.  The `baseMetadata` segment adds to the metadata used with each document.  Because the `ev-charging` content needed additional metadata, it had to be kept in a separate directory in order to specify that metadata.
-
-When the greentransportation.info website is rendered, content from both directories are rendered into the website.
-
-A second configuration file describes how the e-Book is structured.
-
-```
-config
-    .addAssetsDir('assets-ebook')
-    .addAssetsDir({
-        src: 'assets/fonts',
-        dest: 'fonts'
-    })
-    .addLayoutsDir('layouts-ebook')
-    .addDocumentsDir('ev-charging')
-    .addPartialsDir('partials-ebook')
-    .setRenderDestination('out-range-confidence');
-```
-
-The book uses e-Book-specific versions of the `assets`, `layouts` and `partials` directory.  Because `ev-charging` is the only DocumentsDir, the entirety of the e-book content comes from that directory.
 
 ## The AkashaEPUB RenderDestination is the EPUB directory structure
 

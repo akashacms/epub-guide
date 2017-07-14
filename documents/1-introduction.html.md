@@ -22,6 +22,8 @@ In other words, AkashaEPUB has a lightweight process, that's open and flexible, 
 
 AkashaEPUB (https://akashacms.com/epubtools/toc.html) is an AkashaCMS plugin, and AkashaCMS (https://akashacms.com) in turn is a general "content management system" for building static HTML websites.  In some circles that makes AkashaCMS a static site generator.  Essentially AkashaEPUB tricks AkashaCMS into producing the XHTML files and XML metadata required for EPUB3 format ebooks.  
 
+AkashaCMS and AkashaEPUB is not the name of a specific piece of software.  Instead they are loose terms referring to the combination of AkashaRender and the plugins.  The combination of AkashaRender with the plugins intended on website development, is called AkashaCMS.  Combining it with the plugins for EPUB development, including _epubtools_, is called AkashaEPUB.
+
 EPUB is a widely used electronic book publishing format designed by the International Digital Publishing Forum.  There is a large and growing ecosystem of reading devices and software to consume EPUB files.  Further, it allows you to publish books through electronic book markets like the Google Play Store, and Apple's iBook store.  Amazon's Kindle marketplace can accept EPUB files by using the KindleGen program to convert EPUBS to its own MOBI format.
 
 AkashaEPUB makes it possible to produce a correctly structured EPUB3 document.  You can distribute it to others, confident it can be read on whatever device they have, or put on sale in electronic book markets.
