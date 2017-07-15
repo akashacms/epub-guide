@@ -109,4 +109,5 @@ You now have a directory structure for a working AkashaEPUB project.  The remain
 
 * Creating content files -- [](3-creating-content.html)
 * Configuration files -- [](4-configuration.html)
-* Build process -- [](5-building-EPUB.html)
+* Structuring your EPUB -- [](5-structure.html)
+* Build process -- [](6-building-EPUB.html)

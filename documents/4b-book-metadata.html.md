@@ -66,7 +66,7 @@ identifiers:
       ncxidentifier: " ... another identifier"
 ```
 
-If you do this, the epubcheck program (see [](5b-validation.html)) will give you a WARNING that the OPF and NCX identifiers should be equal.
+If you do this, the epubcheck program (see [](6b-validation.html)) will give you a WARNING that the OPF and NCX identifiers should be equal.
 
 So far we've talked about the publication identifier, and promised to discuss a second identifier that's used for bit-for-bit identicalness.  Now's the time to do so.
 

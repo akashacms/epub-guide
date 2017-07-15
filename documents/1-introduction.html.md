@@ -28,7 +28,7 @@ EPUB is a widely used electronic book publishing format designed by the Internat
 
 AkashaEPUB makes it possible to produce a correctly structured EPUB3 document.  You can distribute it to others, confident it can be read on whatever device they have, or put on sale in electronic book markets.
 
-This guide - see [github.com/akashacms/epub-guide](https://github.com/akashacms/epub-guide) for its source code - serves as both documentation for AkashaEPUB, and an example of its use.  Please see [](6-akashacms-project.html) to learn about the AkashaCMS project.
+This guide - see [github.com/akashacms/epub-guide](https://github.com/akashacms/epub-guide) for its source code - serves as both documentation for AkashaEPUB, and an example of its use.  Please see [](7-akashacms-project.html) to learn about the AkashaCMS project.
 
 The key features offered by AkashaEPUB are
 
