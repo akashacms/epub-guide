@@ -15,7 +15,7 @@ Markdown is a content markup language for plain text files.  The formatting synt
 
 The Markdown Tutorial ([markdowntutorial.com/](http://markdowntutorial.com/)) is a good place to start your understanding of Markdown.
 
-John Gruber invented Markdown, and wrote up its syntax on his site ([daringfireball.net/projects/markdown/](http://daringfireball.net/projects/markdown/)).  Unfortunately there has been incompatibility between different Markdown.  CommonMark ([commonmark.org](http://commonmark.org/)) is an attempt to standardize the Markdown syntax among Markdown processors.  AkashaRender uses the markdown-it processor ([npmjs.com/package/markdown-it](https://www.npmjs.com/package/markdown-it)) processor, whose author is committed to the CommonMark cause.
+John Gruber invented Markdown, and wrote up its syntax on his site ([daringfireball.net/projects/markdown/](http://daringfireball.net/projects/markdown/)).  Unfortunately there has been incompatibility between different Markdown implementations.  CommonMark ([commonmark.org](http://commonmark.org/)) is an attempt to standardize the Markdown syntax among Markdown processors.  AkashaRender uses the markdown-it processor ([npmjs.com/package/markdown-it](https://www.npmjs.com/package/markdown-it)) processor, whose author is committed to the CommonMark cause.
 
 The markdown-it processor used by AkashaCMS supports some of the Github Flavored Markdown extensions ([help.github.com/articles/github-flavored-markdown/](https://help.github.com/articles/github-flavored-markdown/)).
 
