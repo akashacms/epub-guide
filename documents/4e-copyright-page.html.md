@@ -23,4 +23,4 @@ akashacmsEPUB:
 
 That's it.  The page will show up in the Table of Contents, of course, and in the reading order of the book.
 
-In [](4b-book-metadata.html) we briefly discussed the `rights` attribute in the metadata.  That's another place to put a copyright statement, but only a brief single-sentence statement.  The copyright page should contain a full copyright statement like you'd see in a printed book.
+In [4b-book-metadata.html we briefly discussed the `rights` attribute in the metadata.  That's another place to put a copyright statement, but only a brief single-sentence statement.  The copyright page should contain a full copyright statement like you'd see in a printed book.
