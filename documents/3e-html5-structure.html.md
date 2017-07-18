@@ -83,7 +83,7 @@ Play multimedia
 There's a lot more HTML5 tags available, these just scratch the surface and were chosen because of their likelihood for use in an EPUB and that they're outside the typical tags.
 
 
-### LINK, IMG tags and the requirement for relative URL's
+# LINK, IMG tags and the requirement for relative URL's
 
 The `<link>` and `<img>` tags, and other tags referring to other content, are as we are accustomed to in regular websites.  They're used to refer to another file of some kind, whether it is a CSS stylesheet, an image, a font, or a JavaScript file.  The URL reference, usually in the `href` or `src` attribute, has some special considerations, however.
 
@@ -104,8 +104,8 @@ There are three linking scenarios to consider:
 
 There are two basic constraints that make linking in an EPUB different from linking on a website.
 
-* There is no "webroot" in an EPUB, so all internal URL's have to be relative from the source document
-* EPUB rendering is presumed to be "offline" meaning no files can be fetched over the Internet (because there's no Internet)
+* There is no _webroot_ in an EPUB, so all internal URL's have to be relative from the source document
+* EPUB rendering is presumed to be _offline_ meaning no files can be fetched over the Internet (because there's no Internet)
 
 ## All internal URL's are relative -- no webroot
 
@@ -146,11 +146,11 @@ But for `chap3/macosx/install.html` the relative paths have to start with `../..
 Most of these references are what you, the author, will write in your files.
 
 * Links in `img` and `a` tags must be written with relative URL's like this.
-* Chapter and section references in document metadata (see [](4d-table-contents.html)) must be written with relative URL's, as shown earlier.
+* Chapter and section references in document metadata (see [](5-structure.html)) must be written with relative URL's, as shown earlier.
 
 It's possible to use an absolute URL for both these instances, and AkashaEPUB will convert that into a relative URL.  In the above example, one could put `<img src="/images/logo.png"/>` and AkashaEPUB will automatically compute the relative URL.
 
-The stylesheet link we show above is not something you will write yourself.  Instead, you list stylesheets in the `book.yml` as we'll discuss later.  (see [](4h-stylesheets.html))
+The stylesheet link we show above is not something you will write yourself.  Instead, you list stylesheets in the Configuration file, which we discuss later.  (see [](4-configuration.html))
 
 ## Anchor text assistance
 

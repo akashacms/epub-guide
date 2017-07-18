@@ -7,20 +7,6 @@ So far we've walked you through the EPUB Skeleton, demonstrating how to [install
 
 There are two different aspects to the "structure" of an AkashaEPUB project.  One is obviously the content structure of your book.  While you're the one most responsible for the content of your book, we'll give a few ideas.  The other aspect is the directory layout and different tools that are used.
 
-TODO: OUTLINE
-
-* Directory structure
-* Book metadata file
-* Table of Contents file
-* XHTML page templates
-* Cover page, cover image
-* Ownership, intellectual property rights, copyright page
-* Fonts, font implementation
-
-- stylesheets
-- fonts
-
-
 AkashaEPUB helps you to organize your book into chapters, and sub-chapters.  You can nest the chapter structure as deeply as you like, and AkashaEPUB will construct the table of contents for you and ensure the reading order of the pages is correct.  Your readers may hate you if the chapter nesting gets too deep, however.
 
 The EPUB standard uses metadata to identify the book, and one or more navigation documents to help the reader navigate the book.  AkashaEPUB generates all that for you.
@@ -134,7 +120,9 @@ For example an `epub:type=".."` attribute can be used on lots of tags, not just 
 
 Even digital books need cover images.  We humans have hundreds of years experience of books with covers, and often judge books by their cover.  We do this even though we're warned to not judge a book by its cover.  The online e-book stores perpetuate this pattern by showing a cover image for each book.  Hence, a cover image is needed even for an electronic book that doesn't have a cover.
 
-In the `book.yml` add a section:
+There are two cover image objects used by EPUB.  The first is the image itself, and some EPUB reader software looks only at that image.  The second is an HTML file that only displays the cover image.  AkashaEPUB will put both into the manifest.
+
+All the relavent information is declared this way in `book.yml`:
 
 ```
 cover:
@@ -336,8 +324,3 @@ You don't have to spend an arm and a leg on fonts, because there are many open s
 * Font Squirrel http://www.fontsquirrel.com/
 * Deja Vu Fonts http://dejavu-fonts.org/wiki/Main_Page
 * Wikipedia Web Typography https://en.wikipedia.org/wiki/Web_typography
-
-
-# Generating EPUB container XML files with `epubtools`
-
-# Packaging the EPUB with `epubtools`

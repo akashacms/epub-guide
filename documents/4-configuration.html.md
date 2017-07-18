@@ -71,6 +71,8 @@ An AkashaCMS plugin will modify AkashaRender's execution to add new capabilities
 
 With `addStylesheet` we declare a CSS file to use in every page.  
 
+When the `<link id="stylesheet" href="/css/style.css" type="text/css"/>` tag is generated, AkashaEPUB will automatically rewrite the `href` attribute to the correct relative URL.
+
 With `setMahabhutaConfig` we describe the HTML rendering output.  We have to specify `xmlMode: true` because EPUB3 requires XHTML files.
 
 Likely package dependency entries in `package.json`:
