@@ -1,56 +1,47 @@
 ---
 layout: page.html.ejs
-title: Validating EPUB files built by AkashaEPUB 
+title: Validating EPUB files built by AkashaEPUB
 akashacmsEPUB:
     id: chapter5b
 ---
 
-Now that you've built an EPUB with AkashaEPUB, what will you do with it?  The big opportunity of course are the e-book marketplaces like Amazon's Kindle, Google's Play Store, or Apple's iBooks market.  All of them accept EPUB files either directly or, as is the case with Amazon, through a converter program.  
+Now that you've built an EPUB with AkashaEPUB, what will you do with it?  The big opportunity of course are the e-book marketplaces like Amazon's Kindle, Google's Play Store, or Apple's iBooks market.  All of them accept EPUB files either directly or, as is the case with Amazon, through a converter program.  Successfully uploading an EPUB to one of these marketplaces requires that you first validate the EPUB is correctly constructed.
 
-While verifying the EPUB document is properly constructed is a good practice, it's doubly so when approaching one of these commercial markets.  Verifying the EPUB is correctly built removes one layer of uncertainty if certain EPUB reader software fails to display your EPUB.  
+Verifying the EPUB is correctly built removes one layer of uncertainty.  Will an eBook marketplace will correctly handle your EPUB?  You're on firmer ground by validating the EPUB.  Will all EPUB reader applications correctly display your EPUB?  Again, having validated the EPUB you're on firmer ground.  
 
 ## epubcheck
 
-The official validation tool is `epubcheck`, developed by the IDPF.  It's a Java program meaning that it's portable to Windows, Mac OS X, Linux, etc.
+The official validation tool is `epubcheck`, developed by the IDPF.  It's a Java program meaning that it's portable to Windows, Mac OS X, Linux, etc.  While there is an npm package for `epubcheck` (see https://www.npmjs.com/package/epubcheck) it's easy enough to install and run via official means.
 
 To install `epubcheck` follow these steps:
 
 * Ensure that Java is installed, and you can run the `java` command at the command line
-* Go to its homepage at [github.com/IDPF/epubcheck](https://github.com/IDPF/epubcheck) to download the latest version
-* Click on the Releases link 
-* You'll need to find the first release which isn't an Alpha or Beta - at the time of this writing that's version 3.0.1
-* Click on the download link which ends with ".zip" (e.g. epubcheck-3.0.1.zip)
+* Go to the `epubcheck` homepage at [github.com/IDPF/epubcheck](https://github.com/IDPF/epubcheck) to download the latest version
+* Click on the Releases link
+* Find the first release which isn't an Alpha or Beta
+* Click on the download link which ends with ".zip" (e.g. epubcheck-4.0.1.zip)
 * Once that downloads extract the .zip file contents
 
-You'll end up with a directory containing `epubcheck-3.0.1.jar` (adjusting for the current version) and some other files.  Open a command line window, and change to the directory where you unpacked `epubcheck`.
+You'll end up with a directory containing `epubcheck-4.0.1.jar` (adjusting for the current version) and some other files.  Open a command line window, and change to the directory where you unpacked `epubcheck`.
 
-First, explore what it can do by getting the help text: 
+First, explore what it can do by getting the help text:
 
 ```
-$ java -jar epubcheck-3.0.1.jar -help
+$ java -jar epubcheck-4.0.1.jar -help
 ```
 
 The options we're interested in are these:
 
 ```
-$ java -jar epubcheck-3.0.1.jar \
-        path/to/ebook.epub
+$ java -jar epubcheck-4.0.1.jar path/to/ebook.epub
 ```
 
 You can also check the unpacked EPUB this way:
 
 ```
-$ java -jar epubcheck-3.0.1.jar \
+$ java -jar epubcheck-4.0.1.jar \
         -mode exp path/to/root_out
 ```
-
-There is what appears to be a spurious error message:
-
-```
-ERROR: guide.epub: Mimetype contains wrong type (application/epub+zip expected).
-```
-
-The `mimetype` file does have that exact text in it, but the tool prints this error.  Scratch head, mutter "idunno" ...
 
 ## GUI app's incorporating epubcheck
 
@@ -71,5 +62,3 @@ $ /path/to/KindleGen/kindlegen \
         /path/to/ebook.epub \
         -verbose
 ```
-
-

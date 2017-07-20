@@ -3,15 +3,19 @@ layout: chapter-index.html.ejs
 title: Building an EPUB with AkashaEPUB
 ---
 
-Now that we know how to [install AkashaEPUB](2-installation.html), [how to create content](3-creating-content.html), and [structure our book](4-configuration.html), it's time to use AkashaEPUB to build some books.  What's next is to go over the book building process.
+Now that we know how to [install AkashaEPUB](2-installation.html), [how to create content](3-creating-content.html), and [structure our book](4-configuration.html), it's time to use AkashaEPUB to build some books.  We'll talk in this section about the book building process using _epubtools_.
 
-AkashaEPUB refers to the combination of AkashaRender, the EPUB-related plugins, and _epubtools_.  The recommended workflow uses these tools, driven by commands in the `scripts` section of the `package.json`.  You're of course free to use a different build process.  The process we'll describe here is easy and convenient.
+AkashaEPUB refers to the combination of AkashaRender and the EPUB-related plugins.  With AkashaEPUB we built a RenderDestination directory with files appropriate for bundling as an EPUB.  While an EPUB is "just" a ZIP archive with specific contents, assembling it correctly as an EPUB is not as simple as ZIP'ing the directory and changing the file extension to `.epub`.  There are a few specific EPUB requirements that are not met with that approach.  
+
+In _epubtools_ we have well-tested functionality to generate the XML metadata files and to correctly bundle the EPUB following the EPUB spec.  
+
+The steps are fairly simple, starting with `akasharender` to render the content, then a few commands using `epubtools` to generate those files and bundle the result.  It's recommended to record those commands in the `scripts` section of the `package.json`.  
 
 # Building an EPUB
 
-Now that we know the configuration of directory structure and plugins, let's look at the build process.  Remember that we're recommending to use the `scripts` section of the `package.json`.
+Now that we know the configuration of directory structure and plugins, let's look at the build process.
 
-In the past _Grunt_ was used but over time it proved to be unwieldy.  Over the last couple years npm's `script` support has become a popular build mechanism.  For smaller workflows it is a very mechanism, and is well suited to using the AkashaEPUB toolset to build and package EPUB's.
+In the past _Grunt_ was used but over time it proved to be unwieldy.  Over the last couple years npm's `scripts` support has become a popular build mechanism.  For smaller workflows the `scripts` support is a very useful mechanism that's easy to implement and document.  The process we describe here is very simple and fits well into the `pachage.json`.
 
 This is the `scripts` section of the EPUB Skeleton project's `package.json`
 
@@ -28,9 +32,11 @@ This is the `scripts` section of the EPUB Skeleton project's `package.json`
 
 The first thing to call out is the hard-coded `out` directory.  This is the default RenderDestination.  There isn't any mechanism for retrieving Configuration options to use in a command-line script, so you'll just have to manually coordinate the directory name in these scripts with the setting of RenderDestination.
 
-The `build` step has companion `prebuild` and `postbuild` steps.  Between `prebuild` and `postbuild` is the typical AkashaRender build where we first ensure the RenderDestination directory exists, then copy in the asset files, then render the content files.
+The `build` step has companion `prebuild` and `postbuild` steps.  Between `prebuild` and `postbuild` is the typical AkashaRender build where we first ensure the RenderDestination directory exists, then copy in the asset files, then render the content files.  
 
-The `postbuild` step is where _epubtools_ comes into the picture.  These commands construct the metadata files required by the EPUB.
+The `postbuild` step is where _epubtools_ comes into the picture.  We've split the process into multiple _epubtools_ commands.  With `epubtools mimetype` we obviously create the `mimetype` file.  With `epubtools containerxml` we generate the `META-INF/container.xml` file.  Then with `epubtools makemeta` we generate the OPF and NCX files.  In other words, these commands construct the metadata files required by the EPUB specification.
+
+Why weren't those steps all combined into one?  Yes, that's a good question.  Moving on.
 
 It is in `bundle` where the RenderDestination directory is ZIP'd to create the EPUB file.  Care is taken to construct it according to the EPUB spec.  An EPUB is a ZIP archive with certain fingerprints.  For example the `mimetype` file has to be the first entry in the ZIP archive and it cannot be compressed.  By doing so, the text `application/epub+zip` appears in plain text at a certain offset into the file, as shown here:
 
@@ -112,8 +118,17 @@ $ epubtools --help
     tohtml <convertYaml>                Convert EPUB to HTML
 ```
 
+The _epubtools_ command does a bit more than what we've just shown.
 
-# Building both a website and EPUB
+It can not only bundle an EPUB using the `package` command, it can extract an EPUB's content using the `extract` command.  
+
+With `stats` and `words` we can inspect statistics about the content.  There is more which could be done in this area, perhaps.
+
+The `check` command attempts to verify the EPUB content is correct.  It would be useful to add this to the workflow just before the `bundle` step.  The `epubcheck` program is the gold standard for verifying EPUB3 correctness.
+
+The `tohtml` command is an incomplete and probably bug-ridden attempt to convert an EPUB into an HTML.  Once it is converted to HTML it's fairly easy to use a web browser to generate a PDF.
+
+# Building both a website and an EPUB
 
 We've already shown that we can reuse the content of an EPUB in an AkashaCMS website.  The build process is a little more complex in this case.  To demonstrate, we'll show the `scripts` section for the greentransportation.info website.
 
@@ -139,3 +154,5 @@ The `prebuild`, `build`, `deploy` and `preview` scripts correspond to building t
 The scripts ending with `-range-confidence` correspond to building the eBook.  These steps use a different configuration file, `config-ebook-range-confidence.js`, whose RenderDestination is `out-range-confidence`.  Other than that the steps are largely the same as in the EPUB Skeleton project.
 
 There are two additional steps, `check-range-confidence` and `kindle-range-confidence`.  The first runs the _epubcheck_ tool to verify the EPUB is correct.  The second runs the _KindleGen_ tool to repackage the EPUB into the MOBI format used by Amazon's Kindle online store.
+
+This covers only the workflow required to build the same content for both a website and an EPUB.  In the next chapter we'll go over templates and the required special processing.
