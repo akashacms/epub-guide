@@ -81,35 +81,3 @@ For example, inside this guide a tag written as `<a href="2-installation.html"><
 Because an EPUB is presumed to be "offline", we can't write `<img src="http://example.com/images/logo.png"/>`.  The Internet isn't available from an EPUB, and therefore that image cannot be loaded.
 
 EPUB3 does have a mechanism for referencing external files.  Multimedia files (video, audio) can be quite large and perhaps best stored on a website rather than inside the EPUB.  AkashaEPUB doesn't support such files, however.
-
-## Media queries - responsive EPUB3 design
-
-Not all EPUB readers can display colors, so you might do this to use a grayscale design on non-color devices.
-
-```
-@import url(color.css) screen and (color);
-@import url(grayscale.css) screen and (not color);
-```
-
-Different page layouts can be chosen based on display size:
-
-```
-@media screen and (max-width: 720px) {
-...
-}
-@media screen and (max-width: 1024px) {
-...
-}
-```
-
-EPUB3 supports CSS Multicolumn Layout making this possible:
-
-```
-article {
-    column-count: 2;
-    column-gap: 1em;
-    /* styling of dividing line
-       between columns */
-    column-rule: rgb(0,0,0) dashed 1px;
-}
-```
