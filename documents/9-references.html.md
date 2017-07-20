@@ -21,7 +21,7 @@ The International ISBN Agency ([isbn-international.org](https://www.isbn-interna
 
 ## EPUB specification
 
-[idpf.org/epub/301](http://idpf.org/epub/301) -- This is the source of truth for all things EPUB.
+[idpf.org/epub/301](http://idpf.org/epub/301), [idpf.org/epub/31/spec/epub-spec.html](http://idpf.org/epub/31/spec/epub-spec.html) -- This is the source of truth for all things EPUB.
 
 O'Reilly has published two books of interest, both of which were very useful in developing AkashaEPUB and this guide:
 
@@ -31,5 +31,7 @@ O'Reilly has published two books of interest, both of which were very useful in 
 [idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.4.1](http://www.idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.4.1) -- Goes over the NCX file format.
 
 [github.com/IDPF/epub3-samples](https://github.com/IDPF/epub3-samples) -- A whole repository, organized by the IDPF, of sample EPUB3's.
+
+[idpf.org/ongoing](http://idpf.org/ongoing) -- Ongoing projects, specification updates
 
 [http://epubzone.org/](http://epubzone.org/) -- News website for all things EPUB.
