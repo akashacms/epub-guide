@@ -1,8 +1,6 @@
 ---
-layout: page.html.ejs
+layout: ebook-page.html.ejs
 title: Copyright Notice
-akashacmsEPUB:
-    id: chapter0
 ---
 
 <section>

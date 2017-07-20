@@ -1,5 +1,5 @@
 ---
-layout: chapter-index.html.ejs
+layout: ebook-page.html.ejs
 title: Detailed walk-through an embedding EPUB content in an AkashaCMS website
 ---
 
@@ -95,6 +95,23 @@ The second refers to the eBook content.  The `addDocumentsDir` function can take
 With multiple eBook's simply repeat this `addDocumentsDir` function as many times as necessary.
 
 The stylesheet named here is visible at: https://github.com/akashacms/epub-website/blob/master/assets/akasha/epub-website/style.css  It's purpose is layout of the eBook pages.
+
+A second configuration file describes how the e-Book is structured.
+
+```
+config
+    .addAssetsDir('assets-ebook')
+    .addLayoutsDir('layouts-ebook')
+    .addDocumentsDir('documents-e-book')
+    .addPartialsDir('partials-ebook')
+    .setRenderDestination('out-e-book');
+```
+
+Notice that the AssetsDir, LayoutsDir, PartialsDir, and RenderDestination directories are all different.  This is so the book formatting is different than the website formatting.  The eBook cannot use all the greentransportation.info navigation elements, and the eBook also must fit certain constraints from the EPUB spec.  For example one page in the eBook has an embedded YouTube video, and on the website an embedded YouTube video player is perfectly what is required, but in the eBook all that can be used is the thumbnail image.
+
+Also notice that `documents-e-book` is the only DocumentsDir.  The entirety of the e-book content is in that directory, and therefore it is the only content included when rendering the eBook.
+
+Finally, the RenderDestination is set so that the eBook renders into its own directory.  In the website configuration file, this value was not set and therefore the default value of `out` is used.  For the eBook, this other directory is used so the two do not interfere with each other.
 
 ## The `bookHomeURL` metadata
 

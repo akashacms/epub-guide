@@ -1,5 +1,5 @@
 ---
-layout: page.html.ejs
+layout: ebook-page.html.ejs
 title: The AkashaCMS rendering process
 ---
 
@@ -14,7 +14,7 @@ Generally speaking, AkashaRender encapsulates the content within a layout templa
 1. Assuming the content declares a `layout` template, the HTML from stage 1 is into the corresponding template.
 1. Custom tags and other DOM processing is again performed by Mahabhuta.
 
-This guide is formatted using the `page.html.ejs` layout template (see: https://github.com/akashacms/epub-guide/blob/master/layouts/page.html.ejs).  Therefore, each page in the guide has this metadata:
+This guide is formatted using the `ebook-page.html.ejs` layout template (see: https://github.com/akashacms/epub-guide/blob/master/layouts/ebook-page.html.ejs).  Therefore, each page in the guide has this metadata:
 
 ```
 ---

@@ -1,9 +1,6 @@
 ---
-layout: chapter-index.html.ejs
+layout: ebook-page.html.ejs
 title: References
-akashacmsEPUB:
-    id: chapter8
-chapterNumber: 8
 ---
 
 ## Copyright pages

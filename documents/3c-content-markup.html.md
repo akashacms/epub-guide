@@ -1,5 +1,5 @@
 ---
-layout: page.html.ejs
+layout: ebook-page.html.ejs
 title: Content markup formats
 ---
 

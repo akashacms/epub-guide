@@ -1,5 +1,5 @@
 ---
-layout: page.html.ejs
+layout: ebook-page.html.ejs
 title: Configuration files for AkashaEPUB projects
 ---
 
@@ -89,74 +89,6 @@ Likely package dependency entries in `package.json`:
     ...
 }
 ```
-
-## When do you use multiple Configuration files?
-
-The AkashaRender Configuration file allows for quite a lot of flexibility.  Sometimes a project will require multiple Configuration files, each one serving a different purpose.
-
-Suppose you have a little guidebook about using some software like AkashaRender.  You might want that guidebook to be available on a website such as at https://akashacms.com/akasharender/toc.html.  And you may also want to publish that guidebook as a standalone EPUB.  Closer to home, this book you're reading right now is both published online at https://akashacms.com/epubtools/toc.html and as a book in the Kindle marketplace.
-
-We'll go over the details elsewhere.  For now, let's do a brief overview.
-
-This goal means you have two AkashaRender projects:
-
-1. One project covers publishing the entire website containing the guidebook.
-1. The other project covers formatting just the guidebook content as an EPUB.
-
-It can be instructive to study how AkashaCMS.com is structured, since you can learn much about how the Configuration object works.  It pulls together content from every plugin using multiple Documents directories.  But that site is so complex it will only hinder our discussion.  Instead I'll describe how another site, https://greentransportation.info/ is configured, with a guidebook at https://greentransportation.info/ev-charging/toc.html that is also published in the Kindle marketplace.
-
-The `config.js` for the greentransportation.info website rendering has these two Documents directories:
-
-```
-config
-    .addAssetsDir('assets')
-    .addAssetsDir({
-        src: 'node_modules/bootstrap/dist',
-        dest: 'vendor/bootstrap'
-    })
-   .addAssetsDir({
-        src: 'node_modules/jquery/dist',
-        dest: 'vendor/jquery'
-    })
-    .addLayoutsDir('layouts')
-    .addDocumentsDir('documents')
-    .addDocumentsDir({
-        src: 'ev-charging',
-        dest: 'ev-charging',
-        baseMetadata: {
-            bookHomeURL: "/ev-charging/toc.html",
-            copyrightPartial: 'copyright-range-confidence.html'
-        }
-    })
-    .addPartialsDir('partials');
-```
-
-The first documents directory contains the main website content.  The second contains the content for the electric vehicle charging e-Book.  But it's a little bit different.
-
-The `addDocumentsDir` function can take an object like this.  This object says the files in the directory `ev-charging` are rendered into the `ev-charging` subdirectory of the RenderDestination.  The `baseMetadata` segment adds to the metadata used with each document.  Because the `ev-charging` content needed additional metadata, it had to be kept in a separate directory in order to specify that metadata.
-
-When the greentransportation.info website is rendered, content from both the `documents` and `ev-charging` directories are rendered into the website.  The combined content is what's deployed to the webserver.
-
-A second configuration file describes how the e-Book is structured.
-
-```
-config
-    .addAssetsDir('assets-ebook')
-    .addAssetsDir({
-        src: 'assets/fonts',
-        dest: 'fonts'
-    })
-    .addLayoutsDir('layouts-ebook')
-    .addDocumentsDir('ev-charging')
-    .addPartialsDir('partials-ebook')
-    .setRenderDestination('out-range-confidence');
-```
-
-Notice that the AssetsDir, LayoutsDir, PartialsDir, and RenderDestination directories are all different.  This is so the book formatting is different than the website formatting.  The eBook cannot use all the greentransportation.info navigation elements, and the eBook also must fit certain constraints from the EPUB spec.  For example one page in the eBook has an embedded YouTube video, and on the website an embedded YouTube video player is perfectly what is required, but in the eBook all that can be used is the thumbnail image.
-
-Also notice that `ev-charging` is the only DocumentsDir.  The entirety of the e-book content is in that directory, and therefore it is the only content included when rendering the eBook.
-
-Finally, the RenderDestination is set so that the eBook renders into its own directory.  In the website configuration file, this value was not set and therefore the default value of `out` is used.  For the eBook, this other directory is used so the two do not interfere with each other.
 
 # Publishing metadata - `book.yaml`
 

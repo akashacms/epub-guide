@@ -1,5 +1,5 @@
 ---
-layout: chapter-index.html.ejs
+layout: ebook-page.html.ejs
 title: Creating book content
 ---
 
