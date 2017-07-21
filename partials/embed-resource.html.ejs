@@ -1,0 +1,22 @@
+<div  class="embed-responsive embed-responsive-16by9" <%
+    // if (typeof enableResponsive !== 'undefined') {
+    //    if (typeof embedClass !== 'undefined') {
+    //        embedClass = `${embedClass} ${enableResponsive}`;
+    //    } else {
+    //        embedClass = enableResponsive;
+    //    }
+    //    console.log(`embed-resource ${embedClass}`);
+    // }
+    // if (typeof embedClass !== 'undefined') {
+    //     % >class="< %= embedClass % >" < %
+    // }
+    if (typeof width !== 'undefined' && width) {
+        %>width="<%= width %>" <%
+    }
+
+    if (typeof style !== 'undefined' && style) {
+        %>style="<%= style %>" <%
+    }
+    %> >
+    <a href="<%= embedHref %>"><img src="<%= imageUrl %>"/></a>
+</div>

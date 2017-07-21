@@ -18,6 +18,7 @@
   "dependencies": {
     "akasharender": "*",
     "akashacms-footnotes": "*",
+    "akashacms-embeddables": ">=0.6",
     "akasharender-epub": "akashacms/akasharender-epub",
     "mahabhuta": "*",
     "epubtools": "*",

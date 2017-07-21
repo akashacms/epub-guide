@@ -18,7 +18,9 @@ config
 
 config
     .use(require('akasharender-epub'))
-    .use(require('akashacms-footnotes'));
+    .use(require('akashacms-footnotes'))
+    .use(require('akashacms-embeddables'));
+
 config.addStylesheet({ href: "/css/style.css" });
 
 config.setMahabhutaConfig({

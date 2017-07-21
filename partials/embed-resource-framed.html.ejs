@@ -1,0 +1,26 @@
+<div <%
+    if (typeof embedClass !== 'undefined') {
+        %>class="<%= embedClass %>" <%
+    }
+    if (typeof width !== 'undefined' && width) {
+        %>width="<%= width %>" <%
+    }
+
+    if (typeof style !== 'undefined' && style) {
+        %>style="<%= style %>" <%
+    }
+    %> >
+    <h3><%= title %></h3>
+    <p>Source: <a href="<%= embedUrl %>" rel="nofollow"><%= embedSource %></a></p>
+    <% if ((typeof hideDescription === "undefined" || ! hideDescription) && description) {
+    		%><%= description %><%
+    	} %>
+    <div class="embed-responsive embed-responsive-16by9" <%
+        // if (typeof enableResponsive !== 'undefined') {
+        //    console.log(`embed-resource-framed ${enableResponsive}`);
+        //    % >class="< %= enableResponsive % >" < %
+        //}
+    %> style="clear: both;">
+        <a href="<%= embedHref %>"><img src="<%= imageUrl %>"/></a>
+    </div>
+</div>
