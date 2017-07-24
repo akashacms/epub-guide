@@ -40,7 +40,7 @@ And it looks like so:
 <embed-resource href="https://www.youtube.com/watch?v=M-sc73Y-zQA" template="embed-resource-framed.html.ejs"/>
 </div>
 
-This is great and easy, but what about the feasibility to use this in an EPUB?  
+This is great and easy, but what about the feasibility to use this in an EPUB? 
 
 The general idea is to fix things so the _thumbnail_ is used instead of the embedded content.  The trick is to override certain of the templates provided by `akashacms-embeddables`, such as `embed-resource-framed.html.ejs` and `embed-resource.html.ejs`.  In both `<%- embedCode %>` is used to embed the HTML snippet from the 3rd party website.  That should be replaced with:
 
@@ -51,6 +51,7 @@ The general idea is to fix things so the _thumbnail_ is used instead of the embe
 This uses the thumbnail image (`imageUrl`) wrapped with a link to the original resource.  The EPUB displays the preview image rather than the video, which it wouldn't be able to display anyway.  
 
 See https://github.com/akashacms/epub-guide/partials for how that is done in this book.
+
 
 # `<a name="">` removal
 
