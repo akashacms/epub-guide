@@ -21,6 +21,12 @@ The International ISBN Agency ([isbn-international.org](https://www.isbn-interna
 
 ## EPUB specification
 
+The EPUB specification was previously developed by the IDPF.  As of January 2017, the IDPF has merged itself into the World Wide Web Consortium (W3C), with a home page at https://www.w3.org/publishing/
+
+Github repository: https://github.com/w3c/publ-cg/
+
+The links below are still (as of this writing) informative but are an archive of the status of the IDPF as of January 2017.
+
 [idpf.org/epub/301](http://idpf.org/epub/301), [idpf.org/epub/31/spec/epub-spec.html](http://idpf.org/epub/31/spec/epub-spec.html) -- This is the source of truth for all things EPUB.
 
 O'Reilly has published two books of interest, both of which were very useful in developing AkashaEPUB and this guide:
