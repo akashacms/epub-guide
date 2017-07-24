@@ -1,7 +1,9 @@
 
-p { 
+p {
   margin: 8px 0 0;
 }
+
+/* Add styling for the <nav> structure in the Table of Contents */
 
 nav ol {
   list-style-type: decimal;
@@ -19,7 +21,7 @@ nav ol ol ol {
   list-style-type: lower-roman;
 }
 
-nav ul { 
+nav ul {
   list-style-type: square;
   margin-top: 8px !important;
   margin-bottom: 8px !important;
@@ -27,25 +29,27 @@ nav ul {
   padding-left: 20px !important;
 }
 
-nav ul ul { 
+nav ul ul {
   list-style-type: none;
   padding-left: 0 !important;
   margin-left: 0 !important;
 }
 
-nav ul ul li p:before { 
+nav ul ul li p:before {
   content: "\2014 \0020";
 }
 
-nav ul ul ul li p:before { 
+nav ul ul ul li p:before {
   content: "";
 }
 
-nav ul ul ul { 
+nav ul ul ul {
   list-style-type: square;
   margin-left: 20px !important;
   padding-left: 30px !important;
 }
+
+/* Set the size for the cover image. */
 
 img.cover-image {
     max-width: 100%;
@@ -237,7 +241,7 @@ img.cover-image {
 
 
 /* @font-face {
-  font-family: "Open Sans Light"; 
+  font-family: "Open Sans Light";
   font-style: normal;
   font-weight: 300;
   src: url(../fonts/OpenSans-Light.ttf);
@@ -322,21 +326,28 @@ strong, span.bold {
 }
 
 
-/* code */
+/* code -- set up code sections so they display well as code */
 
 pre {
-  white-space: pre-wrap;
+  /* white-space: pre-wrap; */
   font-family: "Ubuntu Mono", monospace;
-  margin: 10px 0 10px 20px;
+  margin: 15px;
+  padding: 10px;
   font-size: 85%;
   display: block;
   -epub-hyphens: none;
   -webkit-hyphens: none;
   hyphens: none;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  /* border-radius: 4px; */
 }
 
 code {
   font-family: "Ubuntu Mono", monospace;
+  padding: 2px 4px;
+  color: #c7254e;
+  background-color: #f9f2f4;
 }
 
 code strong em, code em strong, pre em strong, pre strong em,
@@ -393,7 +404,7 @@ tr {
 
 tr th {
   border-bottom: #9d9d9d 2px solid !important;
-  border-top: #9d9d9d 2px solid !important; 
+  border-top: #9d9d9d 2px solid !important;
 }
 
 tr:nth-of-type(even) {
