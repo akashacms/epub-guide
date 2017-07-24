@@ -6,7 +6,7 @@ title: Copyright Notice
 <section>
 <h1>Copyright Notice</h1>
 
-Copyright © 2015 by David Herron
+Copyright © 2015, 2017 by David Herron
 
 <img src="images/cc-by-nd-88x31.png" style="float: left; max-width: 88px;"/>This work is licensed under the Creative Commons 4.0 CC BY-ND, Creative Commons Attribution-NoDerivatives.
 
@@ -18,7 +18,8 @@ For more explanation see [creativecommons.org/licenses/by-nd/4.0/](https://creat
 
 Printed in the United States of America
 
-First Printing, 2015
+* First Printing, 2015
+* Second Printing, 2017
 
 David Herron
 Santa Clara, California 95050
