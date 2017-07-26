@@ -7,6 +7,7 @@
   "name": "epub-guide",
   "description": "AkashaEPUB Guide Book source",
   "homepage": "http://akashacms.com/epubtools/toc.html",
+  "version": "0.6.1",
   "scripts": {
     "clean": "rm -rf out",
     "prebuild": "mkdir -p out && akasharender copy-assets config.js",
