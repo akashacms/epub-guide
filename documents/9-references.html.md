@@ -23,7 +23,11 @@ The International ISBN Agency ([isbn-international.org](https://www.isbn-interna
 
 The EPUB specification was previously developed by the IDPF.  As of January 2017, the IDPF has merged itself into the World Wide Web Consortium (W3C), with a home page at https://www.w3.org/publishing/
 
-Github repository: https://github.com/w3c/publ-cg/
+Github repository: https://github.com/w3c/publ-cg/ and https://github.com/w3c/publ-wg
+
+Specifications: https://github.com/w3c/publ-epub-revision
+
+EPUB4: https://github.com/w3c/epub4
 
 The links below are still (as of this writing) informative but are an archive of the status of the IDPF as of January 2017.
 
@@ -41,3 +45,13 @@ O'Reilly has published two books of interest, both of which were very useful in 
 [idpf.org/ongoing](http://idpf.org/ongoing) -- Ongoing projects, specification updates
 
 [http://epubzone.org/](http://epubzone.org/) -- News website for all things EPUB.
+
+# Friends of EPUB
+
+http://friendsofepub.github.io/Blitz/ -- An eBook template and stylesheet
+
+https://friendsofepub.github.io/eBookTricks/
+
+https://friendsofepub.github.io/eBookDesignChecklist/ -- eBook design checklist
+
+https://friendsofepub.github.io/eBookPerfChecklist/ -- eBook performance checklist

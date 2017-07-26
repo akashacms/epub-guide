@@ -35,7 +35,7 @@ images/logo.png   |   | assets/images/logo.png
 chapter1/intro.html | documents/chapter1/intro.html.md |   
 chapter2/install.html | documents/chapter2/install.html.md |  
 
-You can use any directory hierarchy that you wish.  AkashaRender creates in the rendering directory the structure you create in the document and asset directories.  The only limitation placed on EPUB authors is the directory named `META-INF`.  AkashaEPUB automatically generates that directory, because it has special significance to packaging EPUB files.  Do not create the META-INF directory yourself.
+You can use any directory hierarchy that you wish.  AkashaRender creates in the rendering directory the structure you create in the DocumentsDir and AssetsDir directories.  The only limitation placed on EPUB authors is the directory named `META-INF`.  AkashaEPUB automatically generates that directory, because it has special significance to packaging EPUB files.  Do not create the META-INF directory yourself.
 
 Another consideration is the Table of Contents you show to the reader.  Each Table of Contents entry corresponds to an HTML content file.  We'll go over this in more detail later.  In planning your content it's important to know that each addressable entry in the Table of Contents, whether it's a chapter or sub-chapter, must be in its own file.
 

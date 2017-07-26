@@ -3,7 +3,7 @@ layout: ebook-page.html.ejs
 title: Installing the AkashaEPUB toolchain
 ---
 
-As we said in the previous chapter, AkashaEPUB is geek-friendly software.  It's use means editing with a programmers text editor to write the Markdown, and running command-line programs to render your electronic book as EPUB.  The model is familiar to anybody who writes code.  You won't have a WYSIWYG experience with AkashaEPUB.  The closest is the 2 minutes or so it takes to render the EPUB and open it in an EPUB reader.  
+As we said in the previous chapter, AkashaEPUB is geek-friendly software.  It's use means editing with a programmers text editor to write the Markdown, and running command-line programs to render your electronic book as EPUB.  The model is familiar to anybody who writes code.  The closest to a WYSIWYG experience with AkashaEPUB is that some Markdown editors offer a pseudo-WYSIWYG experience.  Even that wouldn't show you how AkashaEPUB will end up rendering the page.
 
 Bottom line is it's helpful if you're familiar with the sort of tools used by software developers.
 
@@ -15,7 +15,7 @@ These components are are:
 * AkashaRender ([akashacms.com/akasharender/toc.html](https://akashacms.com/akasharender/toc.html))
 * AkashaEPUB ([akashacms.com/epubtools/toc.html](https://akashacms.com/epubtools/toc.html)) adds the ability to produce EPUBs to the AkashaCMS platform
 
-Beyond that software you will need a programmer-friendly plain text editor.  I switch between a Mac OS X laptop and a Chromebook on which I've installed Crouton to run Ubuntu Linux.  Both systems have a bash shell command line environment, and thanks to the efforts by the Ubuntu and MacPorts communities the same command-line tools.  This software hasn't been tested on a Windows machine, but in theory it should work (knock on wood).
+Beyond that software you will need a programmer-friendly plain text editor.  The recommended build process presumes a (?bash?) shell command line environment.  This software hasn't been tested on a Windows machine, but in theory it should work (knock on wood).
 
 I'm currently using Atom (https://atom.io), and in the past have used KomodoEDIT or BBEdit.  These editors offer a nice editing experience for Markdown, HTML, JavaScript, CSS and other related file formats.  
 
@@ -63,10 +63,6 @@ $ npm --version
 # Short-circuiting AkashaCMS/etc installation by installing epub-skeleton
 
 The simplest way to setup an AkashaEPUB project is by downloading the Skeleton project.
-
-# Installing AkashaCMS, AkashaEPUB
-
-Now that Node.js are installed we can follow the instructions to install AkashaCMS.  
 
 ```
 $ git clone https://github.com/akashacms/epub-skeleton.git
