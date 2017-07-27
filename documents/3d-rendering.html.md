@@ -218,17 +218,3 @@ see <a href="0a-copyright.html">copyright page</a> for details
 ```
 
 You then have one file, `footer.html`, to edit any time you wish to edit the footer.  
-
-## Asset files, CSS, Images, fonts, etc
-
-While we just succeeded in rendering an XHTML file this isn't the end of making sure your content looks good in an EPUB reader.  As in the web-centric world, HTML pages are improved when you have images use CSS to customize the display, and use better fonts.
-
-Generally speaking asset files are simply copied to the RenderDestination directory.  These can be placed in the AssetsDir or in the DocumentsDir, depending on your preference.  Any file in a DocumentsDir that does not require rendering is simply copied to the RenderDestination, while all files in AssetsDir's are simply copied.
-
-Most of the time CSS or Image or Font files are simply copied and do not require any rendering.
-
-An exception is CSS files because of the many CSS preprocessors that aim to simplify coding CSS files.  CSS is a very tedious language, but oh so very important.
-
-AkashaRender directly supports rendering LESS files to CSS.  The LESS documentation is of course at http://lesscss.org/
-
-Implementing LESS is very simple.  Simply put a file named `your-stylesheet.css.less` in the DocumentsDir, and AkashaRender will render it to the RenderDestination as `your-stylesheet.css`.

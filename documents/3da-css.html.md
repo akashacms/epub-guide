@@ -17,6 +17,8 @@ It renders just as you'd expect:
 <div style="height: 40px; width: 100%; background: rgba(98,125,77,1); background: -moz-linear-gradient(left, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%); background: -webkit-gradient(left top, right top, color-stop(0%, rgba(98,125,77,1)), color-stop(100%, rgba(31,59,8,1))); background: -webkit-linear-gradient(left, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%); background: -o-linear-gradient(left, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%); background: -ms-linear-gradient(left, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%); background: linear-gradient(to right, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#627d4d', endColorstr='#1f3b08', GradientType=1 );">
 </div>
 
+In other words, we can really go to town on using CSS to dress up our eBooks because EPUB3 opened the door to modern CSS.  Before you get too excited, Amazon's Kindle marketplace does not use EPUB3.  Books sold through Kindle might well lose the styling you create.
+
 We are warned, however, of variation in CSS3 support by EPUB readers.  For example eInk devices, due to limitations of the display technology, provide a limited set of functions.
 
 # CSS2.1 and CSS3 support
@@ -136,6 +138,38 @@ article {
 Or, as in the following example, add it to a given tag `<div style="column-count: 2">`
 
 <div style="column-count: 2">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget neque purus. Maecenas eu sapien id nisi pretium laoreet. Phasellus eget convallis eros, non porta mi. Nullam efficitur facilisis mauris quis tristique. Etiam pulvinar, dolor eget viverra tristique, diam sem suscipit justo, sed volutpat lectus turpis a dui. Etiam aliquam vehicula dui sit amet tincidunt. Donec aliquet laoreet nisl non sodales. Pellentesque cursus nibh quis ipsum rhoncus, ut malesuada ipsum convallis. Pellentesque et metus in quam aliquet lobortis sit amet convallis justo. Nunc bibendum, dolor quis pretium eleifend, libero magna efficitur dolor, sagittis tempor mauris augue condimentum lectus. Sed varius ante eu risus tempor, vel egestas nulla molestie. Nulla placerat mollis quam et pellentesque. Nam maximus, sapien sit amet vulputate venenatis, sem enim aliquet enim, eu scelerisque tellus sapien ut risus. Praesent lobortis felis non urna imperdiet, non vulputate ipsum posuere.</p>
+
+<p>Nam nec augue euismod, vestibulum risus at, pharetra lacus. Aenean at faucibus tortor, eget aliquam nisi. Maecenas ac nisi iaculis, condimentum ante ut, facilisis erat. Aenean mi purus, hendrerit ac massa id, molestie rhoncus ipsum. Sed facilisis tellus lorem, nec lobortis nunc facilisis in. Phasellus porta et velit eu imperdiet. Maecenas ultrices et libero vitae feugiat. Curabitur in elit in justo condimentum rhoncus eget id tortor. Aenean quam neque, finibus quis risus ut, consequat bibendum risus. Nunc vel orci quis lectus maximus mattis. Aenean vitae dolor a odio rhoncus malesuada. Cras a congue arcu. Proin pulvinar arcu quam, in placerat nisi viverra in.</p>
+
+<p>Ut faucibus, elit sit amet gravida tempus, velit tortor feugiat ligula, at euismod ipsum libero sit amet erat. Donec congue neque ut aliquam interdum. Praesent nec mi suscipit, ullamcorper tellus vitae, ultricies nisl. Praesent auctor, purus id lacinia blandit, risus elit aliquam risus, tempor rhoncus urna arcu non dolor. Nullam erat nulla, ultrices vitae pharetra at, efficitur ac neque. Cras semper porttitor arcu, non ullamcorper erat pharetra sed. Duis ut nisl non turpis semper vestibulum id nec sapien. Phasellus eleifend quis tellus sit amet auctor. Nunc lobortis facilisis massa, eget accumsan neque commodo vel. Nam venenatis auctor est quis pellentesque. Pellentesque varius dictum semper. Curabitur ac imperdiet velit. Maecenas convallis lacus quis sem finibus, et vulputate sem efficitur. Fusce pharetra massa auctor neque posuere iaculis. Maecenas rutrum ante lectus, in tincidunt risus tempus quis.</p>
+
+<p>Duis metus diam, sollicitudin eget odio vitae, molestie placerat augue. Curabitur finibus magna at ullamcorper fringilla. Fusce semper mollis sem vitae ultrices. Nulla egestas mollis justo et malesuada. Sed ac dolor elit. Donec elementum eleifend nibh, in tincidunt metus pulvinar at. Duis fringilla dolor vitae ante auctor gravida convallis et sapien.</p>
+
+<p>Nunc eu tortor et nulla gravida blandit. Nullam leo elit, tincidunt quis rhoncus sit amet, scelerisque vitae neque. Curabitur rutrum sit amet tortor a porta. Mauris sollicitudin odio euismod, varius quam sit amet, mattis eros. Aenean venenatis quam velit, sed aliquet nisl porttitor nec. Aenean imperdiet quam turpis, at eleifend urna rhoncus a. Nam a nisl id nunc ullamcorper vestibulum. Praesent bibendum ex eget est gravida viverra. Proin mattis orci feugiat, congue orci in, blandit ante.</p>
+</div>
+
+That's cool, a simple way to make multi-column text.  But what if you want this to be responsive to the size of the screen?  On a small screen your book could display as 1-column, and on a large display as 2-column.
+
+Consider this pair of CSS declarations.
+
+```
+/* conditional multi-column support */
+
+.responsive-2columns {
+    column-count: 1;
+}
+
+@media only screen and (min-device-width : 768px) {
+    .responsive-2columns {
+        column-count: 2
+    }
+}
+```
+
+The default, _mobile-first_, choice is 1-column.  Then at a certain screen width the text flips to 2-column layout.
+
+<div class="responsive-2columns">
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget neque purus. Maecenas eu sapien id nisi pretium laoreet. Phasellus eget convallis eros, non porta mi. Nullam efficitur facilisis mauris quis tristique. Etiam pulvinar, dolor eget viverra tristique, diam sem suscipit justo, sed volutpat lectus turpis a dui. Etiam aliquam vehicula dui sit amet tincidunt. Donec aliquet laoreet nisl non sodales. Pellentesque cursus nibh quis ipsum rhoncus, ut malesuada ipsum convallis. Pellentesque et metus in quam aliquet lobortis sit amet convallis justo. Nunc bibendum, dolor quis pretium eleifend, libero magna efficitur dolor, sagittis tempor mauris augue condimentum lectus. Sed varius ante eu risus tempor, vel egestas nulla molestie. Nulla placerat mollis quam et pellentesque. Nam maximus, sapien sit amet vulputate venenatis, sem enim aliquet enim, eu scelerisque tellus sapien ut risus. Praesent lobortis felis non urna imperdiet, non vulputate ipsum posuere.</p>
 
 <p>Nam nec augue euismod, vestibulum risus at, pharetra lacus. Aenean at faucibus tortor, eget aliquam nisi. Maecenas ac nisi iaculis, condimentum ante ut, facilisis erat. Aenean mi purus, hendrerit ac massa id, molestie rhoncus ipsum. Sed facilisis tellus lorem, nec lobortis nunc facilisis in. Phasellus porta et velit eu imperdiet. Maecenas ultrices et libero vitae feugiat. Curabitur in elit in justo condimentum rhoncus eget id tortor. Aenean quam neque, finibus quis risus ut, consequat bibendum risus. Nunc vel orci quis lectus maximus mattis. Aenean vitae dolor a odio rhoncus malesuada. Cras a congue arcu. Proin pulvinar arcu quam, in placerat nisi viverra in.</p>
