@@ -13,11 +13,13 @@ title: References
 
 The International ISBN Agency ([isbn-international.org](https://www.isbn-international.org/)) oversee's all-things-ISBN around the world.  They empower individual agencies in each country to issue ISBN's for that country.
 
-[fonerbooks.blogspot.com/2005/07/how-to-obtain-isbn-number_05.html](http://www.fonerbooks.blogspot.com/2005/07/how-to-obtain-isbn-number_05.html) -- is an old discussion, from 2005, going over ISBN's and where to get them (in the U.S.).  The key take-away that's still true is that it's a good idea to own your ISBN.  There are plenty of companies today which give ISBN's for free as part of a package of book publishing services.  Those services may be worth-while, but at the end of the process that service company owns the ISBN.
+[fonerbooks.blogspot.com/2005/07/how-to-obtain-isbn-number_05.html](http://www.fonerbooks.blogspot.com/2005/07/how-to-obtain-isbn-number_05.html) -- is an old discussion, from 2005, going over ISBN's and where to get them (in the U.S.).  The key take-away that's still true is that it's a good idea to own your ISBN.  There are plenty of companies today which give ISBN's for free as part of a package of book publishing services.  Those services may be worth-while, but at the end of the process that service company owns the ISBN which could be a problem later on.  The downside of owning your ISBN is the high cost of buying small numbers of ISBN's.
 
 [thebookdesigner.com/2010/11/isbn-101-for-self-publishers/](http://www.thebookdesigner.com/2010/11/isbn-101-for-self-publishers/) -- This is a more up-to-date guide for ISBN's.
 
 [myidentifiers.com/](https://www.myidentifiers.com/) -- This is the official ISBN agency for the United States of America.
+
+There is lots of discussion available saying an eBook does not require an ISBN, that an ISBN is primarily required for print books.  All the online eBook marketplaces I've tried allow eBooks that lack an ISBN, and instead use the `uuid` style book identifier shown earlier in the `book.yml`.  
 
 ## EPUB specification
 

@@ -18,7 +18,7 @@ This guide is formatted using the `ebook-page.html.ejs` layout template (see: ht
 
 ```
 ---
-layout: page.html.ejs
+layout: ebook-page.html.ejs
 title:  Whatever the Title is
 ---
 ```
