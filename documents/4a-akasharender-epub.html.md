@@ -34,24 +34,48 @@ For example, take this early video of Ryan Dahl talking about Node.js at Yahoo: 
         template="embed-resource-framed.html.ejs"/>
 ```
 
-And it looks like so:  
+On an AkashaCMS website this shows the _title_, _description_, and other information including the embedded viewer.  While that's wonderful for a website it's not usable in an EPUB3 eBook.  Typical embedded viewers use an `<iframe>` tag that's simply not allowed in an EPUB.
+
+Here is a live version of that tag:
 
 <div style="margin: 5px; border: 1px solid grey;">
 <embed-resource href="https://www.youtube.com/watch?v=M-sc73Y-zQA" template="embed-resource-framed.html.ejs"/>
 </div>
 
-This is great and easy, but what about the feasibility to use this in an EPUB? 
+The problem is, how do you use this construct so it works well in both an EPUB and on a website? To see how to embed EPUB content into a website see [](6aa-epub-website.html)
 
-The general idea is to fix things so the _thumbnail_ is used instead of the embedded content.  The trick is to override certain of the templates provided by `akashacms-embeddables`, such as `embed-resource-framed.html.ejs` and `embed-resource.html.ejs`.  In both `<%- embedCode %>` is used to embed the HTML snippet from the 3rd party website.  That should be replaced with:
+The `akashacms-epub` plugin doesn't do much to help in this case.  Instead, what we do is use an `embed-resource-framed.html.ejs` partial that does the right thing in an EPUB -- namely to just show the preview image.
+
+The general idea is to fix things so the _thumbnail_ is used instead of the embedded content.  The trick is to override certain of the templates provided by `akashacms-embeddables`, such as `embed-resource-framed.html.ejs` and `embed-resource.html.ejs`.  In both `<%- embedCode %>` is used to embed the HTML snippet from the 3rd party website.  For example:
 
 ```
-<a href="<%= embedHref %>"><img src="<%= imageUrl %>"/></a>
+<div <%
+    if (typeof embedClass !== 'undefined') {
+        %>class="<%= embedClass %>" <%
+    }
+    if (typeof width !== 'undefined' && width) {
+        %>width="<%= width %>" <%
+    }
+
+    if (typeof style !== 'undefined' && style) {
+        %>style="<%= style %>" <%
+    }
+    %> >
+    <h3><%= title %></h3>
+    <p>Source: <a href="<%= embedUrl %>" rel="nofollow"><%= embedSource %></a></p>
+    <% if ((typeof hideDescription === "undefined" || ! hideDescription) && description) {
+    		%><%= description %><%
+    	} %>
+    <div class="embed-responsive embed-responsive-16by9" <%
+    %> style="clear: both;">
+        <a href="<%= embedHref %>"><img src="<%= imageUrl %>"/></a>
+    </div>
+</div>
 ```
 
-This uses the thumbnail image (`imageUrl`) wrapped with a link to the original resource.  The EPUB displays the preview image rather than the video, which it wouldn't be able to display anyway.  
+The key thing is to replace `<%- embedCode %>` in the standard template with `<a href="<%= embedHref %>"><img src="<%= imageUrl %>"/></a>`.  The `imageUrl` is the preview image provided by the source website.
 
 See https://github.com/akashacms/epub-guide/partials for how that is done in this book.
-
 
 # `<a name="">` removal
 
