@@ -11,7 +11,18 @@ AkashaEPUB and AkashaCMS are open source projects covered by the Apache2 license
 
 The project home page is at [akashacms.com](http://akashacms.com) and you can access the source code via the AkashaCMS Organization repositories at [github.com/akashacms](https://github.com/akashacms).
 
-Bug reports or feature requests should be filed in the AkashaCMS issue tracker:  [github.com/akashacms/akashacms/issues](https://github.com/akashacms/akashacms/issues) or the issue tracker for the relevant module, such as akashacms-epub.  There is a long list of feature ideas in the issue tracker waiting to be implemented.
+Bug reports or feature requests should be filed in the AkashaRender issue tracker:  [github.com/akashacms/akasharender/issues](https://github.com/akashacms/akasharender/issues) or the issue tracker for the relevant module, such as akashacms-epub.  There is a long list of feature ideas in the issue tracker waiting to be implemented.
+
+URL's for a few important tools are:
+
+* https://github.com/akashacms/epubtools -- EPUBTools
+* https://github.com/akashacms/epub-guide -- This guidebook
+* https://github.com/akashacms/epub-skeleton -- An example EPUB
+* https://github.com/akashacms/akashacms-footnotes -- Supports footnoting
+* https://github.com/akashacms/epub-website -- Embedding an EPUB into an AkashaCMS website
+* https://github.com/akashacms/akasharender-epub -- Processing filters for constructing EPUB's
+* https://github.com/akashacms/akasharender -- AkashaRender
+* https://github.com/akashacms/mahabhuta -- Mahabhuta
 
 Corrections or suggestions for this book should be filed in the epub-guide issue tracker: [github.com/akashacms/epub-guide/issues](https://github.com/akashacms/epub-guide/issues).  You can even submit corrections or new content using the github repository.
 
