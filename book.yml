@@ -6,7 +6,7 @@ title: Creating eBooks with Markdown and Open Source Tools
 languages: [ en ]
 identifiers:
     - unique: true
-      idstring: "urn:uuid:93aa70c2-089f-11e5-b304-477de2f6d00a"
+      uuid: "93aa70c2-089f-11e5-b304-477de2f6d00a"
 published:
     date: "2017-07-06T22:15:14Z"
 creators:
