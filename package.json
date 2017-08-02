@@ -14,7 +14,9 @@
     "build": "akasharender render config.js",
     "postbuild": "epubtools mimetype out && epubtools containerxml out book.yml && epubtools makemeta out book.yml",
     "bundle": "epubtools package out book.yml",
-    "rebuild": "npm run clean && npm run build && npm run bundle"
+    "rebuild": "npm run clean && npm run build && npm run bundle",
+    "check": "java -jar /Users/david/bin/epubcheck-4.0.2/epubcheck.jar guide.epub",
+    "kindle": "~/KindleGen/kindlegen guide.epub"
   },
   "dependencies": {
     "akashacms-embeddables": ">=0.6",
@@ -23,6 +25,7 @@
     "akasharender-epub": "akashacms/akasharender-epub",
     "epubtools": "*",
     "globfs": "*",
-    "mahabhuta": "*"
+    "mahabhuta": "*",
+    "uuid": "^3.1.0"
   }
 }
