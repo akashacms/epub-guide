@@ -5,15 +5,9 @@ title: Structuring your book
 
 So far we've walked you through the EPUB Skeleton, demonstrating how to [install AkashaEPUB](2-installation.html) and [create content in an AkashaEPUB project](3-creating-content.html).  It's now time to go over details of how such a project is structured.
 
-There are two different aspects to the "structure" of an AkashaEPUB project.  One is obviously the content structure of your book.  While you're the one most responsible for the content of your book, we'll give a few ideas.  The other aspect is the directory layout and different tools that are used.
+There are two different aspects to the "structure" of an AkashaEPUB project.  One is obviously the content structure of your book.  Obviously you are responsible for the structure of the content of your book.  What we mean here by _structure_ is the directory layout and some important files to consider.
 
-AkashaEPUB helps you to organize your book into chapters, and sub-chapters.  You can nest the chapter structure as deeply as you like, and AkashaEPUB will construct the table of contents for you and ensure the reading order of the pages is correct.  Your readers may hate you if the chapter nesting gets too deep, however.
-
-The EPUB standard uses metadata to identify the book, and one or more navigation documents to help the reader navigate the book.  AkashaEPUB generates all that for you.
-
-AkashaEPUB generates that metadata from data you provide, and from the files you put in the filesystem.  Your task is to put book metadata in the `book.yml`, to create the `<nav>` element containing the table of contents, and to put CSS, JavaScript, image and font files in the directories.
-
-The `config.js` documentation on the AkashaCMS website ([akashacms.com/configuration/index.html](http://akashacms.com/configuration/index.html)) documents that object, primarily in the context of website configuration.  AkashaEPUB almost eliminates any need to use that config object, unless you have peculiar needs.
+The EPUB standard uses metadata files (the OPF and NCX files) to identify the book, and the files it contains.  A navigation document contains a _table of contents_ to help the reader navigate the book.  AkashaEPUB generates the metadata files for you, while you must create the navigation document.  AkashaEPUB generates that metadata from data you provide, and from the files you put in the filesystem.  
 
 # AkashaCMS Directory structure and how it's used in AkashaEPUB
 
@@ -50,9 +44,9 @@ We have two sample files:
 
 The entries in this file are fairly straightforward.  We'll go over this file elsewhere.
 
-# HTML for Table of Contents in `toc.html`
+# The Navigation Document, a.ka. the Table of Contents, in `toc.html`
 
-Every EPUB3 e-Book must have a _Navigation Document_ containing at least one `<nav>` that serves as the Table of Contents.  The EPUB3 Navigation Document replaced the NCX file used in EPUB2.  For compatibility purposes, `epubtools` automatically generates an NCX file while bundling the EPUB.
+Every EPUB3 e-Book must have a _Navigation Document_ containing at least one `<nav>` that serves as the Table of Contents.  The EPUB3 Navigation Document replaced the NCX file used in EPUB2.  For compatibility purposes, `epubtools` automatically generates an NCX file while bundling the EPUB.  The `<nav>` structure in the Navigation Document will be extracted by the reading system so it can display navigational aids to the user.
 
 The actual file name for these two files are declared in these `book.yml` entries:
 
@@ -61,7 +55,7 @@ toc: { id: "toc", href: "toc.html" }
 ncx: { id: "ncx", href: "toc.ncx"  }
 ```
 
-In other words, you are to create a file matching the name you specify in the `toc` entry.  The file named in the `ncx` entry is auto-generated.
+You must create a file that will render to the file given in the `toc` element.  In other words, `toc.html.md` or `toc.html.ejs` or even just `toc.html` will serve the purpose.  You do not need to create the `toc.ncx` file, however, as `epubtools` will auto-generate that file for you.
 
 The Navigation Document for the EPUB Skeleton is: https://github.com/akashacms/epub-skeleton/blob/master/documents/toc.html.ejs
 
@@ -74,18 +68,37 @@ The Navigation Document must incorporate the EPUB namespace as so:
       xmlns:epub="http://www.idpf.org/2007/ops" ... >
 ```
 
-The next step is within the `<body>` tag you place a `<nav>` element containing an `<ol>` list containing the table of contents.
+The next step is within the `<body>` tag you place a `<nav epub:type="toc" id="toc">` element containing an `<ol>` list containing the table of contents.  The `epub:type` attribute is required, and the `id` must match what you put in the `book.yml` declaration.
 
 ```
 <nav epub:type="toc" id="toc">
     <ol type="1" start="1">
+    <li><a id="chap1" href="chap1.html"></a>
+        <ol>
+            <li><a id="chap1a" href="chap1a.html"></a></li>
+        </ol>
+    </li>
+    <li><a id="chap2" href="chap2.html"></a></li>
+    <li><a id="chap3" href="chap3.html"></a>
+        <ol>
+            <li><a id="chap3a" href="chap3a.html"></a></li>
+            <li><a id="chap3b" href="chap3b.html"></a></li>
+        </ol>
+    </li>
+    <li><a id="chap4" href="chap4.html"></a></li>
+    <li><a id="chap5" href="chap5/chap5.html"></a>
+        <ol>
+            <li><a id="chap5a" href="chap5/chap5a.html"></a></li>
+            <li><a id="chap5b" href="chap5/b/chap5b.html"></a></li>
+        </ol>
+    </li>
     </ol>
 </nav>
 ```
 
-The `epub:type` attribute declares the kind of navigation element, in this case it is a `toc nav` or a `nav` used for a Table of Contents.  As of this writing AkashaEPUB only supports the `toc nav` and the other `nav` types are not supported.  An `<ol>` list must exist within this `<nav>` element.
+The `epub:type` attribute declares the kind of navigation element, in this case it is a _toc nav_ or a `nav` used for a Table of Contents.  As of this writing AkashaEPUB only supports the _toc nav_ and the other `nav` types are not supported.  An `<ol>` list must exist within this `<nav>` element.
 
-The `<ol>` shown here is suitable for a typical table of contents with numbered chapters starting at Chapter 1.  The structure of this list can be nested as deeply as you like.
+The `<ol>` shown here is suitable for a typical table of contents with numbered chapters starting at Chapter 1.  The structure of this list can be nested as deeply as you like.  Typically the nesting organizes the content by chapters and sections.  EPUB3 reading systems should display the nested structure.
 
 The values for `type` are:
 
@@ -94,6 +107,23 @@ The values for `type` are:
 * `A` - upper-case alpha
 * `i` - lower-case roman numerals
 * `I` - upper-case roman numerals
+
+## Navigation Document Page title
+
+It's tempting for the page title of this page to simply be _Table of Contents_, like this:
+
+```
+<body>
+       <section>
+<h1>Table of Contents</h1>
+<nav epub:type="toc" id="toc">
+...
+</nav>
+       </section>
+    <body>
+```
+
+This might be misleading to the readers, especially if the Navigation Document is the first thing they see upon opening the book.  It might instead be better to put the book title instead of _Table of Contents_.
 
 # XHTML page templates
 
