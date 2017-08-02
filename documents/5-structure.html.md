@@ -42,7 +42,7 @@ We have two sample files:
 * This book: https://github.com/akashacms/epub-guide/blob/master/book.yml
 * The Skeleton EPUB: https://github.com/akashacms/epub-skeleton/blob/master/book.yml
 
-The entries in this file are fairly straightforward.  We'll go over this file elsewhere.
+The entries in this file are fairly straightforward.  See: [](4-configuration.html)
 
 # The Navigation Document, a.ka. the Table of Contents, in `toc.html`
 
