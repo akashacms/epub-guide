@@ -186,32 +186,8 @@ EPUB readers are also supposed to support SVG files, but that hasn't been tested
 
 # Declaring ownership, copy rights, and the copyright page
 
-Clearly declaring who owns or created the book is very important.  There's a whole industry of intellectual property rights associated with that need.
+Earlier we discussed declaring in the `book.yml` the document identifiers [](4-configuration.html)
 
-```
-title: "The Brilliant Title to my Wonderful Book"
-languages: [ en ]
-identifiers:
-    - unique: true
-      uuid: "D4C91B0C-33C0-4E00-810A-E4C2D8CD4BAE"
-published:
-    date: "2017-04-27T17:21:38Z"
-creators:
-    - id: author
-      name: John Smith
-      nameReversed: Smith, John
-publisher: Your Publisher Name
-subjects: [ "Comma", "Separated", "List", "Of Topics" ]
-rights: "Copyright 2017, John Smith"
-```
-
-This declares various metadata items about the book.  These items should be obvious, and the destination for this information is the OPF and NCX files inside the EPUB.
-
-You can list multiple _identifiers_.  The supported identifier formats are:
-
-* `uuid` or Unique Universal ID.  The format is simply a UUID string.
-* `urn` or Universal Resource Notation.  There are many other URN formats to use.
-
-Having a legally correct copyright page makes the ownership clear to your readers.  While there is an automatic copyright when a work is published, it is probably helpful to go ahead and add a copyright page.  We don't have a recommendation for the format of the text in a copyright page.
+Having a legally correct copyright page makes the ownership clear to your readers.  While there is an automatic copyright when a work is published, it is probably helpful to go ahead and add a copyright page.  The References section lists links to a few recommended formats of the text in a copyright page: [](9-references.html)
 
 The implementation is easy.  After creating your preferred copyright statement, simply list the corresponding copyright file in the table of contents.  Neither AkashaEPUB nor EPUB3 will attach any special significance to the file.  It's just another file to show to the reader.

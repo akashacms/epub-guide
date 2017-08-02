@@ -8,7 +8,9 @@ Any AkashaCMS project requires two configuration files:
 * `package.json` contains Node.js dependencies, a `scripts` section for command strings, and various bits of metadata like a project home page or source code repository
 * The _Configuration_ object, usually in a file named `config.js`, describing the project to AkashaCMS
 
-AkashaEPUB projects have another configuration file, the publishing metadata that's contained a YAML file typically called `book.yml`.
+AkashaEPUB projects have another configuration file:
+
+* The publishing metadata that's contained a YAML file typically called `book.yml`.
 
 In this chapter we'll go over all three.
 
@@ -17,7 +19,7 @@ In this chapter we'll go over all three.
 
 The configuration of any AkashaRender/AkashaCMS project is split between the Configuration file and the `package.json`.  The latter is used by `npm` and the Node.js platform to list package `dependencies`, the available `scripts` for performing actions related to the project, and various metadata items like project owner identification or the projects home page.  For an AkashaEPUB project, the `scripts` section can be used to describe the build process, while the `dependencies` will list the EPUB-related AkashaCMS plugins.
 
-The Configuration file, typically named `config.js`, is a Node.js module that produces an AkashaRender _Configuration_ object.  While the Configuration object can be created any way you like, it's most to use a `config.js` file.  There's nothing special about that file name, and it can be named anything you like.  In fact the project can have multiple Configuration files for different purposes.
+The Configuration file, typically named `config.js`, is a Node.js module that produces an AkashaRender _Configuration_ object.  While the Configuration object can be created any way you like, it's most straightforward to use a `config.js` file.  There's nothing special about that file name, and it can be named anything you like.  In fact the project can have multiple Configuration files for different purposes.
 
 More details about AkashaRender project configuration are at: https://akashacms.com/akasharender/configuration.html
 
@@ -64,7 +66,7 @@ The first set of methods, `addAssetsDir` and the others, inform AkashaRender wha
 
 The second set informs AkashaRender the AkashaCMS plugins to use with the `use` method.  The `use` call is given the Plugin object resulting from `require("plugin-name")`, describing the plugin to AkashaRender.  Used this way, there must be a corresponding entry in `package.json` for each Plugin so that `npm` can easily download the dependencies required to build the book.
 
-An AkashaCMS plugin will modify AkashaRender's execution to add new capabilities.  The most common is for plugins to add a Partials directory, and to add new custom DOM processing and custom tag functions using the Mahabhuta DOM-processing engine.  The two plugins listed here are especially useful for EPUB's, namely:
+An AkashaCMS plugin will modify AkashaRender's execution to add new capabilities.  Typically a plugin will add a Partials directory, and add new custom DOM processing and custom tag functions using the Mahabhuta DOM-processing engine.  The two plugins listed here are especially useful for EPUB's, namely:
 
 * `akasharender-epub` contains various cleanup's required because of EPUB3 limitations.
 * `akashacms-footnotes` provides a simple way to generate a list of footnotes at the bottom of the page.
@@ -104,7 +106,7 @@ title: Skeletal AkashaEPUB book
 languages: [ en ]
 identifiers:
     - unique: true
-      idstring: "urn:uuid:b624d2ee-e88a-11e4-b0db-376a7655914b"
+      uuid: "b624d2ee-e88a-11e4-b0db-376a7655914b"
 published:
     date: "2017-07-06T22:15:14Z"
 creators:
@@ -235,7 +237,7 @@ While the ISBN is the primary system for identifying books, it's not the only ga
 
 Generally speaking an __identifier__ is a unique (hopefully) text string assigned to a specific book.  While that's seemingly simple, it's a little tricky in practice.  Book identifiers play different roles in different scenarios.
 
-The ISBN is a product identifier.  The publisher doesn't have to acquire a new ISBN for minor revisions, but it is required to do so for a completely new edition.  The publisher also must acquire an ISBN for each format the book is published in.  In other words, the product identifier is how book distributors and stores distinguish one physical book from another.
+The ISBN is a product identifier.  The publisher doesn't have to acquire a new ISBN for minor revisions, but it is required to do so for a completely new edition.  The publisher also must acquire an ISBN for each format the book is published in.  In other words, the product identifier is how book distributors and stores distinguish one physical book from another.  The key word is _physical_ because ISBN's purpose is primarily controlling inventory of printed books in warehouses and bookstores.  It's widely thought eBook do not require an ISBN, but of course you should check with an authoritative source on this.
 
 The product identifier is useful for book distributors, but it doesn't tell us whether two versions of an electronic book are bit-for-bit identical.  
 
@@ -246,23 +248,47 @@ Consider:
 ```
 identifiers:
     - unique: true
-      idstring: "urn:uuid:b624d2ee-e88a-11e4-b0db-376a7655914b"
+      uuid: "b624d2ee-e88a-11e4-b0db-376a7655914b"
 ```
 
-The `identifiers` list contains product identifiers.  An EPUB can have multiple identifiers, hence we support more than one.  However, only one of them can be the unique identifier for the EPUB.  The `unique` attribute is required on one and only one of these identifiers.  It can have any value you wish, it just needs to be present.  The `idstring` attribute is the actual identifier string.
+The `identifiers` list contains product identifiers.  An EPUB can have multiple identifiers, hence we support more than one.  However, only one of them can be the unique identifier for the EPUB.  The `unique` attribute is required on one and only one of these identifiers.  It can have any value you wish, it just needs to be present.  
 
-The `idstring` attribute takes a URN (uniform resource name - [en.wikipedia.org/wiki/Uniform_resource_name](https://en.wikipedia.org/wiki/Uniform_resource_name)).  URN's are similar in purpose and format to a URL.  Instead of specifying an address of a page on the Web a URN more generally gives a unique name to a "resource", like a book.  The Wikipedia page has some good examples.  The URN prefix tells us what kind of resource name it is, in this case an ISBN.  For our purposes in building EPUB's there are approximately three URN formats of interest:
+The supported identifier formats are:
+
+* `uuid` or Unique Universal ID.  The format is simply a UUID string.
+* `urn` or Universal Resource Notation.  There are many other URN formats to use.
+
+The example shows use of a UUID.  Under the covers it is converted to the correct format in the OPF file.  Generating a UUID string is fairly easy and there are many available applications that correctly generate a UUID.  
+
+<figure>
+<img src="images/uuid-generator.png"/>
+<figcaption>The jrUUID application for Mac OS X</figcaption>
+</figure>
+
+Several open source tools to generate UUID's are in the npm registry.  Simply follow these steps:
+
+```
+$ npm install uuid --save
+epub-guide@0.6.1 /Users/david/akasharender/epub-guide
+└── uuid@3.1.0
+$ ./node_modules/.bin/uuid
+f1e90602-9f7c-4f52-a8a5-6de10ea0988e
+```
+
+The UID printed by the tool can be inserted into `book.yml` as so:
+
+```
+identifiers:
+    - unique: true
+      uuid: "D4C91B0C-33C0-4E00-810A-E4C2D8CD4BAE"
+```
+
+
+By specifying `urn` you can use any URN (uniform resource name - [en.wikipedia.org/wiki/Uniform_resource_name](https://en.wikipedia.org/wiki/Uniform_resource_name)) as an identifier.  URN's are similar in purpose and format to a URL.  Instead of specifying an address of a page on the Web a URN more generally gives a unique name to a "resource", like a book.  The Wikipedia page has some good examples.  The URN prefix tells us what kind of resource name it is, in this case an ISBN.  For our purposes in building EPUB's there are approximately three URN formats of interest:
 
 * DOI: `urn:doi:....` -- Digital Object Identifier
 * ISBN: `urn:isbn:123456789X` -- This is the standard identifier string for books, the international standard book number
 * UUID: `urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66` -- This is just a string of self-assigned numbers that you guarantee is a unique universal identifying number.
-
-If you don't supply any identifier a random UUID identifier will be generated for you.  You can generate a UUID with the `uuid` or `uuidgen` command on some systems.  Some computer systems have a command-line program for generating a UUID.  Generate one if you have no need for any officially designated identifier:
-
-```
-$ uuid
-a6cca476-e3a2-11e4-a466-3fac34d90757
-```
 
 The ISBN number system is controlled by the International ISBN Agency ([www.isbn-international.org/](https://www.isbn-international.org/)), through regional ISBN agencies.  Publishers or authors can acquire ISBN numbers through the agency for their country or region.  Some say that ISBN's are unnecessary for electronic books, and indeed none of the e-book marketplaces require an ISBN.  If you've acquired an ISBN for your book, use it in the method shown above.
 
@@ -271,7 +297,7 @@ If you must generate an NCX file, and if your NCX file has to carry a different 
 ```
 identifiers:
     - unique: true
-      idstring: " .... one identifier"
+      urn: " .... one identifier"
       ncxidentifier: " ... another identifier"
 ```
 
@@ -279,7 +305,7 @@ If you do this, the epubcheck program (see [](6b-validation.html)) will give you
 
 So far we've talked about the publication identifier, and promised to discuss a second identifier that's used for bit-for-bit identicalness.  Now's the time to do so.
 
-The method chosen by the EPUB3 committee was to use the `date` metadata value.  By gluing together the publishing identifier just discussed, and the publishing date, an EPUB reader can tell one EPUB from another.  One simply must be sure to generate a new publishing date each time the EPUB is gnerated.
+The method chosen by the EPUB3 committee was to use the `date` metadata value.  By gluing together the publishing identifier just discussed, and the publishing date, an EPUB reader can tell one EPUB from another.  One simply must be sure to generate a new publishing date each time the EPUB is generated.
 
 The EPUB's publishing date is specified as so
 
