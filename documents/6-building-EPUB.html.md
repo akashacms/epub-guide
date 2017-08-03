@@ -5,11 +5,9 @@ title: Building an EPUB with AkashaEPUB
 
 Now that we know how to [install AkashaEPUB](2-installation.html), [how to create content](3-creating-content.html), and [structure our book](4-configuration.html), it's time to use AkashaEPUB to build some books.  We'll talk in this section about the book building process using _epubtools_.
 
-AkashaEPUB refers to the combination of AkashaRender and the EPUB-related plugins.  With AkashaEPUB we built a RenderDestination directory with files appropriate for bundling as an EPUB.  While an EPUB is "just" a ZIP archive with specific contents, assembling it correctly as an EPUB is not as simple as ZIP'ing the directory and changing the file extension to `.epub`.  There are a few specific EPUB requirements that are not met with that approach.  
+With _epubtools_ we could theoretically take any XHTML files, a `book.yml`, a navigation document, and generate an EPUB.  It is not required to build the XHTML files with AkashaRender and its plugins.  While it was designed to work hand-in-hand with AkashaRender-based tools, the relationship is arms-length enough that the XHTML files could come from anywhere.  Say, it's theoretically possible to write content in Google Docs and to use a script to extract an XHTML version of what you write.
 
-In _epubtools_ we have well-tested functionality to generate the XML metadata files and to correctly bundle the EPUB following the EPUB spec.  
-
-The steps are fairly simple, starting with `akasharender` to render the content, then a few commands using `epubtools` to generate those files and bundle the result.  It's recommended to record those commands in the `scripts` section of the `package.json`.  
+While an EPUB is "just" a ZIP archive with specific contents, assembling it correctly as an EPUB is not as simple as ZIP'ing the directory and changing the file extension to `.epub`.  There are a few specific EPUB requirements that are not met with that approach.   In _epubtools_ we have well-tested functionality to generate the XML metadata files and to correctly bundle the EPUB following the EPUB spec.  
 
 # Building an EPUB
 
@@ -127,6 +125,133 @@ With `stats` and `words` we can inspect statistics about the content.  There is 
 The `check` command attempts to verify the EPUB content is correct.  It would be useful to add this to the workflow just before the `bundle` step.  The `epubcheck` program is the gold standard for verifying EPUB3 correctness.
 
 The `tohtml` command is an incomplete and probably bug-ridden attempt to convert an EPUB into an HTML.  Once it is converted to HTML it's fairly easy to use a web browser to generate a PDF.
+
+## Minimal input to _epubtools_
+
+We've discussed a series of commands to execute, that successfully uses AkashaEPUB and epubtools to render content and bundle an EPUB.  A careful study shows that it first uses `akasharender` to render the content, then runs a number of steps using `epubtools` to generate metadata files and then bundle the EPUB.  This demonstrates the claim made earlier that epubtools can take XHTML files from any source.
+
+For example the RenderDestination directory for this book, after running `akasharender render config.js`, is:
+
+```
+$ tree out
+out
+├── 0a-copyright.html
+├── 1-introduction.html
+├── 2-installation.html
+├── 3-creating-content.html
+├── 3c-content-markup.html
+├── 3d-rendering.html
+├── 3da-css.html
+├── 3e-html5-structure.html
+├── 3e-internal-links.html
+├── 4-configuration.html
+├── 4a-akasharender-epub.html
+├── 5-structure.html
+├── 6-building-EPUB.html
+├── 6aa-epub-website.html
+├── 6b-validation.html
+├── 7-akashacms-project.html
+├── 8-about.html
+├── 9-references.html
+├── ___dlimages
+│   └── vi
+│       └── M-sc73Y-zQA
+│           └── hqdefault.jpg
+├── akashacms-logo.gif
+├── akashacms-rendering.png
+├── akashaepub-logo.png
+├── css
+│   └── style.css
+├── fonts
+│   ├── OpenSans
+│   │   ├── LICENSE.txt
+│   │   ├── OpenSans-Bold.ttf
+│   │   ├── OpenSans-BoldItalic.ttf
+│   │   ├── OpenSans-Italic.ttf
+│   │   └── OpenSans-Regular.ttf
+│   ├── UbuntuMono-B.ttf
+│   ├── UbuntuMono-BI.ttf
+│   ├── UbuntuMono-R.ttf
+│   └── UbuntuMono-RI.ttf
+├── images
+│   ├── 640px-Metal_movable_type.jpg
+│   ├── akasha-epub-in-action.png
+│   ├── cc-by-nd-88x31.png
+│   ├── cover.png
+│   ├── node-web-dev-cover.jpg
+│   └── uuid-generator.png
+├── no-image.gif
+└── toc.html
+
+7 directories, 40 files
+```
+
+It's just as we expect, a bunch of HTML, CSS and image files.  Imagine having created those files using a different tool than AkashaEPUB.  That's possible, since the content files are regular every-day XHTML files that could be created with any HTML editor.
+
+The next step is to run a sequence of commands to generate the metadata files:  `epubtools mimetype out && epubtools containerxml out book.yml && epubtools makemeta out book.yml`
+
+Those steps rely on the `book.yml` and the navigation document to generate the metadata files.  What does the renderDestination directory look like after those commands?
+
+```
+$ tree out
+out
+├── 0a-copyright.html
+├── 1-introduction.html
+├── 2-installation.html
+├── 3-creating-content.html
+├── 3c-content-markup.html
+├── 3d-rendering.html
+├── 3da-css.html
+├── 3e-html5-structure.html
+├── 3e-internal-links.html
+├── 4-configuration.html
+├── 4a-akasharender-epub.html
+├── 5-structure.html
+├── 6-building-EPUB.html
+├── 6aa-epub-website.html
+├── 6b-validation.html
+├── 7-akashacms-project.html
+├── 8-about.html
+├── 9-references.html
+├── META-INF
+│   └── container.xml
+├── ___dlimages
+│   └── vi
+│       └── M-sc73Y-zQA
+│           └── hqdefault.jpg
+├── akashacms-logo.gif
+├── akashacms-rendering.png
+├── akashaepub-logo.png
+├── css
+│   └── style.css
+├── fonts
+│   ├── OpenSans
+│   │   ├── LICENSE.txt
+│   │   ├── OpenSans-Bold.ttf
+│   │   ├── OpenSans-BoldItalic.ttf
+│   │   ├── OpenSans-Italic.ttf
+│   │   └── OpenSans-Regular.ttf
+│   ├── UbuntuMono-B.ttf
+│   ├── UbuntuMono-BI.ttf
+│   ├── UbuntuMono-R.ttf
+│   └── UbuntuMono-RI.ttf
+├── guide.opf
+├── images
+│   ├── 640px-Metal_movable_type.jpg
+│   ├── akasha-epub-in-action.png
+│   ├── cc-by-nd-88x31.png
+│   ├── cover.png
+│   ├── node-web-dev-cover.jpg
+│   └── uuid-generator.png
+├── mimetype
+├── no-image.gif
+├── toc.html
+└── toc.ncx
+
+8 directories, 44 files
+```
+
+That added one directory and four files.  If you look carefully at the two tree's, the files added are `META-INF/container.xml`, `guide.opf`, `mimetype` and `toc.ncx`.
 
 # Building both a website and an EPUB
 

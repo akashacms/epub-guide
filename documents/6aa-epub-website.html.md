@@ -115,7 +115,9 @@ Finally, the RenderDestination is set so that the eBook renders into its own dir
 
 ## The `bookHomeURL` metadata
 
-This metadata item identifies the file containing the Table of Contents.  It must a relative path within the rendered website naming that file.  The content of this file is used by the Partials and Mahabhuta tags.
+This metadata item identifies the file containing the Table of Contents.  The Navigation Document, in other words.  The Navigation Document's location is used by the `epub-website` tool to locate necessary metadata.
+
+This value must be a relative path within the rendered website naming the Navigation Document's file.  The content of this file is used by the Partials and Mahabhuta tags in `epub-website`.
 
 # Partials and Mahabhuta tags
 
