@@ -23,6 +23,7 @@ This is the `scripts` section of the EPUB Skeleton project's `package.json`
   "prebuild": "mkdir -p out && akasharender copy-assets config.js",
   "build": "akasharender render config.js",
   "postbuild": "epubtools mimetype out && epubtools containerxml out book.yml && epubtools makemeta out book.yml",
+  "prebundle": "epubtools xhtml out",
   "bundle": "epubtools package out book.yml",
   "rebuild": "npm run clean && npm run build && npm run bundle"
 },
@@ -35,6 +36,8 @@ The `build` step has companion `prebuild` and `postbuild` steps.  Between `prebu
 The `postbuild` step is where _epubtools_ comes into the picture.  We've split the process into multiple _epubtools_ commands.  With `epubtools mimetype` we obviously create the `mimetype` file.  With `epubtools containerxml` we generate the `META-INF/container.xml` file.  Then with `epubtools makemeta` we generate the OPF and NCX files.  In other words, these commands construct the metadata files required by the EPUB specification.
 
 Why weren't those steps all combined into one?  Yes, that's a good question.  Moving on.
+
+In `prebundle` we prepare for bundling the EPUB by ensuring `.html` files are renamed to `.xhtml`.  The EPUB spec requires the latter file extension on XHTML files.  Unfortunately AkashaRender cannot produce `.xhtml` files, only `.html`.  While `akasharender-epub` ensures the content is in XHTML format, EPUB still requires the `.xhtml` extension.  The `epubtools xhtml` command converts the file name from `.html` to `.xhtml`, plus it searches for links to local `.html` files, converting the link to `.xhtml`.
 
 It is in `bundle` where the RenderDestination directory is ZIP'd to create the EPUB file.  Care is taken to construct it according to the EPUB spec.  An EPUB is a ZIP archive with certain fingerprints.  For example the `mimetype` file has to be the first entry in the ZIP archive and it cannot be compressed.  By doing so, the text `application/epub+zip` appears in plain text at a certain offset into the file, as shown here:
 
@@ -83,6 +86,8 @@ SKIP DIRECTORY documents/chap5/b
 > epub-skeleton@ postbuild /Users/david/akasharender/epub-skeleton
 > epubtools mimetype out && epubtools containerxml out book.yml && epubtools makemeta out book.yml
 
+> epub-skeleton@ prebundle /Users/david/akasharender/epub-skeleton
+> epubtools xhtml out
 
 > epub-skeleton@ bundle /Users/david/akasharender/epub-skeleton
 > epubtools package out book.yml
@@ -114,6 +119,7 @@ $ epubtools --help
     makemeta <rendered> <bookYaml>      Create OPF and NCX files in a directory
     check <rendered>                    Check an EPUB directory for valid HTML
     tohtml <convertYaml>                Convert EPUB to HTML
+    xhtml <rendered>                    Convert .html files in directory to .xhtml, fixing links
 ```
 
 The _epubtools_ command does a bit more than what we've just shown.
@@ -125,6 +131,8 @@ With `stats` and `words` we can inspect statistics about the content.  There is 
 The `check` command attempts to verify the EPUB content is correct.  It would be useful to add this to the workflow just before the `bundle` step.  The `epubcheck` program is the gold standard for verifying EPUB3 correctness.
 
 The `tohtml` command is an incomplete and probably bug-ridden attempt to convert an EPUB into an HTML.  Once it is converted to HTML it's fairly easy to use a web browser to generate a PDF.
+
+The `xhtml` command converts files with extension `.html` to have `.xhtml` extension, as required by EPUB.  Links are searched out in `.xhtml`, `.html`, `.opf` and `.ncx` files referring to local `.html` files, and the extension is converted to `.xhtml`.  The purpose is that AkashaRender only knows how to generate `.html` files, but the EPUB standard requires `.xhtml` files.  This command converts the directory to match the requirements.
 
 ## Minimal input to _epubtools_
 
@@ -267,6 +275,7 @@ We've already shown that we can reuse the content of an EPUB in an AkashaCMS web
   "prebuild-range-confidence": "mkdir -p out-range-confidence && akasharender copy-assets config-ebook-range-confidence.js && globfs copy documents/ev-charging out-range-confidence '**/cover.html'",
   "build-range-confidence": "akasharender render config-ebook-range-confidence.js",
   "postbuild-range-confidence": "rm -rf out-range-confidence/vendor/Viewer.js && epubtools mimetype out-range-confidence && epubtools containerxml out-range-confidence book-range-confidence.yml && epubtools makemeta out-range-confidence book-range-confidence.yml",
+  "prebundle-range-confidence": "epubtools xhtml out-range-confidence",
   "bundle-range-confidence": "epubtools package out-range-confidence book-range-confidence.yml",
   "rebuild-range-confidence": "npm run clean-range-confidence && npm run build-range-confidence && npm run bundle-range-confidence",
   "check-range-confidence": "java -jar /usr/bin/epubcheck range-confidence.epub",
