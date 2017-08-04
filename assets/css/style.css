@@ -412,6 +412,7 @@ pre {
   margin: 15px;
   padding: 10px;
   font-size: 85%;
+  line-height: 130%; /* descenders were being cropped */
   display: block;
   -epub-hyphens: none;
   -webkit-hyphens: none;

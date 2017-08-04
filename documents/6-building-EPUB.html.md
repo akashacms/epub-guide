@@ -91,8 +91,32 @@ SKIP DIRECTORY documents/chap5/b
 
 > epub-skeleton@ bundle /Users/david/akasharender/epub-skeleton
 > epubtools package out book.yml
+```
+
+## HTML Minification
+
+It's useful to minify the HTML and other files for an EPUB just as it is for the Web.  In both cases a smaller file is preferable, because it delivers faster over the Internet, or it takes up less storage space in the eBook reader application.  
+
+The good news is that HTML minifiers for the web can be used in the EPUB-building workflow.
+
+For example:
 
 ```
+$ npm install html-minifier --save
+```
+
+This is an easy-to-use and powerful tool for HTML minification.  The npm registry also has CSS and JavaScript minifiers available.
+
+This tool can be incorporated into the workflow very easily:
+
+```
+"minify": "html-minifier --collapse-whitespace --conservative-collapse --html5 --keep-closing-slash --preserve-line-breaks --remove-comments --file-ext xhtml  --input-dir out --output-dir out",
+"rebuild": "npm run clean && npm run build && npm run minify && npm run bundle",
+```
+
+In other words we can add another step, _minify_, to the process which is as shown here.  This is a fairly conservative form of minification, leaving the file still relatively readable while squeezing out excess whitespace and so on.
+
+For CSS Minification, _cssnano_ (https://www.npmjs.com/package/cssnano) looks promising.
 
 # The _epubtools_ command
 

@@ -15,7 +15,8 @@
     "postbuild": "epubtools mimetype out && epubtools containerxml out book.yml && epubtools makemeta out book.yml",
     "prebundle": "epubtools xhtml out",
     "bundle": "epubtools package out book.yml",
-    "rebuild": "npm run clean && npm run build && npm run bundle",
+    "minify": "html-minifier --collapse-whitespace --conservative-collapse --html5 --keep-closing-slash --preserve-line-breaks --remove-comments --file-ext xhtml  --input-dir out --output-dir out",
+    "rebuild": "npm run clean && npm run build && npm run minify && npm run bundle",
     "check": "java -jar /Users/david/bin/epubcheck-4.0.2/epubcheck.jar guide.epub",
     "kindle": "~/KindleGen/kindlegen guide.epub"
   },
@@ -26,6 +27,7 @@
     "akasharender-epub": "akashacms/akasharender-epub",
     "epubtools": "*",
     "globfs": "*",
+    "html-minifier": "^3.5.3",
     "mahabhuta": "*",
     "uuid": "^3.1.0"
   }
