@@ -108,6 +108,14 @@ The values for `type` are:
 * `i` - lower-case roman numerals
 * `I` - upper-case roman numerals
 
+## The `id=` attributes in Table of Contents entries
+
+You'll see `id` attributes in the sample Table of Contents entries above.  Those `id` values are copied by _epubtools_ into the OPF and NCX files to use as the required `id` values.
+
+The `id` attributes are not required by the EPUB specification.  You won't see them recommended in documents about creating files for an EPUB document.  
+
+However, it is required that entries in OPF and NCX files have `id` attributes.  Since _epubtools_ creates those files for you, it must get those `id` attributes from somewhere.  The Table of Contents is that place.
+
 ## Navigation Document Page title
 
 It's tempting for the page title of this page to simply be _Table of Contents_, like this:

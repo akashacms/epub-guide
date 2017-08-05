@@ -60,3 +60,30 @@ $ /path/to/KindleGen/kindlegen \
         /path/to/ebook.epub \
         -verbose
 ```
+
+# Fixing common errors
+
+As thorough as _epubcheck_ is, the messages it gives are very difficult to understand.
+
+# Correct `id=` attributes in the Table of Contents
+
+Previously we noted that Table of Contents entries require an `id` attribute, and that attribute is copied into the OPF and NCX files.  This is a simple way to fill in the metadata files with the required values.
+
+The following errors arose, and unfortunately the error message doesn't explain anything useful.
+
+```
+ERROR(RSC-005): guide.epub/guide.opf(1,1819): Error while parsing file 'value of attribute "id" is invalid; must be an XML name without colons'.
+ERROR(RSC-005): guide.epub/guide.opf(1,1905): Error while parsing file 'value of attribute "id" is invalid; must be an XML name without colons'.
+ERROR(RSC-005): guide.epub/guide.opf(1,5091): Error while parsing file 'value of attribute "idref" is invalid; must be an XML name without colons'.
+ERROR(RSC-005): guide.epub/guide.opf(1,5141): Error while parsing file 'value of attribute "idref" is invalid; must be an XML name without colons'.
+ERROR(RSC-005): guide.epub/toc.ncx(1,1091): Error while parsing file 'value of attribute "id" is invalid; must be an XML name without colons'.
+ERROR(RSC-005): guide.epub/toc.ncx(1,1253): Error while parsing file 'value of attribute "id" is invalid; must be an XML name without colons'.
+```
+
+On the [mobileread forum](https://www.mobileread.com/forums/showthread.php?t=204542) they discussed this error message and said that such `id` attributes cannot start with a numeric digits.  In this case the ToC had entries like this:
+
+```
+<li><a id="3c-content-markup" href="3c-content-markup.html"></a></li>
+```
+
+The `id` value does correspond to the file name, which is useful, but also starts with a numeric digit.  Simply changing the `id` to not start with a numeric digit did the trick.
