@@ -6,16 +6,16 @@ title: Creating eBooks with Markdown and Open Source Tools
 languages: [ en ]
 identifiers:
     - unique: true
-      uuid: "93aa70c2-089f-11e5-b304-477de2f6d00a"
+      uuid: "90694c09-9308-48f0-b634-34b7d8368541"
 published:
-    date: "2017-07-06T22:15:14Z"
+    date: "2017-08-05T22:15:14Z"
 creators:
     - id: author
       name: David Herron
       nameReversed: Herron, David
 publisher: AkashaCMS.COM
 subjects: [ "Self Publishing", "Markdown", "EPUB", "EPUB3", "Open Source Publishing", "Electronic Books", "Electronic Book Publishing", "E-Books", "E-Book Publishing", "EPUB Publishing", "Create eBooks" ]
-rights: "Copyright 2015, David Herron"
+rights: "Copyright 2017, David Herron"
 
 cover:
     writeHtml: { id: "cover", href: "cover.html" }
