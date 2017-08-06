@@ -19,11 +19,12 @@ For more explanation see [creativecommons.org/licenses/by-nd/4.0/](https://creat
 Printed in the United States of America
 
 * First Printing, 2015
-* Second Printing, 2017
+* Second Printing, v0.6.2, August 2017
 
 David Herron
 Santa Clara, California 95050
 
-DavidHerron.com
 AkashaCMS.com
+DavidHerron.com
+TechSparx.com
 </section>
