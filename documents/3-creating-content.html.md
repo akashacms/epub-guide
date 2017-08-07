@@ -9,7 +9,7 @@ The AkashaRender model is writing files in an easy-to-write markup format like M
 
 # Quick overview on configuring content directories
 
-In a later chapter we'll make a deep dive into the configuration files.  To understand this section we need to understand a couple small things about the Configuration object.
+In a later chapter we'll make a deep dive into the configuration files.  Understanding this section requires a little preview of the Configuration object.
 
 Content files are stored in two kinds of directories:
 

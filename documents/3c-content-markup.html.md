@@ -9,7 +9,7 @@ The AkashaCMS website (http://akashacms.com/akasharender/layouts-partials.html) 
 
 ## Markdown files
 
-Files are to be named `example.html.md` with the `.html.md` part of the file name indicating it is a Markdown file.
+Files are named `example.html.md` with the `.html.md` part of the file name indicating it is a Markdown file.  Other file-types have other extensions like the `.html.ejs` files in the next section.
 
 Markdown is a content markup language for plain text files.  The formatting syntax is designed to be easily written, with enough capability for routine text documents, and can be used in any plain text editor.   All the content in this guide is written using Markdown.
 
@@ -21,7 +21,7 @@ The markdown-it processor used by AkashaCMS supports some of the Github Flavored
 
 ## HTML+EJS files
 
-EJS uses special tags embedded in HTML allowing the substitution of data into HTML renderings.  In AkashaCMS, all the metadata is available as variables for easy substitution into rendered HTML.
+EJS uses special tags embedded in HTML allowing the substitution of data into HTML renderings.  In AkashaCMS, all the metadata is available as variables for easy substitution into rendered HTML.  The file extension to use EJS is `.html.ejs`.
 
 It's not recommended to use EJS when writing, but it's a vital tool for layout template files as we've already seen.
 

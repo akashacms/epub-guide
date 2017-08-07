@@ -44,7 +44,7 @@ We have two sample files:
 
 The entries in this file are fairly straightforward.  See: [](4-configuration.html)
 
-# The Navigation Document, a.ka. the Table of Contents, in `toc.html`
+# The Navigation Document, a.k.a. the Table of Contents, in `toc.html`
 
 Every EPUB3 e-Book must have a _Navigation Document_ containing at least one `<nav>` that serves as the Table of Contents.  The EPUB3 Navigation Document replaced the NCX file used in EPUB2.  For compatibility purposes, `epubtools` automatically generates an NCX file while bundling the EPUB.  The `<nav>` structure in the Navigation Document will be extracted by the reading system so it can display navigational aids to the user.
 

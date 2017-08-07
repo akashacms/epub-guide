@@ -7,14 +7,14 @@ This is what we've been working towards for a few sections - rendering HTML file
 
 The AkashaCMS website does have complete documentation about layouts and page rendering at - https://akashacms.com/akasharender/layouts-partials.html
 
-Generally speaking, AkashaRender encapsulates the content within a layout template file as determined by the `layout` tag in the document.  That is, a four-stage process is followed:
+AkashaRender renders the content to HTML, then encapsulates that HTML within a layout template file declared in the `layout` tag in the document.  That is, a four-stage process is followed:
 
 1. The content file is rendered, producing an HTML output.
 1. Custom tags and other DOM processing are performed by Mahabhuta.
-1. Assuming the content declares a `layout` template, the HTML from stage 1 is into the corresponding template.
+1. Assuming the content declares a `layout` template, the HTML from stage 1 is rendered into the corresponding template.
 1. Custom tags and other DOM processing is again performed by Mahabhuta.
 
-This guide is formatted using the `ebook-page.html.ejs` layout template (see: https://github.com/akashacms/epub-guide/blob/master/layouts/ebook-page.html.ejs).  Therefore, each page in the guide has this metadata:
+This guide is formatted using the `ebook-page.html.ejs` layout template (see: https://github.com/akashacms/epub-guide/blob/master/layouts/ebook-page.html.ejs).  Therefore, each page in the guide has at least this much metadata:
 
 ```
 ---

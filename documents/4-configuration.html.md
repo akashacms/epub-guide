@@ -12,6 +12,8 @@ AkashaEPUB projects have another configuration file:
 
 * The publishing metadata that's contained a YAML file typically called `book.yml`.
 
+The primary purpose of this file is documenting the data destined to go into the OPF and NCX files.  Those files are the EPUB metadata files, containing the book title, authors, identifying strings (ISBN etc), the reading order of the files, and more.  Rather than generate those files yourself, this file simplifies your life and _epubtools_ takes care of the details.
+
 In this chapter we'll go over all three.
 
 
@@ -94,7 +96,7 @@ Likely package dependency entries in `package.json`:
 
 # Publishing metadata - `book.yaml`
 
-The third configuration file is used by _epubtools_ and contains the metadata required for the XML files that are tucked inside the EPUB.  What _epubtools_ does is to automatically generate those XML files for you from data it gathers from the content files and from this metadata file.
+The third configuration file is used by _epubtools_ and contains the metadata required for the XML files (OPF and NCX) that are tucked inside the EPUB.  What _epubtools_ does is to automatically generate those XML files for you from data it gathers from the content files and from this metadata file.
 
 This `book.yaml` is from the EPUB Skeleton project https://github.com/akashacms/epub-skeleton/blob/master/book.yml
 
@@ -150,6 +152,22 @@ name:
 
 name: { id: "someId", title: "The Title String" }
 ```
+
+Generally YAML does the right thing with converting the text content of a tag into a string.  Sometimes you need to use special characters in tag content that will confuse YAML.  For example:
+
+```
+name:
+    title: The Good, the Bad and The Ugly: a Retrospective
+```
+
+That `:` character will cause YAML to become confused.  In such a case it's necessary to put quotes around the text:
+
+```
+name:
+    title: "The Good, the Bad and The Ugly: a Retrospective"
+```
+
+A similar issue is that if YAML see's a string of numbers, it assumes the field value to be numerical.  If instead the field value is, say, a product ID where leading 0's are important, it's necessary to throw quote's around the field value so that YAML treats it as a string rather than a number.
 
 Finally, a list of items is declared using a `-` character to denote the beginning of each item:
 
