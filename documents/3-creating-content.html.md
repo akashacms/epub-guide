@@ -18,7 +18,7 @@ Directory type | Config method | Discussion
 `AssetsDir`    | `addAssetsDir()` | Files that are simply copied to the `RenderDestination` with no processing
 `DocumentsDir` | `addDocumentsDir()` | Files requiring processing (a.k.a. rendering), with the rendered result copied to the `RenderDestination`
 
-The RenderDestination is the output directory.  AkashaRender renders all the input files into the RenderDestination directory.  The directory structure of the input directories (AssetsDir and DocumentsDir) is replicated in the RenderDestination.  Files in the RenderDestination might receive some post-processing such as minfying HTML or CSS or JavaScript. The RenderDestination is then delivered to the destination, meaning its either copied to a webserver, packaged into an EPUB or some other delivery mechanism.
+AkashaRender renders all the input files into the RenderDestination directory.  The directory structure of the input directories (AssetsDir and DocumentsDir) is replicated in the RenderDestination.  The RenderDestination is what's delivered to the destination, meaning its either copied to a webserver, packaged into an EPUB or some other delivery mechanism.  There might be some post-processing such as minfying HTML or CSS or JavaScript before delivering the RenderDestination.
 
 Typically your images, JavaScript and CSS files, a.k.a. _asset files_, go in AssetsDir's.  However, files in DocumentsDir's not requiring rendering are also simply copied to the RenderDestination.  It is possible to place the _asset files_ in the DocumentDir's, depending on your preference.  There are two additional directory types, PartialsDir and LayoutsDir, that we'll discuss later.
 

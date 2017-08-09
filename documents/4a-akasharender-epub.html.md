@@ -18,6 +18,18 @@ config
 
 The `package.json` requires a corresponding dependency to `akashacms/akasharender-epub` to make the plugin available.  As of this writing, the plugin is not published into the npm registry, but is easy enough to use this way.
 
+# Forcing XML mode to generate XHTML
+
+EPUB3 requires an XHTML version of HTML5.  By default AkashaRender produces HTML files, not XML/XHTML.  However that's just a simple configuration away.
+
+The `akasharender-epub` plugin automatically sets XML mode so that it automatically produces XHTML files.
+
+However, even though the files are in XHTML format, the file extension is `.html`.  That's because AkashaRender's Renderer objects all produce `.html` filenames.  
+
+If the files are not renamed from `.html` to `.xhtml` _epubcheck_ will give warnings and it will look like a problem.  It's actually not much of a problem, but it's always nicer to have zero warnings and zero errors from a tool like _epubcheck_.  
+
+The _epubtools_ command includes a command `epubtools xhtml` that converts the `.html` files to `.xhtml` files.  See [](6-building-EPUB.html)
+
 # Removal of `<html>/<body>` tags from embedded content
 
 Some content retrieved by `akashacms-embeddables` inserts an `<html>` tag containing a `<body>`.  This is questionable enough for a website, but in an EPUB it's right out.  The `<html>/<body>` wrapper is removed leaving behind what had been within that wrapper.

@@ -158,6 +158,12 @@ The `tohtml` command is an incomplete and probably bug-ridden attempt to convert
 
 The `xhtml` command converts files with extension `.html` to have `.xhtml` extension, as required by EPUB.  Links are searched out in `.xhtml`, `.html`, `.opf` and `.ncx` files referring to local `.html` files, and the extension is converted to `.xhtml`.  The purpose is that AkashaRender only knows how to generate `.html` files, but the EPUB standard requires `.xhtml` files.  This command converts the directory to match the requirements.
 
+We already saw this in use:
+
+```
+"prebundle": "epubtools xhtml out",
+```
+
 ## Minimal input to _epubtools_
 
 We've discussed a series of commands to execute, that successfully uses AkashaEPUB and epubtools to render content and bundle an EPUB.  A careful study shows that it first uses `akasharender` to render the content, then runs a number of steps using `epubtools` to generate metadata files and then bundle the EPUB.  This demonstrates the claim made earlier that epubtools can take XHTML files from any source.
